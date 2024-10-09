@@ -91,3 +91,6 @@
 | API | OmniAuth Google OAuth2 |
 | VCS | GitHub |
 | CI/CD | GitHub Actions |
+
+## 画面遷移図
+https://www.figma.com/design/8f474smVjo7Xg5O3HH0DZq/All-Ready?node-id=0-1&t=96jaDDCyTNPncGzS-1
