@@ -93,3 +93,7 @@
 
 ## 画面遷移図
 https://www.figma.com/design/8f474smVjo7Xg5O3HH0DZq/All-Ready?node-id=0-1&t=96jaDDCyTNPncGzS-1
+
+## ER図
+https://dbdiagram.io/d/All-Ready-670be10097a66db9a3cf1d05
+<img src="https://i.gyazo.com/b66097449671ab3182d814125d32a57d.png" width="500px" />
