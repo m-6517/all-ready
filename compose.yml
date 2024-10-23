@@ -1,6 +1,7 @@
 services:
   db:
     image: postgres
+    platform: linux/amd64
     restart: always
     environment:
       TZ: Asia/Tokyo
