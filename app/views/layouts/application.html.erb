@@ -18,7 +18,11 @@
   </head>
 
   <body class="min-h-screen bg-base-100">
-    <%= render "shared/header" %>
+    <% if user_signed_in? %>
+      <%= render "shared/header" %>
+    <% else %>
+      <%= render "shared/before_login_header" %>
+    <% end %>
     <%= yield %>
     <%= render "shared/footer" %>
   </body>
