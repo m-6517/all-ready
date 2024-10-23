@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Deploy to Heroku
-        uses: gonuit/heroku-docker-deploy@v1.3.3
+        uses: gonuit/heroku-docker-deploy@v1.4.0
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
