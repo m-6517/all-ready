@@ -1,12 +1,12 @@
 <div class="container mx-auto pt-3 py-24">
-  <h1 class="text-lg font-medium mb-6">ここに行くならこれ！</h1>
+  <h1 class="text-lg font-medium mb-6"><%= t('.title') %></h1>
   <div class="flex items-center justify-center gap-4 m-12">
-    <%= link_to 'おすすめアイテムを投稿する', '#', class: "btn btn-primary" %>
+    <%= link_to 'おすすめアイテムを投稿する', new_recommend_path, class: "btn btn-primary" %>
   </div>
   <div class="flex flex-wrap justify-center md:justify-start">
     <% if @recommends.present? %>
       <% @recommends.each do |place, recommends| %>
-        <div class="place-card bg-white shadow rounded-lg p-4 m-2">
+        <div class="place-card bg-slate-50 shadow rounded-lg p-4 m-2">
           <h2 class="text-base font-medium mb-2">
             <%= link_to place, by_place_recommends_path(place) %>
           </h2>
