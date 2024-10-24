@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     registrations: "users/registrations"
   }
 
-  resources :recommends, only: %i[index show new create] do
+  resources :recommends do
     collection do
       get "place/:place", to: "recommends#by_place", as: "by_place"
     end
