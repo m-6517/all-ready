@@ -7,11 +7,11 @@ class RecommendsController < ApplicationController
 
   def by_place
     @place = params[:place]
-    @recommends = Recommend.includes(:user).where(place: @place)
+    @recommends = Recommend.where(place: @place)
   end
 
   def show
-    @recommend = Recommend.includes(:user).find(params[:id])
+    @recommend = Recommend.find(params[:id])
   end
 
   def new
@@ -51,6 +51,6 @@ class RecommendsController < ApplicationController
   private
 
   def recommend_params
-    params.require(:recommend).permit(:place, :item, :body)
+    params.require(:recommend).permit(:place, :item, :body, :item_image, :item_image_cache)
   end
 end
