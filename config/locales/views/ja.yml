@@ -1,0 +1,20 @@
+ja:
+  defaults:
+    create: 作成
+    post: 投稿
+    edit: 編集
+    delete_confirm: 削除しますか？
+    flash_message:
+      created: "%{item}を登録しました"
+      not_created: "%{item}を登録できませんでした"
+      updated: "%{item}を更新しました"
+      not_updated: "%{item}を更新できませんでした"
+      deleted: "%{item}を削除しました"
+      require_login: ログインしてください
+  recommends:
+    index:
+      title: ここに行くならこれ！
+    new:
+      title: ここに行くならこれ！
+    show:
+      title: おすすめアイテム詳細

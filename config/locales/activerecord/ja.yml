@@ -2,9 +2,14 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      recommend: おすすめアイテム
     attributes:
       user:
         name: アカウント名
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認
+      recommend:
+        place: 持って行く場所
+        item: 持って行くもの
+        body: コメント
