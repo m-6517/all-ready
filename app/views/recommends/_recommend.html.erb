@@ -1,0 +1,13 @@
+<div class="flex p-4">
+  <div>
+    <%= link_to recommends_path(recommend), id: "recommend-id-#{recommend.id}" do %>
+      <div class="card bg-base-100 w-96 shadow">
+        <div class="card-body">
+          <h2 class="card-title text-base font-medium">
+            <%= link_to recommend.place, '#' %>
+          </h2>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
