@@ -1,4 +1,9 @@
 ja:
+  helpers:
+      submit:
+        create: 登録
+        submit: 保存
+        update: 更新
   defaults:
     create: 作成
     post: 投稿
@@ -10,11 +15,16 @@ ja:
       updated: "%{item}を更新しました"
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
-      require_login: ログインしてください
   recommends:
     index:
       title: ここに行くならこれ！
     new:
       title: ここに行くならこれ！
+      submit_label: "投稿を作成"
     show:
       title: おすすめアイテム詳細
+    edit:
+      title: おすすめアイテム編集
+      submit_label: "投稿を保存"
+    delete:
+      submit_label: "投稿を削除"
