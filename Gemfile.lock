@@ -107,6 +107,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.12.1)
+      devise (>= 4.9.0)
     drb (2.2.1)
     erubi (1.13.0)
     globalid (1.2.1)
@@ -310,6 +312,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise
+  devise-i18n
   jbuilder
   jsbundling-rails
   pg (~> 1.1)
