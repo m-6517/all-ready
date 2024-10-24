@@ -37,6 +37,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "devise"
+gem "devise-i18n"
 
 gem "rails-i18n"
 
