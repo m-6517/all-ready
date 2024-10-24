@@ -3,7 +3,7 @@
   <div class="flex flex-wrap justify-center md:justify-start">
     <% if @recommends.present? %>
       <% @recommends.each do |recommend| %>
-        <div class="item-card bg-white shadow rounded-lg p-4 m-2">
+        <div class="item-card bg-slate-50 shadow rounded-lg p-4 m-2">
           <h2 class="text-base font-medium">
             <%= link_to recommend.item, recommend_path(recommend) %>
           </h2>
