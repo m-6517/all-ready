@@ -3,7 +3,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: "users/registrations"
   }
-  resources :recommends
+
+  resources :recommends, only: %i[index show] do
+    collection do
+      get 'place/:place', to: 'recommends#by_place', as: 'by_place'
+    end
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
