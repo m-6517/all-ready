@@ -1,0 +1,17 @@
+<%= form_with model: @recommend, class: "space-y-4 bg-slate-50" do |f| %>
+  <div>
+    <%= f.label :place, class: "block text-sm font-medium mb-1" %>
+    <%= f.text_field :place, class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+  </div>
+  <div>
+    <%= f.label :item, class: "block text-sm font-medium mb-1" %>
+    <%= f.text_field :item, class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+  </div>
+  <div>
+    <%= f.label :body, class: "block text-sm font-medium mb-2" %>
+    <%= f.text_area :body, placeholder: "購入場所、価格帯、おすすめポイントなど", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs", rows: 5 %>
+  </div>
+  <div class="flex mt-4 justify-end">
+    <%= f.submit "投稿を作成", class: "btn btn-primary w-full mt-4" %>
+  </div>
+<% end %>
