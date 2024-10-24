@@ -4,7 +4,7 @@
       <div class="flex items-center space-x-4">
         <h1 class="text-lg font-medium mb-6"><%= t('.title') %></h1>
       </div>
-      <%= render 'form', recommend: @recommend %>
+      <%= render 'form', recommend: @recommend, submit_label: I18n.t('recommends.new.submit_label') %>
     </div>
   </div>
 </div>
