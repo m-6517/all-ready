@@ -2,6 +2,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 255 }
 
   has_many :recommends, dependent: :destroy
+  has_many :item_lists, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
