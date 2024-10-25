@@ -1,0 +1,13 @@
+<div class="flex p-4">
+  <div>
+    <%= link_to item_lists_path(item_list), id: "item_list-id-#{item_list.id}" do %>
+      <div class="card bg-base-100 w-52 h-38 shadow">
+        <div class="card-body">
+          <h2 class="card-title text-base font-medium">
+            <%= link_to item_list.name, '#' %>
+          </h2>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
