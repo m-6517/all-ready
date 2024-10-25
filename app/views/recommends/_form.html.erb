@@ -12,7 +12,7 @@
     <%= f.text_area :body, placeholder: "購入場所、価格帯、おすすめポイントなど", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs", rows: 5 %>
   </div>
   <div>
-    <%= f.file_field :item_image, class: "file-input file-input-bordered file-input-primary file-input-sm w-full max-w-xs mt-4 mb-4", accept: 'image/*' %>
+    <%= f.file_field :item_image, class: "file-input file-input-bordered file-input-primary file-input-sm w-full mt-2 mb-4", accept: 'image/*' %>
     <%= f.hidden_field :item_image_cache %>
   </div>
   <div class="flex mt-4 justify-end">
