@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :item_lists, only: %i[index]
+  resources :item_lists, only: %i[index show new create]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
