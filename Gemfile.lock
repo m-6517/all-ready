@@ -114,6 +114,7 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.12.1)
       devise (>= 4.9.0)
+    dotenv (3.1.4)
     drb (2.2.1)
     erubi (1.13.0)
     excon (0.112.0)
@@ -356,6 +357,7 @@ DEPENDENCIES
   debug
   devise
   devise-i18n
+  dotenv
   fog-aws
   image_processing (~> 1.2)
   jbuilder
