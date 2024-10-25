@@ -28,3 +28,6 @@ ja:
       submit_label: "投稿を保存"
     delete:
       submit_label: "投稿を削除"
+  item_lists:
+    index:
+      title: 持ち物リスト

@@ -3,6 +3,7 @@ ja:
     models:
       user: ユーザー
       recommend: おすすめアイテム
+      item_list: 持ち物リスト
     attributes:
       user:
         name: アカウント名
@@ -14,3 +15,4 @@ ja:
         item: 持って行くもの
         body: コメント
         item_image: 写真
+
