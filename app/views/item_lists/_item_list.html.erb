@@ -2,10 +2,53 @@
   <div>
     <%= link_to item_lists_path(item_list), id: "item_list-id-#{item_list.id}" do %>
       <div class="card bg-base-100 w-52 h-38 shadow">
-        <div class="card-body">
-          <h2 class="card-title text-base font-medium">
+        <div class="card-body flex flex-col items-center">
+          <h2 class="card-title text-base font-medium text-center">
             <%= link_to item_list.name, item_list_path(item_list) %>
           </h2>
+
+          <i class="fa-solid fa-ellipsis absolute top-4 right-6" onclick="openMenuModal(<%= item_list.id %>)"></i>
+
+          <dialog id="menuModal_<%= item_list.id %>" class="modal">
+            <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12">
+              <div class="modal-action flex flex-col mx-auto w-full space-y-6">
+                <button class="btn btn-primary" onclick="openRenameModal(<%= item_list.id %>)">リスト名を変更</button>
+                <button class="btn btn-bg-base-300" onclick="openDeleteModal(<%= item_list.id %>)">リストを削除</button>
+                <button class="btn btn-ghost" onclick="document.getElementById('menuModal_<%= item_list.id %>').close()">キャンセル</button>
+              </div>
+            </div>
+          </dialog>
+
+          <dialog id="renameModal_<%= item_list.id %>" class="modal">
+            <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12">
+              <%= form_with model: item_list, url: item_list_path(item_list), method: :patch, local: true do |form| %>
+                <label class="form-control w-full max-w-xs">
+                  <input type="text" name="item_list[name]" class="input input-bordered w-full max-w-xs" value="<%= item_list.name %>" required />
+                </label>
+                <div class="modal-action mt-4">
+                  <%= form.submit '決定', class: "btn btn-primary w-full" %>
+                </div>
+              <% end %>
+              <div class="modal-action">
+                <button class="btn btn-ghost" onclick="document.getElementById('renameModal_<%= item_list.id %>').close()">キャンセル</button>
+              </div>
+            </div>
+          </dialog>
+
+          <dialog id="deleteModal_<%= item_list.id %>" class="modal">
+            <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12">
+              <h3 class="font-semibold text-base text-accent">リストを削除しますか？</h3>
+              <div class="modal-action mt-4">
+                <form method="post" action="<%= item_list_path(item_list) %>">
+                  <%= hidden_field_tag :_method, 'delete' %>
+                  <button class="btn btn-accent" type="submit">削除する</button>
+                </form>
+                <button class="btn" onclick="document.getElementById('deleteModal_<%= item_list.id %>').close()">キャンセル</button>
+              </div>
+            </div>
+          </dialog>
+
+          
         </div>
       </div>
     <% end %>
