@@ -5,6 +5,7 @@ class ItemListsController < ApplicationController
 
   def show
     @item_list = ItemList.find(params[:id])
+    @selected_original_items = @item_list.original_items.where(selected: true)
   end
 
   def new
@@ -25,14 +26,20 @@ class ItemListsController < ApplicationController
   end
 
   def update
-    @item_list = current_user.item_lists.find(params[:id])
+    @item_list = ItemList.find(params[:id])
 
-    if @item_list.update(item_list_params)
-      redirect_to item_lists_path
+    if params[:item_list].present? && params[:item_list][:original_item_ids].present?
+      @item_list.original_items.update_all(selected: false)
+
+      selected_ids = params[:item_list][:original_item_ids]
+      OriginalItem.where(id: selected_ids).update_all(selected: true)
+
+      @item_list.original_items = OriginalItem.where(id: selected_ids)
     else
-      flash.now[:alert] = t("defaults.flash_message.not_updated", item: ItemList.model_name.human)
-      redirect_to item_lists_path
+      @item_list.original_items.update_all(selected: false)
     end
+
+    redirect_to item_list_path(@item_list)
   end
 
   def destroy
@@ -44,6 +51,6 @@ class ItemListsController < ApplicationController
   private
 
   def item_list_params
-    params.require(:item_list).permit(:name)
+    params.require(:item_list).permit(:name, original_item_ids: [])
   end
 end

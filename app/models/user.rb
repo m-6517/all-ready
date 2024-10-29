@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :recommends, dependent: :destroy
   has_many :item_lists, dependent: :destroy
+  has_many :original_items, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
