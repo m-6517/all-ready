@@ -1,16 +1,16 @@
 <div class="container mx-auto pt-3 py-24">
   <h1 class="text-lg font-medium mb-6"><%= t('.title') %></h1>
   <div class="flex items-center justify-center gap-4 m-12">
-    <button class="btn btn-primary" onclick="document.getElementById('my_modal_1').showModal()">持ち物リストを作成する</button>
+    <button class="btn btn-primary" onclick="document.getElementById('addItemList').showModal()">持ち物リストを作成する</button>
 
-    <dialog id="my_modal_1" class="modal">
+    <dialog id="addItemList" class="modal">
       <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12">
-        <%= form_with model: @item_list, url: item_lists_path, local: true do |form| %>
+        <%= form_with model: @item_list, url: item_lists_path, local: true do |f| %>
           <label class="form-control w-full max-w-xs">
             <input type="text" placeholder="リストの名前" name="item_list[name]" class="input input-bordered w-full max-w-xs" required />
           </label>
           <div class="mt-4">
-            <%= form.submit '決定', class: "btn btn-primary w-full" %>
+            <%= f.submit '決定', class: "btn btn-primary w-full" %>
           </div>
         <% end %>
     
