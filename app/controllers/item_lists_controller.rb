@@ -27,18 +27,18 @@ class ItemListsController < ApplicationController
 
   def update
     @item_list = ItemList.find(params[:id])
-  
+
     if params[:item_list].present? && params[:item_list][:original_item_ids].present?
       @item_list.original_items.update_all(selected: false)
-  
+
       selected_ids = params[:item_list][:original_item_ids]
       OriginalItem.where(id: selected_ids).update_all(selected: true)
-  
+
       @item_list.original_items = OriginalItem.where(id: selected_ids)
     else
       @item_list.original_items.update_all(selected: false)
     end
-  
+
     redirect_to item_list_path(@item_list)
   end
 
