@@ -10,7 +10,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :item_lists
+  resources :item_lists do
+    resources :items, only: %i[new create update] do
+      post :new_original_item, on: :collection
+    end
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
