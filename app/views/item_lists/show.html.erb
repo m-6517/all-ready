@@ -21,6 +21,11 @@
           <%= item.name %>
         </div>
       <% end %>
+      <% @selected_default_items.each do |item| %>
+        <div class="flex items-center gap-2">
+          <%= item.name %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

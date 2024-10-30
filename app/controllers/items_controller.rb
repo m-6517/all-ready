@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
 
   def new
     @original_items = OriginalItem.where(user_id: current_user.id).order(created_at: :asc)
+    @default_items = DefaultItem.all
     @new_original_item = OriginalItem.new
   end
 
@@ -25,12 +26,20 @@ class ItemsController < ApplicationController
     if params[:original_item_ids].present?
       @item_list.original_items.update_all(selected: false)
 
-      selected_ids = params[:original_item_ids]
-      OriginalItem.where(id: selected_ids).update_all(selected: true)
+      selected_original_ids = params[:original_item_ids]
+      OriginalItem.where(id: selected_original_ids).update_all(selected: true)
 
-      @item_list.original_items = OriginalItem.where(id: selected_ids)
+      @item_list.original_items = OriginalItem.where(id: selected_original_ids)
     else
       @item_list.original_items.update_all(selected: false)
+    end
+
+    if params[:default_item_ids].present?
+      @item_list.default_items.update_all(selected: false)
+      selected_default_ids = params[:default_item_ids]
+      DefaultItem.where(id: selected_default_ids).update_all(selected: true)
+    else
+      @item_list.default_items.update_all(selected: false)
     end
 
     redirect_to item_list_path(@item_list)

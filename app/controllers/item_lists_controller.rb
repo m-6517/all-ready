@@ -6,6 +6,7 @@ class ItemListsController < ApplicationController
   def show
     @item_list = ItemList.find(params[:id])
     @selected_original_items = @item_list.original_items.where(selected: true)
+    @selected_default_items = @item_list.default_items.where(selected: true)
   end
 
   def new
@@ -31,12 +32,23 @@ class ItemListsController < ApplicationController
     if params[:item_list].present? && params[:item_list][:original_item_ids].present?
       @item_list.original_items.update_all(selected: false)
 
-      selected_ids = params[:item_list][:original_item_ids]
-      OriginalItem.where(id: selected_ids).update_all(selected: true)
+      selected_original_ids = params[:item_list][:original_item_ids]
+      OriginalItem.where(id: selected_original_ids).update_all(selected: true)
 
-      @item_list.original_items = OriginalItem.where(id: selected_ids)
+      @item_list.original_items = OriginalItem.where(id: selected_original_ids)
     else
       @item_list.original_items.update_all(selected: false)
+    end
+
+    if params[:item_list].present? && params[:item_list][:default_item_ids].present?
+      @item_list.default_items.update_all(selected: false)
+
+      selected_default_ids = params[:item_list][:default_item_ids]
+      DefaultItem.where(id: selected_default_ids).update_all(selected: true)
+
+      @item_list.default_items = DefaultItem.where(id: selected_default_ids)
+    else
+      @item_list.default_items.update_all(selected: false)
     end
 
     redirect_to item_list_path(@item_list)
