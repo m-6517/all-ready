@@ -10,9 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_29_053624) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_30_013321) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "default_items", force: :cascade do |t|
+    t.bigint "item_list_id", null: false
+    t.string "name", null: false
+    t.integer "position"
+    t.integer "quantity", default: 1
+    t.boolean "selected", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_list_id"], name: "index_default_items_on_item_list_id"
+  end
+
+  create_table "item_list_default_items", force: :cascade do |t|
+    t.bigint "item_list_id", null: false
+    t.bigint "default_item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["default_item_id"], name: "index_item_list_default_items_on_default_item_id"
+    t.index ["item_list_id"], name: "index_item_list_default_items_on_item_list_id"
+  end
 
   create_table "item_list_original_items", force: :cascade do |t|
     t.bigint "item_list_id", null: false
@@ -69,6 +89,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_29_053624) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "default_items", "item_lists"
+  add_foreign_key "item_list_default_items", "default_items"
+  add_foreign_key "item_list_default_items", "item_lists"
   add_foreign_key "item_list_original_items", "item_lists"
   add_foreign_key "item_list_original_items", "original_items"
   add_foreign_key "item_lists", "users"
