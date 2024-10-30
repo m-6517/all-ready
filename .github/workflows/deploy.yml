@@ -23,6 +23,6 @@ jobs:
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       - name: Seed database on Heroku
-        run: heroku run rails db:seed -a ${{ secrets.HEROKU_APP_NAME }}
+        run: heroku run bundle exec rake db:seed -a ${{ secrets.HEROKU_APP_NAME }}
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
