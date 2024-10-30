@@ -10,8 +10,14 @@
             <%= item.name %>
           </div>
         <% end %>
+
+        <% @default_items.each do |item| %>
+          <div class="flex items-center gap-2">
+            <%= check_box_tag "item_list[default_item_ids][]", item.id, item.selected, class: "checkbox checkbox-primary checkbox-sm" %>
+            <%= item.name %>
+          </div>
+        <% end %>
       </div>
-    
       <%= f.submit "持ち物リストを保存", class: "btn btn-primary mt-4" %>
     <% end %>
 
