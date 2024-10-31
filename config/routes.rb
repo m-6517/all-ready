@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   end
 
   resources :item_lists do
-    resources :items, only: %i[new create update] do
+    resources :items, only: %i[new create update destroy] do
       post :new_original_item, on: :collection
+      delete "destroy_original_item/:id", action: :destroy_original_item, as: :destroy_original_item
     end
   end
 
