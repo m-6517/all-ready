@@ -8,6 +8,7 @@
           <div class="flex items-center gap-2">
             <%= check_box_tag "item_list[original_item_ids][]", item.id, item.selected, class: "checkbox checkbox-primary checkbox-sm" %>
             <%= item.name %>
+            <%= link_to "✕", item_list_item_destroy_original_item_path(@item_list, item.id, id: item.id), data: { turbo_method: :delete }, class: "p-2 btn btn-ghost btn-circle btn-sm" %>
           </div>
         <% end %>
 
