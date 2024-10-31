@@ -45,6 +45,13 @@ class ItemsController < ApplicationController
     redirect_to item_list_path(@item_list)
   end
 
+  def destroy_original_item
+    item_list = ItemList.find(params[:item_list_id])
+    original_item = item_list.original_items.find(params[:id])
+    original_item.destroy!
+    redirect_to new_item_list_item_path(item_list), status: :see_other
+  end
+
   private
 
   def set_item_list
