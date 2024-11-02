@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_30_035836) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_01_071548) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_30_035836) do
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_item_lists_on_name", unique: true
     t.index ["user_id"], name: "index_item_lists_on_user_id"
+  end
+
+  create_table "item_statuses", force: :cascade do |t|
+    t.bigint "item_list_id", null: false
+    t.bigint "original_item_id"
+    t.bigint "default_item_id"
+    t.boolean "is_checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["default_item_id"], name: "index_item_statuses_on_default_item_id"
+    t.index ["item_list_id"], name: "index_item_statuses_on_item_list_id"
+    t.index ["original_item_id"], name: "index_item_statuses_on_original_item_id"
   end
 
   create_table "original_items", force: :cascade do |t|
@@ -92,6 +104,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_30_035836) do
   add_foreign_key "item_list_original_items", "item_lists"
   add_foreign_key "item_list_original_items", "original_items"
   add_foreign_key "item_lists", "users"
+  add_foreign_key "item_statuses", "default_items"
+  add_foreign_key "item_statuses", "item_lists"
+  add_foreign_key "item_statuses", "original_items"
   add_foreign_key "original_items", "item_lists"
   add_foreign_key "original_items", "users"
   add_foreign_key "recommends", "users"
