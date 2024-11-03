@@ -4,5 +4,5 @@ class ItemStatus < ApplicationRecord
   belongs_to :default_item, optional: true
 
   validates :item_list, presence: true
-  validates :is_checked, inclusion: { in: [true, false] }
+  validates :is_checked, inclusion: { in: [ true, false ] }
 end
