@@ -7,6 +7,7 @@ class ItemListsController < ApplicationController
     @item_list = ItemList.find(params[:id])
     @selected_original_items = @item_list.original_items.where(selected: true)
     @selected_default_items = @item_list.default_items.where(selected: true)
+    @item_statuses = @item_list.item_statuses.includes(:original_item, :default_item)
   end
 
   def new
