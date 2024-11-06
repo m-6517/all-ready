@@ -29,7 +29,7 @@ class ItemListsController < ApplicationController
 
   def update
     @item_list = ItemList.find(params[:id])
-  
+
     if @item_list.update(item_list_params)
       if params[:item_list][:original_item_ids].present?
         selected_original_ids = params[:item_list][:original_item_ids].map(&:to_i)
@@ -51,7 +51,7 @@ class ItemListsController < ApplicationController
         end
       end
     end
-  
+
     redirect_to item_list_path(@item_list)
   end
 

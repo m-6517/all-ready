@@ -6,8 +6,7 @@
                   class: "btn w-full flex justify-start text-left px-4 #{item_status.is_checked ? 'btn-active' : 'btn-inactive'} #{item_status.is_checked ? 'bg-secondary border-0 shadow' : 'bg-base-100'}" %>
   </turbo-frame>
 <% else %>
-  <!-- アイテムが選択されている場合の表示を追加 -->
   <turbo-frame class="w-full max-w-md">
-    <span>No item selected</span> <!-- 適宜メッセージや他の内容を表示 -->
+    <span>No item selected</span>
   </turbo-frame>
 <% end %>
