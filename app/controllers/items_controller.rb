@@ -12,28 +12,32 @@ class ItemsController < ApplicationController
       new_original_item = OriginalItem.new(original_item_params)
       new_original_item.user = current_user
       new_original_item.item_list_id = @item_list.id
-
+  
       if new_original_item.save
-        @item_list.original_items << new_original_item
+        # 中間テーブルに関連を作成
+        ItemListOriginalItem.find_or_create_by(item_list: @item_list, original_item: new_original_item)
         redirect_to new_item_list_item_path(@item_list)
       else
         render :new
       end
     end
-  end
+  end  
 
   def update
     if params[:original_item_ids].present?
       @item_list.original_items.update_all(selected: false)
-
+  
       selected_original_ids = params[:original_item_ids]
       OriginalItem.where(id: selected_original_ids).update_all(selected: true)
-
-      @item_list.original_items = OriginalItem.where(id: selected_original_ids)
+  
+      # 中間テーブルに必要な関連を追加
+      selected_original_ids.each do |original_item_id|
+        ItemListOriginalItem.find_or_create_by(item_list: @item_list, original_item_id: original_item_id)
+      end
     else
       @item_list.original_items.update_all(selected: false)
     end
-
+  
     if params[:default_item_ids].present?
       @item_list.default_items.update_all(selected: false)
       selected_default_ids = params[:default_item_ids]
@@ -41,14 +45,22 @@ class ItemsController < ApplicationController
     else
       @item_list.default_items.update_all(selected: false)
     end
-
+  
     redirect_to item_list_path(@item_list)
   end
 
   def destroy_original_item
     item_list = ItemList.find(params[:item_list_id])
-    original_item = item_list.original_items.find(params[:id])
-    original_item.destroy!
+  
+    # 中間テーブルのレコードを探して削除
+    item_list_original_item = ItemListOriginalItem.find_by(item_list_id: item_list.id, original_item_id: params[:id])
+  
+    if item_list_original_item
+      item_list_original_item.destroy
+    else
+      flash[:alert] = "アイテムが見つかりませんでした。"
+    end
+  
     redirect_to new_item_list_item_path(item_list), status: :see_other
   end
 

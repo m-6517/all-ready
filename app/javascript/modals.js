@@ -17,12 +17,7 @@ export function openDeleteModal(id) {
 export function openItemModal() {
   document.getElementById('itemModal').showModal();
 }
-// アイテム追加
-export function openAddItemModal() {
-  document.getElementById('itemModal').close();
-  document.getElementById('addItemModal').showModal();
-}
-// アイテム数変更
+// アイテム数を変更
 export function openItemQuantityModal() {
   document.getElementById('itemModal').close();
   document.getElementById('itemQuantityModal').showModal();
@@ -32,5 +27,4 @@ window.openMenuModal = openMenuModal;
 window.openRenameModal = openRenameModal;
 window.openDeleteModal = openDeleteModal;
 window.openItemModal = openItemModal;
-window.addItemModal = addItemModal;
 window.openItemQuantityModal = openItemQuantityModal;
