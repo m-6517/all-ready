@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_01_071548) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_05_133305) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_01_071548) do
     t.boolean "is_checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "selected", default: false, null: false
     t.index ["default_item_id"], name: "index_item_statuses_on_default_item_id"
     t.index ["item_list_id"], name: "index_item_statuses_on_item_list_id"
     t.index ["original_item_id"], name: "index_item_statuses_on_original_item_id"
@@ -64,14 +65,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_01_071548) do
 
   create_table "original_items", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "item_list_id", null: false
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position"
     t.integer "quantity", default: 1
     t.boolean "selected", default: false, null: false
-    t.index ["item_list_id"], name: "index_original_items_on_item_list_id"
+    t.integer "item_list_id"
     t.index ["user_id"], name: "index_original_items_on_user_id"
   end
 
