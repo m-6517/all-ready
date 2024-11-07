@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_07_091531) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_07_232031) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "default_items", force: :cascade do |t|
     t.string "name", null: false
     t.integer "position"
-    t.integer "quantity", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -57,6 +56,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_07_091531) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "selected", default: false, null: false
+    t.integer "quantity", default: 1, null: false
     t.index ["default_item_id"], name: "index_item_statuses_on_default_item_id"
     t.index ["item_list_id"], name: "index_item_statuses_on_item_list_id"
     t.index ["original_item_id"], name: "index_item_statuses_on_original_item_id"
@@ -68,8 +68,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_07_091531) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position"
-    t.integer "quantity", default: 1
-    t.integer "item_list_id"
     t.index ["user_id"], name: "index_original_items_on_user_id"
   end
 
@@ -105,7 +103,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_07_091531) do
   add_foreign_key "item_statuses", "default_items"
   add_foreign_key "item_statuses", "item_lists"
   add_foreign_key "item_statuses", "original_items"
-  add_foreign_key "original_items", "item_lists"
   add_foreign_key "original_items", "users"
   add_foreign_key "recommends", "users"
 end
