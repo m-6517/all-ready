@@ -5,16 +5,20 @@
     <%= form_with(model: @item_list, local: true) do |f| %>
       <div class="flex flex-col items-start mt-6 gap-4">
         <% @original_items.each do |item| %>
-          <div class="flex items-center gap-2">
-            <%= check_box_tag "item_list[original_item_ids][]", item.id, item.selected, class: "checkbox checkbox-primary checkbox-sm" %>
-            <%= item.name %>
-            <%= link_to "✕", item_list_item_destroy_original_item_path(@item_list, item.id, id: item.id), data: { turbo_method: :delete }, class: "p-2 btn btn-ghost btn-circle btn-sm" %>
-          </div>
+          <% if ItemListOriginalItem.exists?(item_list: @item_list, original_item: item) %>
+            <div class="flex items-center gap-2">
+              <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
+              <%= check_box_tag "item_list[original_item_ids][]", item.id, status&.selected, class: "checkbox checkbox-primary checkbox-sm" %>
+              <%= item.name %>
+              <%= link_to "✕", item_list_item_destroy_original_item_path(@item_list, item.id, id: item.id), data: { turbo_method: :delete }, class: "p-2 btn btn-ghost btn-circle btn-sm" %>
+            </div>
+          <% end %>
         <% end %>
 
         <% @default_items.each do |item| %>
           <div class="flex items-center gap-2">
-            <%= check_box_tag "item_list[default_item_ids][]", item.id, item.selected, class: "checkbox checkbox-primary checkbox-sm" %>
+            <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
+            <%= check_box_tag "item_list[default_item_ids][]", item.id, status&.selected, class: "checkbox checkbox-primary checkbox-sm" %>
             <%= item.name %>
           </div>
         <% end %>
