@@ -18,9 +18,8 @@ export function openItemModal() {
   document.getElementById('itemModal').showModal();
 }
 // アイテム数を変更
-export function openItemQuantityModal() {
-  document.getElementById('itemModal').close();
-  document.getElementById('itemQuantityModal').showModal();
+export function openItemQuantityModal(id) {
+  document.getElementById(`itemQuantityModal_${id}`).showModal();
 }
 
 window.openMenuModal = openMenuModal;

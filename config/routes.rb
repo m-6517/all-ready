@@ -15,9 +15,10 @@ Rails.application.routes.draw do
       post :new_original_item, on: :collection
       delete "destroy_original_item/:id", action: :destroy_original_item, as: :destroy_original_item
     end
+    resources :quantities, only: %i[index edit update]
   end
 
-  resources :item_statuses do
+  resources :item_statuses, only: [ :update ] do
     patch :toggle, on: :member
   end
 

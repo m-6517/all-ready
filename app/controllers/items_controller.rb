@@ -5,20 +5,20 @@ class ItemsController < ApplicationController
     @original_items = OriginalItem.where(user_id: current_user.id).order(created_at: :asc)
     @default_items = DefaultItem.all
     @new_original_item = OriginalItem.new
+    @item_status = ItemStatus.new
   end
 
   def create
-    if params[:original_item].present?
-      new_original_item = OriginalItem.new(original_item_params)
-      new_original_item.user = current_user
-      new_original_item.item_list_id = @item_list.id
+    @item_list = ItemList.find(params[:item_list_id])
+    existing_item = OriginalItem.find_by(name: original_item_params[:name], user: current_user)
 
-      if new_original_item.save
-        ItemListOriginalItem.find_or_create_by(item_list: @item_list, original_item: new_original_item)
-        redirect_to new_item_list_item_path(@item_list)
-      else
-        render :new
-      end
+    new_original_item = existing_item || OriginalItem.new(original_item_params.merge(user: current_user))
+
+    if new_original_item.save
+      ItemListOriginalItem.find_or_create_by(item_list: @item_list, original_item: new_original_item)
+      redirect_to new_item_list_item_path(@item_list)
+    else
+      render :new
     end
   end
 
@@ -49,14 +49,11 @@ class ItemsController < ApplicationController
 
   def destroy_original_item
     item_list = ItemList.find(params[:item_list_id])
+    original_item = OriginalItem.find(params[:id])
 
-    item_list_original_item = ItemListOriginalItem.find_by(item_list_id: item_list.id, original_item_id: params[:id])
+    item_list_original_item = ItemListOriginalItem.find_by(item_list: item_list, original_item: original_item)
 
-    if item_list_original_item
-      item_list_original_item.destroy
-    else
-      flash[:alert] = "アイテムが見つかりませんでした。"
-    end
+    item_list_original_item.destroy
 
     redirect_to new_item_list_item_path(item_list), status: :see_other
   end

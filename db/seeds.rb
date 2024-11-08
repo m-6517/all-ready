@@ -6,7 +6,6 @@ default_items = [
   DefaultItem.find_or_create_by(name: item_data[:name]) do |item|
     item.position = item_data[:position]
     item.quantity = item_data[:quantity]
-    item.selected = item_data[:selected]
   end
 end
 
@@ -14,7 +13,9 @@ ItemList.find_each do |item_list|
   default_items.each do |default_item|
     ItemListDefaultItem.find_or_create_by(item_list_id: item_list.id, default_item_id: default_item.id)
 
-    item_status = ItemStatus.find_or_create_by(item_list_id: item_list.id, default_item_id: default_item.id)
-    item_status.update(is_checked: false)
+    item_status = ItemStatus.find_or_create_by(item_list_id: item_list.id, default_item_id: default_item.id) do |status|
+      status.is_checked = false
+      status.selected = false
+    end
   end
 end

@@ -1,9 +1,15 @@
 <% if item_status.present? %>
   <turbo-frame id="<%= dom_id(item_status) %>" class="w-full max-w-md">
-    <%= button_to (item_status.original_item&.name || item_status.default_item&.name),
-                  toggle_item_status_path(item_status),
-                  method: :patch,
-                  class: "btn w-full flex justify-start text-left px-4 #{item_status.is_checked ? 'btn-active' : 'btn-inactive'} #{item_status.is_checked ? 'bg-secondary border-0 shadow' : 'bg-base-100'}" %>
+    <%= button_to toggle_item_status_path(item_status), 
+                  method: :patch, 
+                  class: "btn w-full flex justify-between items-center text-left px-4 
+                         #{item_status.is_checked ? 'btn-active' : 'btn-inactive'} 
+                         #{item_status.is_checked ? 'bg-secondary border-0 shadow' : 'bg-base-100'}" do %>
+      <span><%= item_status.original_item&.name || item_status.default_item&.name %></span>
+      <% if item_status.quantity > 1 %>
+        <div class="badge badge-primary badge-sm ml-2"><%= item_status.quantity %></div>
+      <% end %>
+    <% end %>
   </turbo-frame>
 <% else %>
   <turbo-frame class="w-full max-w-md">

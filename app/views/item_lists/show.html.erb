@@ -7,8 +7,8 @@
       <dialog id="itemModal" class="modal">
         <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12">
           <div class="modal-action flex flex-col mx-auto w-full space-y-6">
-            <%= link_to "リストを編集", new_item_list_item_path(@item_list), class: "btn btn-primary w-full" %>
-            <button class="btn btn-primary w-full">アイテム数を変更</button>
+            <%= link_to "アイテムを編集", new_item_list_item_path(@item_list), class: "btn btn-primary w-full" %>
+            <%= link_to "アイテム数を変更", item_list_quantities_path(@item_list), class: "btn btn-primary w-full" %>
             <button class="btn btn-ghost w-full" onclick="document.getElementById('itemModal').close()">キャンセル</button>
           </div>
         </div>
