@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
     @original_items = OriginalItem.where(user_id: current_user.id).order(created_at: :asc)
     @default_items = DefaultItem.all
     @new_original_item = OriginalItem.new
+    @item_status = ItemStatus.new
   end
 
   def create
