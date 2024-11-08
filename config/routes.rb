@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :quantities, only: %i[index edit update]
   end
 
-  resources :item_statuses, only: [:update] do
+  resources :item_statuses, only: [ :update ] do
     patch :toggle, on: :member
   end
 
