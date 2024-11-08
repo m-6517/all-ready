@@ -1,0 +1,29 @@
+<div class="container flex flex-col justify-center items-center mt-6 gap-4">
+  <% @item_statuses.each do |status| %>
+    <div class="flex items-center gap-2 w-full max-w-md">
+      <% if status.original_item %>
+        <div class="btn w-full flex justify-start text-left px-4 bg-base-100" onclick="openItemQuantityModal(<%= status.id %>)">
+          <%= status.original_item.name %>
+        </div>
+      <% elsif status.default_item %>
+        <div class="btn w-full flex justify-start text-left px-4 bg-base-100" onclick="openItemQuantityModal(<%= status.id %>)">
+          <%= status.default_item.name %>
+        </div>
+      <% end %>
+    </div>
+
+    <dialog id="itemQuantityModal_<%= status.id %>" class="modal">
+      <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12">
+        <%= form_with model: status, url: item_list_quantity_path(item_list_id: @item_list.id, id: status.id), method: :patch, local: true do |f| %>
+          <label class="form-control w-full max-w-xs">
+            <input type="number" name="item_status[quantity]" class="input input-bordered w-full max-w-xs" value="<%= status.quantity %>" min="1" required />
+          </label>
+          <div class="modal-action mt-4">
+            <%= f.submit '決定', class: "btn btn-primary w-full" %>
+          </div>
+        <% end %>
+        <button class="btn btn-ghost" onclick="document.getElementById('itemQuantityModal_<%= status.id %>').close()">キャンセル</button>
+      </div>
+    </dialog>
+  <% end %>
+</div>
