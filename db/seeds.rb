@@ -1,7 +1,7 @@
 default_items = [
   { name: "スマートフォン", position: 1, quantity: 1, selected: false },
   { name: "鍵", position: 2, quantity: 1, selected: false },
-  { name: "財布", position: 3, quantity: 1, selected: false },
+  { name: "財布", position: 3, quantity: 1, selected: false }
 ].map do |item_data|
   DefaultItem.find_or_create_by(name: item_data[:name]) do |item|
     item.position = item_data[:position]
