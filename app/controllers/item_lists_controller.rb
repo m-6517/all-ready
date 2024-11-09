@@ -71,6 +71,6 @@ class ItemListsController < ApplicationController
   private
 
   def item_list_params
-    params.require(:item_list).permit(:name, original_item_ids: [], default_item_ids: [])
+    params.require(:item_list).permit(:name, :cover_image, :cover_image_cache, original_item_ids: [], default_item_ids: [])
   end
 end

@@ -31,3 +31,5 @@ ja:
   item_lists:
     index:
       title: 持ち物リスト
+    new:
+      submit_label: "アップロード"
