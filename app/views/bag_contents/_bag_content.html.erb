@@ -1,0 +1,18 @@
+<div class="card bg-base-100 w-64 shadow rounded-lg m-4">
+  <% if bag_content.item_list.cover_image.present? %>
+    <div class="card image-full relative">
+      <%= image_tag bag_content.item_list.cover_image.url, class: "object-cover rounded-lg opacity-50 w-64 aspect-[16/9]" %>
+      <div class="card-body flex flex-col justify-center items-center h-full relative z-10">
+        <h2 class="card-title text-base font-medium text-center">
+          <%= link_to bag_content.item_list.name, item_list_path(bag_content.item_list) %>
+        </h2>
+      </div>
+    </div>
+  <% else %>
+    <div class="card-body flex flex-col justify-center items-center">
+      <h2 class="card-title text-base font-medium text-center">
+        <%= link_to bag_content.item_list.name, item_list_path(bag_content.item_list) %>
+      </h2>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,9 @@
+<div class="container mx-auto pt-3 py-24">
+  <h1 class="text-lg font-medium mb-6"><%= t('.title') %></h1>
+
+  <div class="flex flex-wrap justify-center md:justify-start">
+    <% if @bag_contents.present? %>
+      <%= render @bag_contents %>
+    <% end %>
+  </div>
+</div>
