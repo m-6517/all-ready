@@ -1,5 +1,5 @@
 class BagContentsController < ApplicationController
-  before_action :set_item_list, only: [ :show, :new, :create ]
+  before_action :set_item_list, only: %i[ show new create ]
 
   def index
     @bag_contents = BagContent.includes(:user).order(created_at: :desc)
@@ -27,11 +27,31 @@ class BagContentsController < ApplicationController
       @bag_content = current_user.bag_contents.new(bag_content_params.merge(item_list: @item_list))
 
       if @bag_content.save
-        redirect_to item_list_bag_contents_path(@item_list), notice: "持ち物リストを共有しました"
+        redirect_to item_list_bag_contents_path(@item_list), notice: "かばんの中身を共有しました"
       else
-        render :new, alert: "持ち物リストを共有できませんでした"
+        render :new, alert: "かばんの中身を共有できませんでした"
       end
     end
+  end
+
+  def edit
+    @bag_content = current_user.bag_contents.find(params[:id])
+  end
+
+  def update
+    @bag_content = current_user.bag_contents.find(params[:id])
+    if @bag_content.update(bag_content_params)
+      redirect_to bag_contents_path(@bag_content), notice: "かばんの中身を更新しました"
+    else
+      flash.now[:alert] = "かばんの中身を更新できませんでした"
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    bag_content = current_user.bag_contents.find(params[:id])
+    bag_content.destroy!
+    redirect_to bag_contents_path, notice: t("defaults.flash_message.deleted", item: BagContent.model_name.human), status: :see_other
   end
 
   private

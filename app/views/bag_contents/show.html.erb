@@ -30,6 +30,14 @@
             <% end %>
           </ul>
         </div>
+
+        <div class="flex justify-end">
+          <% if user_signed_in? && current_user.own?(@bag_content) %>
+            <%= link_to edit_bag_content_path(@bag_content), id: "button-edit-#{@bag_content.id}", class: "p-2" do %>
+              <i class="fa-solid fa-pen"></i>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

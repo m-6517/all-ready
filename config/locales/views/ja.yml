@@ -36,3 +36,10 @@ ja:
   bag_contents:
     index:
       title: みんなのかばんの中身
+    new:
+      submit_label: "かばんの中身を共有"
+    edit:
+      title: かばんの中身編集
+      submit_label: "かばんの中身を保存"
+    delete:
+      submit_label: "かばんの中身を削除"

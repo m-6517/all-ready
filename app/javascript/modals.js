@@ -32,6 +32,11 @@ export function openItemQuantityModal(id) {
   document.getElementById(`itemQuantityModal_${id}`).showModal();
 }
 
+// かばんの中身削除
+export function openBagContentDeleteModal(id) {
+  document.getElementById(`bagContentDeleteModal_${id}`).showModal();
+}
+
 window.openMenuModal = openMenuModal;
 window.openRenameModal = openRenameModal;
 window.openCoverImageModal = openCoverImageModal;
@@ -39,3 +44,4 @@ window.openShareModal = openShareModal;
 window.openDeleteModal = openDeleteModal;
 window.openItemModal = openItemModal;
 window.openItemQuantityModal = openItemQuantityModal;
+window.openBagContentDeleteModal = openBagContentDeleteModal;
