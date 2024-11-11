@@ -3,6 +3,11 @@
     <div class="modal-action flex flex-col mx-auto w-full space-y-6">
       <button class="btn btn-primary" onclick="openRenameModal(<%= item_list.id %>)">リスト名を変更</button>
       <button class="btn btn-primary" onclick="openCoverImageModal(<%= item_list.id %>)">カバー画像をアップロード</button>
+      <% unless current_user.bag_contents.exists?(item_list_id: item_list.id) %>
+        <button class="btn btn-primary" onclick="openShareModal(<%= item_list.id %>)">リストを共有</button>
+      <% else %>
+        <button class="btn btn-bg-base-300">リストを共有中</button>
+      <% end %>
       <button class="btn btn-bg-base-300" onclick="openDeleteModal(<%= item_list.id %>)">リストを削除</button>
       <button class="btn btn-ghost" onclick="document.getElementById('menuModal_<%= item_list.id %>').close()">キャンセル</button>
     </div>
@@ -38,6 +43,27 @@
     <% end %>
     <div class="modal-action">
       <button class="btn btn-ghost" onclick="document.getElementById('coverImageModal_<%= item_list.id %>').close()">キャンセル</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="shareModal_<%= item_list.id %>" class="modal">
+  <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12">
+    <h2 class="text-base font-medium">
+      <%= link_to item_list.name, item_list_path(item_list) %>
+    </h2>
+    <%= form_with model: BagContent.new, url: item_list_bag_contents_path(item_list), local: true do |f| %>
+      <%= f.hidden_field :item_list_id, value: item_list.id %>
+      <div>
+        <%= f.label :body, class: "block text-sm font-medium mb-2" %>
+        <%= f.text_area :body, placeholder: "こだわりポイント、おすすめのアイテムなど", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs", rows: 5 %>
+      </div>
+      <div class="modal-action mt-4">
+        <%= f.submit 'かばんの中身を共有', class: "btn btn-primary w-full" %>
+      </div>
+    <% end %>
+    <div class="modal-action">
+      <button class="btn btn-ghost" onclick="document.getElementById('shareModal_<%= item_list.id %>').close()">キャンセル</button>
     </div>
   </div>
 </dialog>

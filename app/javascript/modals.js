@@ -12,6 +12,11 @@ export function openCoverImageModal(id) {
   document.getElementById(`menuModal_${id}`).close();
   document.getElementById(`coverImageModal_${id}`).showModal();
 }
+// リスト共有
+export function openShareModal(id) {
+  document.getElementById(`menuModal_${id}`).close();
+  document.getElementById(`shareModal_${id}`).showModal();
+}
 // リスト削除
 export function openDeleteModal(id) {
   document.getElementById(`menuModal_${id}`).close();
@@ -30,6 +35,7 @@ export function openItemQuantityModal(id) {
 window.openMenuModal = openMenuModal;
 window.openRenameModal = openRenameModal;
 window.openCoverImageModal = openCoverImageModal;
+window.openShareModal = openShareModal;
 window.openDeleteModal = openDeleteModal;
 window.openItemModal = openItemModal;
 window.openItemQuantityModal = openItemQuantityModal;
