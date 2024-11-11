@@ -1,6 +1,6 @@
 <% if item_list.cover_image.present? %>
-  <div class="card bg-base-100 image-full w-64 aspect-[16/9] shadow-xl relative">
-    <%= image_tag item_list.cover_image.url, class: "object-cover rounded-2xl opacity-50 w-64 aspect-[16/9]" %>
+  <div class="card bg-base-100 image-full w-64 aspect-[16/9] shadow rounded-lg relative">
+    <%= image_tag item_list.cover_image.url, class: "object-cover rounded-lg opacity-50 w-64 aspect-[16/9]" %>
     <div class="card-body flex flex-col justify-center items-center h-full relative z-10">
       <h2 class="card-title text-base font-medium text-center">
         <%= link_to item_list.name, item_list_path(item_list) %>
@@ -10,7 +10,7 @@
     </div>
   </div>
 <% else %>
-  <div class="card bg-base-100 w-64 aspect-[16/9] shadow">
+  <div class="card bg-base-100 w-64 aspect-[16/9] shadow rounded-lg">
     <div class="card-body flex flex-col justify-center items-center">
       <h2 class="card-title text-base font-medium text-center">
         <%= link_to item_list.name, item_list_path(item_list) %>

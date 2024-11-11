@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_09_132755) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_10_093725) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bag_contents", force: :cascade do |t|
+    t.bigint "item_list_id", null: false
+    t.bigint "user_id", null: false
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_list_id"], name: "index_bag_contents_on_item_list_id"
+    t.index ["user_id"], name: "index_bag_contents_on_user_id"
+  end
 
   create_table "default_items", force: :cascade do |t|
     t.string "name", null: false
@@ -69,6 +79,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_09_132755) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position"
+    t.integer "item_list_id"
     t.index ["user_id"], name: "index_original_items_on_user_id"
   end
 
@@ -96,6 +107,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_09_132755) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bag_contents", "item_lists"
+  add_foreign_key "bag_contents", "users"
   add_foreign_key "item_list_default_items", "default_items"
   add_foreign_key "item_list_default_items", "item_lists"
   add_foreign_key "item_list_original_items", "item_lists"
@@ -104,6 +117,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_09_132755) do
   add_foreign_key "item_statuses", "default_items"
   add_foreign_key "item_statuses", "item_lists"
   add_foreign_key "item_statuses", "original_items"
+  add_foreign_key "original_items", "item_lists"
   add_foreign_key "original_items", "users"
   add_foreign_key "recommends", "users"
 end
