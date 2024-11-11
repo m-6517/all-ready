@@ -4,6 +4,7 @@ ja:
       user: ユーザー
       recommend: おすすめアイテム
       item_list: 持ち物リスト
+      bag_content: かばんの中身
     attributes:
       user:
         name: アカウント名
