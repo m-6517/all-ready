@@ -10,6 +10,11 @@
 
         <h2 class="text-lg font-medium text-left flex-grow mb-2"><%= @bag_content.item_list.name %></h2>
         <p class="text-lg text-left mb-4"><%= @bag_content.user.name %></p>
+        <% if @bag_content.tag_name.present? %>
+          <div class="flex gap-4 mb-4">
+            <%= render @bag_content.tags %>
+          </div>
+        <% end %>
         <% if @bag_content.body.present? %>
           <p class="text-sm text-left mb-4"><%= @bag_content.body %></p>
         <% end %>

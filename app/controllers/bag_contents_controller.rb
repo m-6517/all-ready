@@ -1,8 +1,14 @@
 class BagContentsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_item_list, only: %i[ show new create ]
 
   def index
-    @bag_contents = BagContent.includes(:user).order(created_at: :desc)
+    bag_contents = if (tag_name = params[:tag_name])
+      BagContent.with_tag(tag_name)
+    else
+      BagContent.all
+    end
+    @bag_contents = bag_contents.order(created_at: :desc)
   end
 
   def show
@@ -14,7 +20,6 @@ class BagContentsController < ApplicationController
   end
 
   def create
-    @item_list = ItemList.find(params[:item_list_id])
     @bag_content = @item_list.bag_contents.find_by(user: current_user)
 
     if @bag_content.nil?
@@ -26,7 +31,7 @@ class BagContentsController < ApplicationController
     else
       @bag_content = current_user.bag_contents.new(bag_content_params.merge(item_list: @item_list))
 
-      if @bag_content.save
+      if @bag_content.save_with_tags(tag_name: params.dig(:bag_content, :tag_name).split(",").uniq)
         redirect_to item_list_bag_contents_path(@item_list), notice: "かばんの中身を共有しました"
       else
         render :new, alert: "かばんの中身を共有できませんでした"
@@ -40,7 +45,7 @@ class BagContentsController < ApplicationController
 
   def update
     @bag_content = current_user.bag_contents.find(params[:id])
-    if @bag_content.update(bag_content_params)
+    if @bag_content.save_with_tags(tag_name: params.dig(:bag_content, :tag_name).split(",").uniq)
       redirect_to bag_contents_path(@bag_content), notice: "かばんの中身を更新しました"
     else
       flash.now[:alert] = "かばんの中身を更新できませんでした"
@@ -61,6 +66,6 @@ class BagContentsController < ApplicationController
   end
 
   def bag_content_params
-    params.require(:bag_content).permit(:item_list_id, :body)
+    params.require(:bag_content).permit(:item_list_id, :body, tag_ids: [])
   end
 end

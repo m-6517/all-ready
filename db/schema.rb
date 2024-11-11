@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_10_093725) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_11_124325) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bag_content_tags", force: :cascade do |t|
+    t.integer "bag_content_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bag_content_id", "tag_id"], name: "index_bag_content_tags_on_bag_content_id_and_tag_id", unique: true
+  end
 
   create_table "bag_contents", force: :cascade do |t|
     t.bigint "item_list_id", null: false
@@ -79,7 +87,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_10_093725) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position"
-    t.integer "item_list_id"
     t.index ["user_id"], name: "index_original_items_on_user_id"
   end
 
@@ -92,6 +99,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_10_093725) do
     t.datetime "updated_at", null: false
     t.string "item_image"
     t.index ["user_id"], name: "index_recommends_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -107,6 +121,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_10_093725) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bag_content_tags", "bag_contents"
+  add_foreign_key "bag_content_tags", "tags"
   add_foreign_key "bag_contents", "item_lists"
   add_foreign_key "bag_contents", "users"
   add_foreign_key "item_list_default_items", "default_items"
@@ -117,7 +133,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_10_093725) do
   add_foreign_key "item_statuses", "default_items"
   add_foreign_key "item_statuses", "item_lists"
   add_foreign_key "item_statuses", "original_items"
-  add_foreign_key "original_items", "item_lists"
   add_foreign_key "original_items", "users"
   add_foreign_key "recommends", "users"
 end
