@@ -1,5 +1,5 @@
 class BagContentsController < ApplicationController
-  before_action :set_item_list, only: [:show, :new, :create]
+  before_action :set_item_list, only: [ :show, :new, :create ]
 
   def index
     @bag_contents = BagContent.includes(:user).order(created_at: :desc)
