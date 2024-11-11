@@ -4,6 +4,8 @@
   <div class="flex flex-wrap justify-center md:justify-start">
     <% if @bag_contents.present? %>
       <%= render @bag_contents %>
+    <% else %>
+      <p class="text-center text-gray-500">かばんの中身が見つかりませんでした</p>
     <% end %>
   </div>
 </div>

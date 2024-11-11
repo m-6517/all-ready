@@ -52,7 +52,7 @@
     <h2 class="text-base font-medium">
       <%= link_to item_list.name, item_list_path(item_list) %>
     </h2>
-    <%= form_with model: BagContent.new, url: item_list_bag_contents_path(item_list), local: true do |f| %>
+    <%= form_with model: @bag_content || BagContent.new(item_list_id: item_list.id), url: item_list_bag_contents_path(item_list), local: true do |f| %>
       <%= f.hidden_field :item_list_id, value: item_list.id %>
       <div>
         <%= f.label :body, class: "block text-sm font-medium mb-2" %>

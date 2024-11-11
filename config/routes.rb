@@ -16,8 +16,10 @@ Rails.application.routes.draw do
       delete "destroy_original_item/:id", action: :destroy_original_item, as: :destroy_original_item
     end
     resources :quantities, only: %i[index edit update]
-    resources :bag_contents, only: %i[index new create]
+    resources :bag_contents, only: %i[show new create]
   end
+
+  resources :bag_contents, only: %i[index]
 
   resources :item_statuses, only: %i[update] do
     patch :toggle, on: :member
