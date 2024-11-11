@@ -31,7 +31,7 @@ class BagContentsController < ApplicationController
     else
       @bag_content = current_user.bag_contents.new(bag_content_params.merge(item_list: @item_list))
 
-      if @bag_content.save_with_tags(tag_name: params.dig(:bag_content, :tag_name).split(',').uniq)
+      if @bag_content.save_with_tags(tag_name: params.dig(:bag_content, :tag_name).split(",").uniq)
         redirect_to item_list_bag_contents_path(@item_list), notice: "かばんの中身を共有しました"
       else
         render :new, alert: "かばんの中身を共有できませんでした"
@@ -45,7 +45,7 @@ class BagContentsController < ApplicationController
 
   def update
     @bag_content = current_user.bag_contents.find(params[:id])
-    if @bag_content.save_with_tags(tag_name: params.dig(:bag_content, :tag_name).split(',').uniq)
+    if @bag_content.save_with_tags(tag_name: params.dig(:bag_content, :tag_name).split(",").uniq)
       redirect_to bag_contents_path(@bag_content), notice: "かばんの中身を更新しました"
     else
       flash.now[:alert] = "かばんの中身を更新できませんでした"
