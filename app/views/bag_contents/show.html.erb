@@ -1,0 +1,36 @@
+<div class="container mx-auto pt-3 py-24">
+  <div class="flex flex-col items-center">
+    <div class="flex items-center w-full max-w-md justify-between">
+      <div class="card bg-base-100 w-full shadow rounded-lg p-6">
+        <% if @bag_content.item_list.cover_image.present? %>
+          <div class="relative mb-4">
+            <%= image_tag @bag_content.item_list.cover_image.url, class: "object-cover rounded-lg w-64 aspect-[16/9]" %>
+          </div>
+        <% end %>
+
+        <h2 class="text-lg font-medium text-left flex-grow mb-2"><%= @bag_content.item_list.name %></h2>
+        <p class="text-lg text-left mb-4"><%= @bag_content.user.name %></p>
+        <% if @bag_content.body.present? %>
+          <p class="text-sm text-left mb-4"><%= @bag_content.body %></p>
+        <% end %>
+
+        <div class="mt-4">
+          <h3 class="text-lg font-medium text-left flex-grow mb-2">持ち物</h3>
+          <ul class="space-y-2">
+            <% @bag_content.item_list.default_items.each do |item| %>
+              <li class="flex items-center space-x-4">
+                <span class="text-sm"><%= item.name %></span>
+              </li>
+            <% end %>
+
+            <% @bag_content.item_list.original_items.each do |item| %>
+              <li class="flex items-center space-x-4">
+                <span class="text-sm"><%= item.name %></span>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
