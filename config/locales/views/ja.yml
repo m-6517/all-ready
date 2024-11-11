@@ -33,3 +33,6 @@ ja:
       title: 持ち物リスト
     new:
       submit_label: "アップロード"
+  bag_contents:
+    index:
+      title: みんなのかばんの中身
