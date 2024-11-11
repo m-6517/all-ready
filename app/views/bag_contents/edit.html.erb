@@ -1,0 +1,36 @@
+<div class="container mx-auto pt-3 py-24">
+  <div class="flex items-center justify-center p-5">
+    <div class="max-w-md w-full mx-auto bg-slate-50 p-6 rounded-lg shadow">
+      <div class="flex items-center space-x-4">
+        <h1 class="text-lg font-medium mb-6"><%= t('.title') %></h1>
+      </div>
+      <%= form_with model: @bag_content, url: bag_content_path(@bag_content), local: true do |f| %>
+        <div>
+          <%= f.label :body, class: "block text-sm font-medium mb-2" %>
+          <%= f.text_area :body, placeholder: "こだわりポイント、おすすめのアイテムなど", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs", rows: 5 %>
+        </div>
+        <div class="modal-action mt-4">
+          <%= f.submit t('bag_contents.edit.submit_label'), class: "btn btn-primary w-full" %>
+        </div>
+      <% end %>
+      <% if user_signed_in? && current_user.own?(@bag_content) %>
+        <button class="btn btn-bg-base-300 w-full mt-4" onclick="openBagContentDeleteModal(<%= @bag_content.id %>)"><%= t('bag_contents.delete.submit_label') %></button>
+        <dialog id="bagContentDeleteModal_<%= @bag_content.id %>" class="modal">
+          <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12">
+            <div class="text-center">
+              <p class="py-2">投稿を削除しても</p>
+              <p>持ち物リストは削除されません。</p>
+            </div>
+            <div class="modal-action mt-4">
+              <form method="post" action="<%= bag_content_path(@bag_content) %>">
+                <%= hidden_field_tag :_method, 'delete' %>
+                <button class="btn btn-accent" type="submit">削除する</button>
+              </form>
+              <button class="btn" onclick="document.getElementById('bagContentDeleteModal_<%= @bag_content.id %>').close()">キャンセル</button>
+            </div>
+          </div>
+        </dialog>
+      <% end %>
+    </div>
+  </div>
+</div>
