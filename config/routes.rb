@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :bag_contents, only: %i[show new create]
   end
 
-  resources :bag_contents, only: %i[index]
+  resources :bag_contents, only: %i[index edit update destroy]
 
   resources :item_statuses, only: %i[update] do
     patch :toggle, on: :member
