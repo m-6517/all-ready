@@ -1,11 +1,20 @@
 <div class="container mx-auto pt-3 py-24">
   <h1 class="text-lg font-medium mb-6"><%= t('.title') %></h1>
 
-  <div class="flex flex-wrap justify-center md:justify-start">
-    <% if @bag_contents.present? %>
-      <%= render @bag_contents %>
-    <% else %>
-      <p class="text-center text-gray-500">かばんの中身が見つかりませんでした</p>
+  <div class="flex flex-col justify-center md:justify-start">
+    <%= form_with model: @search_form, url: bag_contents_path, method: :get, local: true do |f| %>
+      <div class="input-group flex items-center gap-4">
+        <%= f.text_field :search_term, name: 'q[search_term]', class: "border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500", placeholder: "持ち物・行き先" %>
+        <%= f.submit t("defaults.search_word"), class: "btn btn-primary" %>
+      </div>
     <% end %>
+
+    <div class="flex flex-wrap justify-center md:justify-start">
+      <% if @bag_contents.present? %>
+        <%= render @bag_contents %>
+      <% else %>
+        <p class="text-center text-gray-500">かばんの中身が見つかりませんでした</p>
+      <% end %>
+    </div>
   </div>
 </div>
