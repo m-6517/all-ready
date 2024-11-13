@@ -3,12 +3,16 @@ class BagContentsController < ApplicationController
   before_action :set_item_list, only: %i[ show new create ]
 
   def index
+    bag_contents = BagContent.all
+
     bag_contents = if (tag_name = params[:tag_name])
-      BagContent.with_tag(tag_name)
+      bag_contents.with_tag(tag_name)
     else
-      BagContent.all
+      bag_contents
     end
-    @bag_contents = bag_contents.order(created_at: :desc)
+
+    @search_form = SearchForm.new(search_params)
+    @bag_contents = @search_form.search(bag_contents).order(created_at: :desc)
   end
 
   def show
@@ -63,6 +67,10 @@ class BagContentsController < ApplicationController
 
   def set_item_list
     @item_list = ItemList.find(params[:item_list_id])
+  end
+
+  def search_params
+    params.fetch(:q, {}).permit(:search_term)
   end
 
   def bag_content_params

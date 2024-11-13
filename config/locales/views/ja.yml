@@ -8,6 +8,7 @@ ja:
     create: 作成
     post: 投稿
     edit: 編集
+    search_word: 検索
     delete_confirm: 削除しますか？
     flash_message:
       created: "%{item}を登録しました"
