@@ -7,8 +7,16 @@
         </h1>
         <p class="md:px-3.5 text-sm">かばんの中身を共有するアプリ</p>
       </div>
-      <div class="md:flex space-x-4 mr-4 font-semibold">
-        <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-primary text-sm px-5" %>
+      <div class="dropdown dropdown-hover dropdown-end">
+        <div tabindex="0" role="button">
+          <button class="btn btn-ghost btn-circle mr-4">
+            <%= image_tag "default_avatar.png", class: "w-10 h-10" %>
+          </button>
+        </div>
+        <ul tabindex="0" class="dropdown-content menu bg-slate-50 text-neutral rounded-box z-[1] w-52 p-2 shadow">
+          <li><%= link_to current_user.decorate.name, profile_path %></li>
+          <li><%= link_to t('header.logout'), destroy_user_session_path, data: { turbo_method: :delete } %></li>
+        </ul>
       </div>
     </div>
   </nav>

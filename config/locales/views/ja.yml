@@ -16,6 +16,8 @@ ja:
       updated: "%{item}を更新しました"
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
+  header:
+    logout: ログアウト
   recommends:
     index:
       title: ここに行くならこれ！
@@ -44,3 +46,8 @@ ja:
       submit_label: "かばんの中身を保存"
     delete:
       submit_label: "かばんの中身を削除"
+  profiles:
+    show:
+      submit_label: "プロフィールを編集"
+    edit:
+      submit_label: プロフィールを保存
