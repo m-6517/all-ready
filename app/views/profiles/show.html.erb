@@ -1,0 +1,21 @@
+<div class="container mx-auto pt-3 py-24">
+  <div class="flex items-center justify-center p-5">
+    <div class="max-w-md w-full mx-auto bg-slate-50 p-6 rounded-lg shadow">
+      <div class="flex flex-col">
+        <div class="flex items-center gap-8">
+          <%= image_tag "default_avatar.png", class: "w-16 h-16" %>
+          <div class="flex flex-col space-y-2">
+            <span class="text-sm text-gray-900 text-lg">
+              <%= current_user.decorate.name %>
+            </span>
+            <span class="text-sm text-gray-900 text-lg">
+              <%= current_user.email %>
+            </span>
+          </div>
+        </div>
+      <div class="mt-12 justify-end">
+        <%= link_to t('profiles.show.submit_label'), edit_profile_path, class: 'btn btn-primary w-full' %>
+      </div>
+    </div>
+  </div>
+</div>
