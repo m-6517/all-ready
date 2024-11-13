@@ -6,10 +6,10 @@ class BagContentsController < ApplicationController
     bag_contents = BagContent.all
 
     bag_contents = if (tag_name = params[:tag_name])
-                     bag_contents.with_tag(tag_name)
-                   else
-                     bag_contents
-                   end
+      bag_contents.with_tag(tag_name)
+    else
+      bag_contents
+    end
 
     @search_form = SearchForm.new(search_params)
     @bag_contents = @search_form.search(bag_contents).order(created_at: :desc)
