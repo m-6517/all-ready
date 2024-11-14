@@ -1,0 +1,63 @@
+<aside id="default-sidebar" class="fixed top-0 right-0 mt-24 z-40 w-64 h-screen transition-transform md:block hidden" aria-label="Sidebar">
+  <div class="h-full px-3 py-4 overflow-y-auto bg-base-200">
+    <ul class="space-y-6 font-medium mt-12 h-3/4">
+      <li>
+        <%= link_to recommends_path, class: "flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-200 group #{'text-primary font-bold' if request.path.start_with?('/recommends')}" do %>
+          <span class="material-symbols-outlined text-2xl">lightbulb_2</span>
+          <span class="flex-1 ml-3 whitespace-nowrap">マストアイテム</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to bag_contents_path, class: "flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-200 group #{'text-primary font-bold' if request.path.include?('/bag_contents')}" do %>
+          <span class="material-symbols-outlined text-2xl">work</span>
+          <span class="flex-1 ml-3 whitespace-nowrap">みんなの持ち物</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to item_lists_path, class: "flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-200 group #{'text-primary font-bold' if request.path.start_with?('/item_lists') && !request.path.include?('/bag_contents')}" do %>
+          <span class="material-symbols-outlined text-2xl">playlist_add</span>
+          <span class="flex-1 ml-3 whitespace-nowrap">持ち物リスト</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to profile_path, class: "flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-200 group #{'text-primary font-bold' if request.path.start_with?('/profile')}" do %>
+          <span class="material-symbols-outlined text-2xl">person</span>
+          <span class="flex-1 ml-3 whitespace-nowrap">マイページ</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to destroy_user_session_path,  data: { turbo_method: :delete }, class: "flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-200 group" do %>
+          <span class="material-symbols-outlined">logout</span>
+          <span class="flex-1 ml-3 whitespace-nowrap">ログアウト</span>
+        <% end %>
+      </li>
+    </ul>
+    <div class="flex p-2 text-slate-400 dark:text-white">
+      <span class="flex-shrink-0 text-sm transition">© 2024. All Ready</span>
+    </div>
+  </div>
+</aside>
+
+<div class="fixed bottom-0 left-0 z-50 w-full h-16 bg-base-200 border-t border-gray-200 md:hidden">
+  <div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
+    <%= link_to recommends_path, class: "inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 group #{'text-primary font-bold' if request.path.start_with?('/recommends')}" do %>
+      <span class="material-symbols-outlined text-2xl">lightbulb_2</span>
+      <span class="text-xs">マストアイテム</span>
+    <% end %>
+
+    <%= link_to bag_contents_path, class: "inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 group #{'text-primary font-bold' if request.path.include?('/bag_contents')}" do %>
+      <span class="material-symbols-outlined text-2xl">work</span>
+      <span class="text-xs">みんなの持ち物</span>
+    <% end %>
+
+    <%= link_to item_lists_path, class: "inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 group #{'text-primary font-bold' if request.path.start_with?('/item_lists') && !request.path.include?('/bag_contents')}" do %>
+      <span class="material-symbols-outlined text-2xl">playlist_add</span>
+      <span class="text-xs">持ち物リスト</span>
+    <% end %>
+
+    <%= link_to profile_path, class: "inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 group #{'text-primary font-bold' if request.path.start_with?('/profile')}" do %>
+      <span class="material-symbols-outlined text-2xl">person</span>
+      <span class="text-xs">マイページ</span>
+    <% end %>
+  </div>
+</div>
