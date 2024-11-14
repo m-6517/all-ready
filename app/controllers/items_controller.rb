@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def update  
+  def update
     if params[:original_item_ids].present?
       @item_list.original_items.update_all(selected: false)
 
