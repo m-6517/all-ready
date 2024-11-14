@@ -3,6 +3,10 @@ class QuantitiesController < ApplicationController
 
   def index
     @item_statuses = @item_list.item_statuses.where(selected: true)
+    if @item_statuses.empty?
+      flash[:alert] = "持ち物リストにアイテムを追加してください"
+      redirect_to item_list_path(@item_list)
+    end
   end
 
   def edit
