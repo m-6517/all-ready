@@ -16,7 +16,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
 
-    <script src="https://kit.fontawesome.com/f242c6364d.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
   </head>
 
   <body class="min-h-screen bg-base-100">
@@ -27,6 +27,6 @@
     <% end %>
     <%= render "shared/flash_messages" %>
     <%= yield %>
-    <%= render "shared/footer" %>
+    <%= render 'shared/menu' %>
   </body>
 </html>
