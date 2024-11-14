@@ -7,7 +7,7 @@ class ItemList < ApplicationRecord
   has_many :item_statuses, dependent: :destroy
   has_many :bag_contents, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: { scope: :user_id }
+  validates :name, presence: true
   validates :user, presence: true
 
   mount_uploader :cover_image, CoverImageUploader
