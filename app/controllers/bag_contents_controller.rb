@@ -26,6 +26,11 @@ class BagContentsController < ApplicationController
   def create
     @bag_content = @item_list.bag_contents.find_by(user: current_user)
 
+    if @item_list.original_items.empty? && @item_list.default_items.empty?
+      redirect_to item_list_path(@item_list), alert: "空の持ち物リストは共有できません"
+      return
+    end
+
     if @bag_content.nil?
       @bag_content = BagContent.new(bag_content_params)
     end
@@ -36,9 +41,9 @@ class BagContentsController < ApplicationController
       @bag_content = current_user.bag_contents.new(bag_content_params.merge(item_list: @item_list))
 
       if @bag_content.save_with_tags(tag_name: params.dig(:bag_content, :tag_name).split(",").uniq)
-        redirect_to item_list_bag_contents_path(@item_list), notice: "かばんの中身を共有しました"
+        redirect_to item_list_bag_contents_path(@item_list), notice: "持ち物リストを共有しました"
       else
-        render :new, alert: "かばんの中身を共有できませんでした"
+        render :new, alert: "持ち物リストを共有できませんでした"
       end
     end
   end
@@ -50,9 +55,9 @@ class BagContentsController < ApplicationController
   def update
     @bag_content = current_user.bag_contents.find(params[:id])
     if @bag_content.save_with_tags(tag_name: params.dig(:bag_content, :tag_name).split(",").uniq)
-      redirect_to bag_contents_path(@bag_content), notice: "かばんの中身を更新しました"
+      redirect_to bag_contents_path(@bag_content), notice: "投稿を更新しました"
     else
-      flash.now[:alert] = "かばんの中身を更新できませんでした"
+      flash.now[:alert] = "投稿を更新できませんでした"
       render :edit, status: :unprocessable_entity
     end
   end

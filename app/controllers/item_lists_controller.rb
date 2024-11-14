@@ -1,6 +1,7 @@
 class ItemListsController < ApplicationController
   def index
     @item_lists = current_user.item_lists.includes(:user).order(created_at: :asc)
+    @bag_contents = BagContent.all
   end
 
   def show
@@ -57,7 +58,7 @@ class ItemListsController < ApplicationController
           end
         end
       end
-      redirect_to item_list_path(@item_list), notice: t("defaults.flash_message.updated", item: ItemList.model_name.human)
+      redirect_to item_lists_path, notice: t("defaults.flash_message.updated", item: ItemList.model_name.human)
     end
   end
 

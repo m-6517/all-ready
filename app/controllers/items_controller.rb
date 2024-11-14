@@ -10,12 +10,13 @@ class ItemsController < ApplicationController
 
   def create
     @item_list = ItemList.find(params[:item_list_id])
-    existing_item = OriginalItem.find_by(name: original_item_params[:name], user: current_user)
 
-    new_original_item = existing_item || OriginalItem.new(original_item_params.merge(user: current_user))
+    new_original_item = OriginalItem.new(original_item_params.merge(user: current_user))
 
     if new_original_item.save
-      ItemListOriginalItem.find_or_create_by(item_list: @item_list, original_item: new_original_item)
+      item_list_original_item = ItemListOriginalItem.find_or_create_by(item_list: @item_list, original_item: new_original_item)
+      item_status = ItemStatus.find_or_create_by(item_list: @item_list, original_item: new_original_item)
+
       redirect_to new_item_list_item_path(@item_list)
     else
       render :new
