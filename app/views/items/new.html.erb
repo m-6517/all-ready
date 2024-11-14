@@ -9,11 +9,12 @@
       <div class="flex gap-8">
           <div class="flex">
             <div class="container bg-base-100 p-6 rounded-lg shadow flex-1">
-              <div class="flex flex-col items-start mt-6 gap-4">
+              <div class="flex flex-col items-start gap-4">
                 <h3 class="text-sm">既存のアイテム</h3>
                 <% @default_items.each do |item| %>
                   <div class="flex items-center gap-2">
                     <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
+                    <%= hidden_field_tag "item_list[default_item_ids][]", nil %>
                     <%= check_box_tag "item_list[default_item_ids][]", item.id, status&.selected, class: "checkbox checkbox-primary checkbox-sm" %>
                     <%= item.name %>
                   </div>
@@ -36,6 +37,7 @@
         <% end %>
 
         <div class="container bg-base-100 p-6 rounded-lg shadow flex-1">
+          <h3 class="text-sm mb-6">オリジナルのアイテムを追加</h3>
           <%= form_with model: @new_original_item, url: item_list_items_path(@item_list), local: true do |f| %>
             <label class="form-control w-full max-w-xs">
               <input type="text" placeholder="アイテムの名前" name="original_item[name]" class="input input-bordered w-full max-w-xs" required />
