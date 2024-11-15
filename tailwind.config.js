@@ -5,6 +5,13 @@ module.exports = {
     './app/assets/stylesheets/**/*.css',
     './app/javascript/**/*.js'
   ],
+  theme: {
+    extend: {
+      fontFamily: {
+        'zen-kaku-gothic-new': ['"Zen Kaku Gothic New"', 'sans-serif'],
+      },
+    },
+  },
   plugins: [require("daisyui")],
   daisyui: {
     darkTheme: false,
