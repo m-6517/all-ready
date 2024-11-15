@@ -1,13 +1,14 @@
-<div class="top-0 z-50 flex h-16 w-full items-center pl-1 shadow bg-opacity-90">
+<div class="fixed top-0 z-50 flex h-16 w-full items-center pl-1 shadow bg-opacity-90">
   <nav class="navbar w-full">
     <div class="flex justify-between w-full">
-      <div class="md:flex items-center">
-        <h1 class="btn btn-ghost md:text-2xl font-bold">
-          <%= link_to "All Ready", "/" %>
-        </h1>
+      <div class="flex items-center">
+        <%= link_to "/", class: "btn btn-ghost flex items-center space-x-4" do %>
+          <%= image_tag "logo.png", class: "w-10 object-contain" %>
+          <h1 class="md:text-xl font-semibold">All Ready</h1>
+        <% end %>
         <p class="md:px-3.5 text-sm">かばんの中身を共有するアプリ</p>
       </div>
-      <div class="dropdown dropdown-hover dropdown-end">
+      <div class="dropdown dropdown-hover dropdown-bottom dropdown-end">
         <div tabindex="0" role="button">
           <button class="btn btn-ghost btn-circle mr-4">
             <%= image_tag "default_avatar.png", class: "w-10 h-10" %>
