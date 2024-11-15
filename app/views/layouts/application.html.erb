@@ -19,14 +19,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
   </head>
 
-  <body class="min-h-screen bg-base-100">
+  <body class="flex flex-col min-h-screen bg-base-100 font-zen-kaku-gothic-new">
     <% if user_signed_in? %>
       <%= render "shared/header" %>
     <% else %>
       <%= render "shared/before_login_header" %>
     <% end %>
-    <%= render "shared/flash_messages" %>
-    <%= yield %>
-    <%= render 'shared/menu' %>
+    <div class="flex-grow pt-16">
+      <%= render 'shared/menu' %>
+      <main class="flex-1 p-4 mr-64">
+        <%= render "shared/flash_messages" %>
+        <%= yield %>
+        <%= render "shared/footer" %>
+      </main>
+    </div>
   </body>
 </html>
