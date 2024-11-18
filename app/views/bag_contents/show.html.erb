@@ -1,7 +1,7 @@
 <div class="flex items-center justify-center p-5">
   <div class="max-w-xl w-full bg-slate-50 p-6 rounded shadow">
-    <div class="flex w-full flex-col">
-      <div class="card grid h-120 place-items-center">
+    <div class="flex w-full">
+      <div class="card grid w-64 place-items-start">
         <h2 class="text-base font-medium text-left mb-4"><%= @bag_content.item_list.name %></h2>
         <p class="text-sm text-left mb-6"><%= @bag_content.user.name %></p>
 
@@ -12,7 +12,7 @@
         <% end %>
 
         <% if @bag_content.body.present? %>
-          <div class="mt-4 text-sm break-words">
+          <div class="mt-4 text-xs break-words">
             <%= simple_format(@bag_content.body) %>
           </div>
         <% end %>
@@ -26,15 +26,14 @@
 
       <div class="divider divider-horizontal"></div>
 
-      <div class="card grid h-120 place-items-center">
-        <p class="text-sm mb-4 font-medium">持ち物</p>
-        <ul class="space-y-2">
+      <div class="card grid grid-cols-1 w-64"> <!-- grid-cols-1で1カラムに -->
+        <ul class="space-y-2 w-full">
+          <p class="text-sm font-medium mb-4">持ち物</p>
           <% @bag_content.item_list.default_items.each do |item| %>
             <li class="flex items-center space-x-4">
               <span class="text-sm"><%= item.name %></span>
             </li>
           <% end %>
-
           <% @bag_content.item_list.original_items.each do |item| %>
             <li class="flex items-center space-x-4">
               <span class="text-sm"><%= item.name %></span>
@@ -46,7 +45,7 @@
 
     <div class="flex justify-end mt-6">
       <% if user_signed_in? && current_user.own?(@bag_content) %>
-        <%= link_to edit_bag_content_path(@bag_content), id: "button-edit-#{@bag_content.id}", class: "flex flex-col justify-center items-center gap-2 text-blue-600 hover:text-blue-800" do %>
+        <%= link_to edit_bag_content_path(@bag_content), id: "button-edit-#{@bag_content.id}", class: "flex flex-col justify-center items-center gap-2" do %>
           <span class="material-symbols-outlined">edit</span>
           <p class="text-xs tracking-wider">編 集</p>
         <% end %>
