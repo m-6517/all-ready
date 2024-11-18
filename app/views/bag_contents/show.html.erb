@@ -1,7 +1,7 @@
 <div class="flex items-center justify-center p-5">
   <div class="max-w-xl w-full bg-slate-50 p-6 rounded shadow">
     <div class="flex w-full flex-col">
-      <div class="card grid h-20 place-items-center">
+      <div class="card grid h-60 place-items-center">
         <h2 class="text-base font-medium text-left mb-4"><%= @bag_content.item_list.name %></h2>
         <p class="text-sm text-left mb-6"><%= @bag_content.user.name %></p>
 
@@ -18,15 +18,15 @@
         <% end %>
 
         <% if @bag_content.item_list.cover_image.present? %>
-          <div class="relative mt-8">
-            <%= image_tag @bag_content.item_list.cover_image.url, class: "object-cover w-full h-auto rounded" %>
+          <div class="relative mt-2">
+            <%= image_tag @bag_content.item_list.cover_image.url, class: "w-64 rounded shadow mt-8" %>
           </div>
         <% end %>
       </div>
 
       <div class="divider divider-horizontal"></div>
 
-      <div class="card grid h-20 place-items-center">
+      <div class="card grid h-60 place-items-center">
         <p class="text-sm mb-4 font-medium">持ち物</p>
         <ul class="space-y-2">
           <% @bag_content.item_list.default_items.each do |item| %>
