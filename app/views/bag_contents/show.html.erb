@@ -31,12 +31,12 @@
           <p class="text-sm font-medium mb-4">持ち物</p>
           <% @bag_content.item_list.default_items.each do |item| %>
             <li class="flex items-center space-x-4">
-              <span class="text-sm"><%= item.name %></span>
+              <span class="text-xs"><%= item.name %></span>
             </li>
           <% end %>
           <% @bag_content.item_list.original_items.each do |item| %>
             <li class="flex items-center space-x-4">
-              <span class="text-sm"><%= item.name %></span>
+              <span class="text-xs"><%= item.name %></span>
             </li>
           <% end %>
         </ul>
