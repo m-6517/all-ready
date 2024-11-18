@@ -1,20 +1,24 @@
-<div class="card bg-base-100 w-64 shadow rounded-lg m-4">
-  <% if bag_content.item_list.cover_image.present? %>
-    <div class="card image-full relative">
-      <%= image_tag bag_content.item_list.cover_image.url, class: "object-cover rounded-lg opacity-50 w-64 aspect-[16/9]" %>
-      <div class="card-body flex flex-col justify-center items-center h-full relative z-10">
-        <h2 class="card-title text-base font-medium text-center">
-          <%= link_to bag_content.item_list.name, item_list_bag_content_path(bag_content.item_list, bag_content) %>
-        </h2>
+<% if bag_content.item_list.cover_image.present? %>
+  <div class="card bg-slate-50 w-64 aspect-[16/9] rounded shadow relative">
+    <div class="card-title flex justify-between items-center p-2 text-lg w-full relative">
+      <div class="text-center flex-grow" style="cursor: default;">
+        <%= bag_content.item_list.name %>
       </div>
     </div>
-  <% else %>
-    <div class="card bg-base-100 w-64 aspect-[16/9] shadow rounded-lg">
-      <div class="card-body flex flex-col justify-center items-center">
-        <h2 class="card-title text-base font-medium text-center">
-          <%= link_to bag_content.item_list.name, item_list_bag_content_path(bag_content.item_list, bag_content) %>
-        </h2>
+    <figure>
+      <%= link_to item_list_bag_content_path(bag_content.item_list, bag_content), class: "w-full h-full block" do %>
+        <%= image_tag bag_content.item_list.cover_image.url, class: "w-64 aspect-[16/9] object-cover" %>
+      <% end %>
+    </figure>
+  </div>
+<% else %>
+  <div class="card bg-slate-50 w-64 aspect-[16/9] rounded shadow relative">
+    <div class="card-title flex justify-between items-center p-2 text-lg w-full relative">
+      <div class="text-center flex-grow" style="cursor: default;">
+        <%= bag_content.item_list.name %>
       </div>
     </div>
-  <% end %>
-</div>
+    <%= link_to item_list_bag_content_path(bag_content.item_list, bag_content), class: "w-full h-full block bg-base-200" do %>
+    <% end %>
+  </div>
+<% end %>

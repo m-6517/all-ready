@@ -1,48 +1,59 @@
-<div class="container mx-auto pt-3 py-24">
-  <div class="flex flex-col items-center">
-    <div class="flex items-center w-full max-w-md justify-between">
-      <div class="card bg-base-100 w-full shadow rounded-lg p-6">
-        <% if @bag_content.item_list.cover_image.present? %>
-          <div class="relative mb-4">
-            <%= image_tag @bag_content.item_list.cover_image.url, class: "object-cover rounded-lg w-64 aspect-[16/9]" %>
-          </div>
-        <% end %>
+<div>
+  <div class="flex w-full mx-auto">
+    <div class="container bg-slate-50 flex mx-auto shadow rounded p-6 m-12">
+      <div class="flex gap-6">
 
-        <h2 class="text-lg font-medium text-left flex-grow mb-2"><%= @bag_content.item_list.name %></h2>
-        <p class="text-lg text-left mb-4"><%= @bag_content.user.name %></p>
-        <% if @bag_content.tag_name.present? %>
-          <div class="flex gap-4 mb-4">
-            <%= render @bag_content.tags %>
-          </div>
-        <% end %>
-        <% if @bag_content.body.present? %>
-          <p class="text-sm text-left mb-4"><%= @bag_content.body %></p>
-        <% end %>
+        <div class="max-w-xl pr-6">
+          <h2 class="text-base font-medium text-left flex-grow mb-2"><%= @bag_content.item_list.name %></h2>
+          <p class="text-base text-left mb-4"><%= @bag_content.user.name %></p>
 
-        <div class="mt-4">
-          <h3 class="text-lg font-medium text-left flex-grow mb-2">持ち物</h3>
-          <ul class="space-y-2">
-            <% @bag_content.item_list.default_items.each do |item| %>
-              <li class="flex items-center space-x-4">
-                <span class="text-sm"><%= item.name %></span>
-              </li>
-            <% end %>
+          <% if @bag_content.tag_name.present? %>
+            <div class="flex gap-4 mb-4">
+              <%= render @bag_content.tags %>
+            </div>
+          <% end %>
 
-            <% @bag_content.item_list.original_items.each do |item| %>
-              <li class="flex items-center space-x-4">
-                <span class="text-sm"><%= item.name %></span>
-              </li>
-            <% end %>
-          </ul>
-        </div>
+          <% if @bag_content.body.present? %>
+            <div class="mt-6 text-sm">
+              <%= simple_format(@bag_content.body) %>
+            </div>
+          <% end %>
 
-        <div class="flex justify-end">
-          <% if user_signed_in? && current_user.own?(@bag_content) %>
-            <%= link_to edit_bag_content_path(@bag_content), id: "button-edit-#{@bag_content.id}", class: "p-2" do %>
-              <i class="fa-solid fa-pen"></i>
-            <% end %>
+          <% if @bag_content.item_list.cover_image.present? %>
+            <div class="relative mt-8 w-64">
+              <%= image_tag @bag_content.item_list.cover_image.url, class: "object-cover w-full h-auto" %>
+            </div>
           <% end %>
         </div>
+        <div class="divider divider-primary"></div>
+
+        <div>
+          <div class="max-w-xl">
+            <p class="text-sm mb-4">持ち物</p>
+            <ul class="space-y-2">
+              <% @bag_content.item_list.default_items.each do |item| %>
+                <li class="flex items-center space-x-4">
+                  <span class="text-sm"><%= item.name %></span>
+                </li>
+              <% end %>
+
+              <% @bag_content.item_list.original_items.each do |item| %>
+                <li class="flex items-center space-x-4">
+                  <span class="text-sm"><%= item.name %></span>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-end">
+        <% if user_signed_in? && current_user.own?(@bag_content) %>
+          <%= link_to edit_bag_content_path(@bag_content), id: "button-edit-#{@bag_content.id}", class: "flex flex-col justify-center p-2 gap-2" do %>
+            <span class="material-symbols-outlined">edit</span>
+            <p class="text-xs tracking-wider">編 集</p>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
