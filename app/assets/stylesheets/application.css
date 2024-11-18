@@ -1,0 +1,8 @@
+.background-image{
+  background-image: url(background.webp);
+  background-size:cover;
+}
+
+.footer {
+  margin-top: auto;
+}

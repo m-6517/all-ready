@@ -2,11 +2,11 @@
   <% @item_statuses.each do |status| %>
     <div class="flex items-center gap-2 w-full max-w-md">
       <% if status.original_item %>
-        <div class="btn w-full flex justify-start text-left px-4 bg-base-100" onclick="openItemQuantityModal(<%= status.id %>)">
+        <div class="btn w-full flex justify-start text-left px-4 bg-slate-50" onclick="openItemQuantityModal(<%= status.id %>)">
           <%= status.original_item.name %>
         </div>
       <% elsif status.default_item %>
-        <div class="btn w-full flex justify-start text-left px-4 bg-base-100" onclick="openItemQuantityModal(<%= status.id %>)">
+        <div class="btn w-full flex justify-start text-left px-4 bg-slate-50" onclick="openItemQuantityModal(<%= status.id %>)">
           <%= status.default_item.name %>
         </div>
       <% end %>

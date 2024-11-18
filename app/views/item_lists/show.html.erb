@@ -1,33 +1,43 @@
-<div class="container mx-auto pt-3 py-24">
-  <div class="flex flex-col items-center">
+<div>
+  <div class="flex flex-col items-center p-5">
     <div class="flex items-center w-full max-w-md justify-between">
       <h1 class="text-lg font-medium text-center flex-grow"><%= @item_list.name %></h1>
-      <i class="fa-solid fa-pen-to-square justify-end" onclick="openItemModal()"></i>
+      <span class="material-symbols-outlined" onclick="openItemModal()">edit_square</span>
 
       <dialog id="itemModal" class="modal">
         <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12">
           <div class="modal-action flex flex-col mx-auto w-full space-y-6">
-            <%= link_to "アイテムを編集", new_item_list_item_path(@item_list), class: "btn btn-primary w-full" %>
-            <%= link_to "アイテム数を変更", item_list_quantities_path(@item_list), class: "btn btn-primary w-full" %>
+            <%= link_to new_item_list_item_path(@item_list), class: "btn btn-primary w-full gap-4" do %>
+              <span class="material-symbols-outlined">checklist</span>
+              アイテムを編集
+            <% end %>
+            <%= link_to item_list_quantities_path(@item_list), class: "btn btn-primary w-full gap-4" do %>
+              <span class="material-symbols-outlined">exposure_plus_1</span>
+              アイテム数を変更
+            <% end %>
             <button class="btn btn-ghost w-full" onclick="document.getElementById('itemModal').close()">キャンセル</button>
           </div>
         </div>
       </dialog>
     </div>
-
+  
     <div class="container flex flex-col justify-center items-center mt-6 gap-4">
-      <% @selected_original_items.each do |item| %>
-        <div class="flex items-center gap-2 w-full max-w-md">
-          <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
-          <%= render "item_statuses/item_status", item_status: status %>
-        </div>
-      <% end %>
+      <% if @selected_original_items.empty? && @selected_default_items.empty? %>
+        <p class="text-center text-gray-500">持ち物がありません</p>
+      <% else %>
+        <% @selected_original_items.each do |item| %>
+          <div class="flex items-center gap-2 w-full max-w-md">
+            <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
+            <%= render "item_statuses/item_status", item_status: status %>
+          </div>
+        <% end %>
 
-      <% @selected_default_items.each do |item| %>
-        <div class="flex items-center gap-2 w-full max-w-md">
-          <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
-          <%= render "item_statuses/item_status", item_status: status %>
-        </div>
+        <% @selected_default_items.each do |item| %>
+          <div class="flex items-center gap-2 w-full max-w-md">
+            <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
+            <%= render "item_statuses/item_status", item_status: status %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

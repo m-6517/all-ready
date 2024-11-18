@@ -1,5 +1,5 @@
 <% if object.errors.any? %>
-  <div id="error_explanation" class="bg-sky-100 border text-sky-700 text-sm text-left rounded-lg relative">
+  <div id="error_explanation" class="bg-sky-100 border text-sky-700 text-sm text-left rounded relative">
     <ul class="list-none pl-3">
       <% object.errors.full_messages.each do |message| %>
         <li><%= message %></li>

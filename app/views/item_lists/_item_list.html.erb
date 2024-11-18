@@ -1,7 +1,28 @@
-<div class="flex p-4">
-  <div>
-    <%= link_to item_lists_path(item_list), id: "item_list-id-#{item_list.id}" do %>
-      <%= render 'item_list_card', item_list: item_list %>
+<% if item_list.cover_image.present? %>
+  <div class="card bg-slate-50 w-64 aspect-[16/9] rounded shadow relative">
+    <div class="card-title flex justify-between items-center p-2 text-lg w-full relative">
+      <div class="text-center flex-grow" style="cursor: default;">
+        <%= item_list.name %>
+      </div>
+      <span class="material-symbols-outlined absolute right-6 z-10" style="cursor: pointer;" onclick="openMenuModal(<%= item_list.id %>)">more_horiz</span>
+      <%= render 'item_list_modal', item_list: item_list %>
+    </div>
+    <figure>
+      <%= link_to item_list_path(item_list), class: "w-full" do %>
+        <%= image_tag item_list.cover_image.url, class: "w-64 aspect-[16/9] object-cover" %>
+      <% end %>
+    </figure>
+  </div>
+<% else %>
+  <div class="card bg-slate-50 w-64 aspect-[16/9] rounded shadow relative">
+    <div class="card-title flex justify-between items-center p-2 text-lg w-full relative">
+      <div class="text-center flex-grow" style="cursor: default;">
+        <%= item_list.name %>
+      </div>
+      <span class="material-symbols-outlined absolute right-6" style="cursor: pointer;" onclick="openMenuModal(<%= item_list.id %>)">more_horiz</span>
+      <%= render 'item_list_modal', item_list: item_list %>
+    </div>
+    <%= link_to item_list_path(item_list), class: "w-full h-full block bg-base-200" do %>
     <% end %>
   </div>
-</div>
+<% end %>

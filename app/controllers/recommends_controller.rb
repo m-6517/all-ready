@@ -1,5 +1,5 @@
 class RecommendsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :authenticate_user!, only: %i[index by_place show]
 
   def index
     @recommends = Recommend.includes(:user).all.group_by(&:place)

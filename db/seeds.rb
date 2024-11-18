@@ -15,7 +15,7 @@ ItemList.find_each do |item_list|
     item_status = ItemStatus.find_or_create_by(item_list_id: item_list.id, default_item_id: default_item.id) do |status|
       status.is_checked = false
       status.selected = false
-      status.quantity = 1 
+      status.quantity = 1
     end
   end
 end

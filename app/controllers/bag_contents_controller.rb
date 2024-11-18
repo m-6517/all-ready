@@ -16,7 +16,7 @@ class BagContentsController < ApplicationController
   end
 
   def show
-    @bag_content = BagContent.find_by(id: params[:id])
+    @bag_content = BagContent.find(params[:id])
   end
 
   def new
@@ -54,6 +54,8 @@ class BagContentsController < ApplicationController
 
   def update
     @bag_content = current_user.bag_contents.find(params[:id])
+    @bag_content.body = bag_content_params[:body]
+
     if @bag_content.save_with_tags(tag_name: params.dig(:bag_content, :tag_name).split(",").uniq)
       redirect_to bag_contents_path(@bag_content), notice: "投稿を更新しました"
     else

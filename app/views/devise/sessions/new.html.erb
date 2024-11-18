@@ -1,5 +1,5 @@
 <div class="flex items-center justify-center m-12">
-  <div class="max-w-md w-full p-6 rounded-lg shadow">
+  <div class="max-w-md w-full p-6 rounded shadow">
     <h1 class="text-lg font-medium mb-6">ログイン</h1>
 
     <%= form_with model: resource, url: session_path(resource_name), local: true, class: "space-y-4" do |f| %>
@@ -25,7 +25,7 @@
         <%= f.submit "ログイン", class: "btn btn-primary w-full mt-4" %>
       </div>
     <% end %>
-    <div class="text-center mt-4">
+    <div class="text-center mt-6">
       <%= render "devise/shared/links" %>
     </div>
   </div>

@@ -1,6 +1,6 @@
-<div class="container mx-auto pt-3 py-24">
+<div>
   <div class="flex items-center justify-center p-5">
-    <div class="max-w-md w-full mx-auto bg-slate-50 p-6 rounded-lg shadow">
+    <div class="max-w-md w-full mx-auto bg-slate-50 p-6 rounded shadow">
       <div class="flex items-center space-x-4">
         <h1 class="text-lg font-medium mb-6"><%= t('.title') %></h1>
       </div>
@@ -9,7 +9,7 @@
           <%= f.label :tag_name, "タグ", class: "block text-sm font-medium mb-2" %>
           <%= f.text_field :tag_name, placeholder: "カンマ区切りで入力", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs" %>
         </div>
-        <div>
+        <div class="mt-4">
           <%= f.label :body, class: "block text-sm font-medium mb-2" %>
           <%= f.text_area :body, placeholder: "こだわりポイント、おすすめのアイテムなど", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs", rows: 5 %>
         </div>
