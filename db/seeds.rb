@@ -5,7 +5,6 @@ default_items = [
 ].map do |item_data|
   DefaultItem.find_or_create_by(name: item_data[:name]) do |item|
     item.position = item_data[:position]
-    item.quantity = item_data[:quantity]
   end
 end
 
@@ -16,6 +15,7 @@ ItemList.find_each do |item_list|
     item_status = ItemStatus.find_or_create_by(item_list_id: item_list.id, default_item_id: default_item.id) do |status|
       status.is_checked = false
       status.selected = false
+      status.quantity = 1 
     end
   end
 end
