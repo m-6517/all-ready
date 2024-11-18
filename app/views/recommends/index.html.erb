@@ -1,19 +1,18 @@
-<div class="container mx-auto pt-3 py-24">
-  <h1 class="text-lg font-medium mb-6"><%= t('.title') %></h1>
-  <div class="flex items-center justify-center gap-4 m-12">
-    <%= link_to 'おすすめアイテムを投稿する', new_recommend_path, class: "btn btn-primary" %>
+<div>
+  <div class="fixed top-16 right-0 left-0 z-30 flex justify-center p-4 bg-base-100 sticky">
+    <%= link_to 'マストアイテムを紹介', new_recommend_path, class: "btn btn-primary" %>
   </div>
-  <div class="flex flex-wrap justify-center md:justify-start">
+  <div class="flex flex-wrap justify-center gap-8 mt-6">
     <% if @recommends.present? %>
       <% @recommends.each do |place, recommends| %>
-        <div class="place-card bg-slate-50 shadow rounded-lg p-4 m-2">
-          <h2 class="text-base font-medium mb-2">
-            <%= link_to place, by_place_recommends_path(place) %>
-          </h2>
+        <div class="card shadow rounded p-5 flex flex-col w-full max-w-lg bg-secondary">
+          <%= link_to by_place_recommends_path(place), class: "block h-full" do %>
+            <h2 class="text-lg font-semibold text-center"><%= place %></h2>
+          <% end %>
         </div>
       <% end %>
     <% else %>
-      <div class="mb-3 text-center text-gray-500">おすすめアイテムが見つかりませんでした！</div>
+      <div class="mb-3 text-center text-gray-500">マストアイテムが見つかりませんでした</div>
     <% end %>
   </div>
 </div>

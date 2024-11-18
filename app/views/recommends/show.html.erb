@@ -1,21 +1,26 @@
-<div class="container mx-auto max-w-md m-12">
-  <div class="item-card bg-slate-50 shadow rounded-lg p-4 m-2">
-    <div class="text-lg mb-4"><%= "#{@recommend.item}" %></div>
-    <div class="mb-6"><%= "by #{@recommend.user.name}" %></div>
-    <div class="mt-6 text-gray-700">
-      <%= simple_format(@recommend.body) %>
-    </div>
+<div>
+  <div class="flex flex-col items-center p-5">
+    <div class="flex items-center w-full max-w-xl justify-between">
+      <div class="card bg-slate-50 w-full shadow rounded p-6">
+        <div class="text-lg mb-4"><%= "#{@recommend.item}" %></div>
+        <div class="mb-6"><%= "#{@recommend.user.name}" %></div>
+        <div class="mt-6 text-sm">
+          <%= simple_format(@recommend.body) %>
+        </div>
 
-    <% if @recommend.item_image? %>
-      <%= image_tag @recommend.item_image_url, class: "w-52 h-38 rounded shadow mt-8" %>
-    <% end %>
-
-    <div class="flex justify-end">
-      <% if user_signed_in? && current_user.own?(@recommend) %>
-        <%= link_to edit_recommend_path(@recommend), id: "button-edit-#{@recommend.id}", class: "p-2" do %>
-          <i class="fa-solid fa-pen"></i>
+        <% if @recommend.item_image? %>
+          <%= image_tag @recommend.item_image_url, class: "w-64 rounded shadow mt-8" %>
         <% end %>
-      <% end %>
+
+        <div class="flex justify-end">
+          <% if user_signed_in? && current_user.own?(@recommend) %>
+            <%= link_to edit_recommend_path(@recommend), id: "button-edit-#{@recommend.id}", class: "flex flex-col justify-center p-2 gap-2" do %>
+              <span class="material-symbols-outlined">edit</span>
+              <p class="text-xs tracking-wider">編 集</p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
