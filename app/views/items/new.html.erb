@@ -1,14 +1,14 @@
-<div class="container mx-auto pt-3 py-24">
-  <div class="flex flex-col items-center justify-center gap-6">
+<div>
+  <div class="flex flex-col items-center justify-center p-5 gap-6">
     <h1 class="text-lg font-medium text-center"><%= @item_list.name %></h1>
 
     <%= form_with(model: @item_list, local: true) do |f| %>
-      <div class="flex justify-center mb-12 w-full">
+      <div class="flex justify-center mb-12">
         <%= f.submit "持ち物リストを保存", class: "btn btn-primary" %>
       </div>
       <div class="flex gap-8">
           <div class="flex">
-            <div class="container bg-base-100 p-6 rounded-lg shadow flex-1">
+            <div class="container bg-slate-50 p-6 rounded shadow w-96">
               <div class="flex flex-col items-start gap-4">
                 <h3 class="text-sm">既存のアイテム</h3>
                 <% @default_items.each do |item| %>
@@ -36,8 +36,8 @@
           </div>
         <% end %>
 
-        <div class="container bg-base-100 p-6 rounded-lg shadow flex-1">
-          <h3 class="text-sm mb-6">オリジナルのアイテムを追加</h3>
+        <div class="container bg-slate-50 p-6 rounded shadow">
+          <h3 class="text-sm text-left mb-6">アイテムを追加</h3>
           <%= form_with model: @new_original_item, url: item_list_items_path(@item_list), local: true do |f| %>
             <label class="form-control w-full max-w-xs">
               <input type="text" placeholder="アイテムの名前" name="original_item[name]" class="input input-bordered w-full max-w-xs" required />
