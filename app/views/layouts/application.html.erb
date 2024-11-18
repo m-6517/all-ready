@@ -30,13 +30,11 @@
         <%= render 'shared/menu' %>
       <% end %>
       <% if request.path == "/" %>
-        <!-- top.html.erb の場合 -->
         <main class="flex-1">
           <%= render "shared/flash_messages" %>
           <%= yield %>
         </main>
       <% else %>
-        <!-- 他のページ -->
         <main class="flex-1 p-4 md:pr-64">
           <%= render "shared/flash_messages" %>
           <%= yield %>
