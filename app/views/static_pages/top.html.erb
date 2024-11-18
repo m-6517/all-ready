@@ -2,9 +2,9 @@
   <div class="bg-overlay bg-opacity-60"></div>
     <div class="flex flex-col justify-start p-5 gap-8 max-w-xl">
 
-      <%= link_to recommends_path, class: "card glass shadow-xl rounded-lg p-5 flex flex-col w-xl" do %>
+      <%= link_to recommends_path, class: "card glass shadow-xl rounded-lg p-5 flex flex-col w-xl transition-all duration-300 hover:scale-110" do %>
         <div class="card-body space-y-6">
-          <div class="hover:animate-bounce flex items-center gap-4">
+          <div class="flex items-center gap-4 hover:scale-125">
             <span class="material-symbols-outlined text-2xl">lightbulb_2</span>
             <h1 class="card-title text-xl">マストアイテム</h1>
           </div>
@@ -14,9 +14,9 @@
         </div>
       <% end %>
 
-      <%= link_to bag_contents_path, class: "card glass shadow-xl rounded-lg p-5 flex flex-col w-xl" do %>
+      <%= link_to bag_contents_path, class: "card glass shadow-xl rounded-lg p-5 flex flex-col w-xl transition-all duration-300 hover:scale-110" do %>
         <div class="card-body space-y-6">
-          <div class="hover:animate-bounce flex items-center gap-4">
+          <div class="flex items-center gap-4">
             <span class="material-symbols-outlined text-2xl">work</span>
             <h1 class="card-title text-xl">みんなの持ち物</h1>
           </div>
@@ -26,9 +26,9 @@
         </div>
       <% end %>
 
-      <%= link_to item_lists_path, class: "card glass shadow-xl rounded-lg p-5 flex flex-col w-xl" do %>
+      <%= link_to item_lists_path, class: "card glass shadow-xl rounded-lg p-5 flex flex-col w-xl transition-all duration-300 hover:scale-110" do %>
         <div class="card-body space-y-6">
-          <div class="hover:animate-bounce flex items-center gap-4">
+          <div class="flex items-center gap-4">
             <span class="material-symbols-outlined text-2xl">playlist_add</span>
             <h1 class="card-title text-xl">持ち物リスト</h1>
           </div>
