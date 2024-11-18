@@ -26,12 +26,25 @@
       <%= render "shared/before_login_header" %>
     <% end %>
     <div class="flex-grow pt-16">
-      <%= render 'shared/menu' %>
-      <main class="flex-1 p-4 mr-64">
-        <%= render "shared/flash_messages" %>
-        <%= yield %>
-        <%= render "shared/footer" %>
-      </main>
+      <% unless @show_menu == false %>
+        <%= render 'shared/menu' %>
+      <% end %>
+      <% if request.path == "/" %>
+        <!-- top.html.erb の場合 -->
+        <main class="flex-1">
+          <%= render "shared/flash_messages" %>
+          <%= yield %>
+        </main>
+      <% else %>
+        <!-- 他のページ -->
+        <main class="flex-1 p-4 md:pr-64">
+          <%= render "shared/flash_messages" %>
+          <%= yield %>
+        </main>
+      <% end %>
     </div>
+    <footer class="footer text-base-content p-4 ml-2">
+      <%= render "shared/footer" %>
+    </footer>
   </body>
 </html>
