@@ -23,22 +23,28 @@ ja:
     index:
       title: マストアイテム
     new:
-      title: マストアイテム
+      title: マストアイテム作成
       submit_label: "投稿を作成"
     show:
-      title: マストアイテム詳細
+      title: マストアイテム
     edit:
       title: マストアイテム編集
       submit_label: "投稿を保存"
     delete:
       submit_label: "投稿を削除"
+    by_place:
+      title: マストアイテム
   item_lists:
     index:
+      title: 持ち物リスト
+    show:
       title: 持ち物リスト
     new:
       submit_label: "アップロード"
   bag_contents:
     index:
+      title: みんなの持ち物
+    show:
       title: みんなの持ち物
     new:
       submit_label: "持ち物リストを共有"
@@ -49,6 +55,17 @@ ja:
       submit_label: "かばんの中身を削除"
   profiles:
     show:
+      title: プロフィール
       submit_label: "プロフィールを編集"
     edit:
+      title: プロフィール編集
       submit_label: プロフィールを保存
+  registrations:
+    new:
+      title: アカウント作成
+  sessions:
+    new:
+      title: ログイン
+  items:
+    new:
+      title: アイテム編集
