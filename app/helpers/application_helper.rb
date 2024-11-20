@@ -5,4 +5,9 @@ module ApplicationHelper
     when :alert then "bg-sky-100 text-sky-700"
     end
   end
+
+  def page_title(title = "")
+    base_title = "All Ready"
+    title.present? ? "#{title} | #{base_title}" : base_title
+  end
 end
