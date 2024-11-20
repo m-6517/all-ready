@@ -1,4 +1,4 @@
-<div>
+<% content_for(:title, t('.title')) %>
   <div class="fixed top-16 right-0 left-0 z-30 flex justify-center p-4 bg-base-100 sticky">
     <%= link_to 'マストアイテムを紹介', new_recommend_path, class: "btn btn-primary" %>
   </div>
@@ -15,4 +15,3 @@
       <div class="mb-3 text-center text-gray-500">マストアイテムが見つかりませんでした</div>
     <% end %>
   </div>
-</div>
