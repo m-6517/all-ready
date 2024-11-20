@@ -1,4 +1,4 @@
-<div>
+<% content_for(:title, t('.title')) %>
   <div class="flex flex-col justify-center">
     <div class="fixed top-16 right-0 left-0 z-30 flex justify-center p-4 bg-base-100 sticky">
       <%= form_with model: @search_form, url: bag_contents_path, method: :get, local: true do |f| %>
@@ -17,4 +17,3 @@
       <% end %>
     </div>
   </div>
-</div>
