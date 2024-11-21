@@ -12,13 +12,13 @@
         <div class="dropdown dropdown-hover dropdown-bottom dropdown-end">
           <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar mr-4">
             <div class="w-10 rounded-full">
-              <%= image_tag "default_avatar.png", class: "w-10 h-10" %>
+              <%= image_tag current_user.avatar_url, class: "w-10 h-10" %>
             </div>
           </div>
           <ul tabindex="0" class="dropdown-content menu bg-slate-50 text-neutral rounded-box z-[1] w-64 h-32 p-2 shadow space-y-4">
             <li>
               <%= link_to profile_path, class: "text-base flex items-center" do %>
-                <span class="material-symbols-outlined">person</span>
+                <span class="material-symbols-outlined mr-2">person</span>
                 <%= current_user.decorate.name %>
               <% end %>
             </li>
