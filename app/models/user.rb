@@ -16,4 +16,6 @@ class User < ApplicationRecord
   def own?(object)
     id == object&.user_id
   end
+
+  mount_uploader :avatar, AvatarUploader
 end
