@@ -1,16 +1,19 @@
-<h2>Forgot your password?</h2>
+<% content_for(:title, t('sessions.new.title')) %>
+<div class="flex items-center justify-center m-12">
+  <div class="max-w-md w-full p-6 rounded shadow">
+    <h1 class="text-lg font-medium mb-6">パスワード再設定</h1>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="field">
+        <%= f.label :email, class: "text-sm" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered input-sm w-full" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "送信", class: "btn btn-primary w-full mt-8" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
