@@ -14,7 +14,9 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag 'sessions' %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    
 
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
@@ -37,7 +39,7 @@
     <% else %>
       <%= render "shared/before_login_header" %>
     <% end %>
-    <div class="flex-grow pt-16">
+    <div class="flex-grow">
       <% unless @show_menu == false %>
         <%= render 'shared/menu' %>
       <% end %>
@@ -47,13 +49,13 @@
           <%= yield %>
         </main>
       <% else %>
-        <main class="flex-1 p-4 md:pr-64">
+        <main class="flex-1 p-4 md:pl-64">
           <%= render "shared/flash_messages" %>
           <%= yield %>
         </main>
       <% end %>
     </div>
-    <footer class="footer text-base-content p-4 ml-2">
+    <footer class="footer text-base-content p-4 mr-2 flex justify-end">
       <%= render "shared/footer" %>
     </footer>
   </body>
