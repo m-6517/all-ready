@@ -46,7 +46,7 @@
 
     <div class="flex justify-end mt-6">
       <% if user_signed_in? && current_user.own?(@bag_content) %>
-        <%= link_to edit_bag_content_path(@bag_content), id: "button-edit-#{@bag_content.id}", class: "flex flex-col justify-center items-center gap-2" do %>
+        <%= link_to edit_bag_content_path(@bag_content), id: "button-edit-#{@bag_content.uuid}", class: "flex flex-col justify-center items-center gap-2" do %>
           <span class="material-symbols-outlined">edit</span>
           <p class="text-xs tracking-wider">編 集</p>
         <% end %>

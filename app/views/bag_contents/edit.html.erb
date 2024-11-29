@@ -18,8 +18,8 @@
         </div>
       <% end %>
       <% if user_signed_in? && current_user.own?(@bag_content) %>
-        <button class="btn btn-bg-base-300 w-full mt-4" onclick="openBagContentDeleteModal(<%= @bag_content.id %>)"><%= t('bag_contents.delete.submit_label') %></button>
-        <dialog id="bagContentDeleteModal_<%= @bag_content.id %>" class="modal">
+        <button class="btn btn-bg-base-300 w-full mt-4" onclick="openBagContentDeleteModal('<%= j @bag_content.uuid %>')"><%= t('bag_contents.delete.submit_label') %></button>
+        <dialog id="bagContentDeleteModal_<%= j @bag_content.uuid %>" class="modal">
           <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12">
             <div class="text-center">
               <p class="py-2">投稿を削除しても</p>
@@ -30,7 +30,7 @@
                 <%= hidden_field_tag :_method, 'delete' %>
                 <button class="btn btn-accent" type="submit">削除する</button>
               </form>
-              <button class="btn" onclick="document.getElementById('bagContentDeleteModal_<%= @bag_content.id %>').close()">キャンセル</button>
+              <button class="btn" onclick="document.getElementById('bagContentDeleteModal_<%= j @bag_content.uuid %>').close()">キャンセル</button>
             </div>
           </div>
         </dialog>
