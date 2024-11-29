@@ -11,7 +11,7 @@ class RecommendsController < ApplicationController
   end
 
   def show
-    @recommend = Recommend.find(params[:id])
+    @recommend = Recommend.find_by(uuid: params[:id])
   end
 
   def new
@@ -29,11 +29,11 @@ class RecommendsController < ApplicationController
   end
 
   def edit
-    @recommend = current_user.recommends.find(params[:id])
+    @recommend = current_user.recommends.find_by(uuid: params[:id])
   end
 
   def update
-    @recommend = current_user.recommends.find(params[:id])
+    @recommend = current_user.recommends.find_by(uuid: params[:id])
     if @recommend.update(recommend_params)
       redirect_to recommend_path(@recommend), notice: t("defaults.flash_message.updated", item: Recommend.model_name.human)
     else
@@ -43,7 +43,7 @@ class RecommendsController < ApplicationController
   end
 
   def destroy
-    recommend = current_user.recommends.find(params[:id])
+    recommend = current_user.recommends.find_by(uuid: params[:id])
     recommend.destroy!
     redirect_to recommends_path, notice: t("defaults.flash_message.deleted", item: Recommend.model_name.human), status: :see_other
   end
