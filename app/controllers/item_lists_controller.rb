@@ -1,6 +1,6 @@
 class ItemListsController < ApplicationController
   def index
-    @item_lists = current_user.item_lists.includes(:user).order(created_at: :asc)
+    @item_lists = ItemList.where(user_uuid: current_user.uuid).includes(:user).order(created_at: :asc)
     @bag_contents = BagContent.all
   end
 
@@ -32,7 +32,7 @@ class ItemListsController < ApplicationController
   end
 
   def edit
-    @item_list = current_user.item_lists.find(params[:id])
+    @item_list = current_user.item_lists.find_by(uuid: params[:id])
   end
 
   def update
@@ -63,7 +63,7 @@ class ItemListsController < ApplicationController
   end
 
   def destroy
-    item_list = current_user.item_lists.find(params[:id])
+    item_list = ItemList.find_by(user_uuid: current_user.uuid, id: params[:id])
     ItemListOriginalItem.where(item_list_id: item_list.id).destroy_all
     item_list.destroy!
     redirect_to item_lists_path, notice: t("defaults.flash_message.deleted", item: ItemList.model_name.human), status: :see_other

@@ -17,7 +17,7 @@
       <% else %>
         <% @bag_contents.each do |bag_content| %>
           <% if bag_content.item_list_id == item_list.id %>
-            <%= link_to item_list_bag_content_path(item_list.id, bag_content.id), class: "btn btn-secondary flex items-center gap-2", onclick: "document.getElementById('menuModal_#{item_list.id}').close();" do %>
+            <%= link_to item_list_bag_content_path(item_list.id, bag_content.uuid), class: "btn btn-secondary flex items-center gap-2", onclick: "document.getElementById('menuModal_#{item_list.id}').close();" do %>
               <span class="material-symbols-outlined">share</span>
               リストを共有中
             <% end %>
