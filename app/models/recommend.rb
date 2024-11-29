@@ -3,7 +3,7 @@ class Recommend < ApplicationRecord
   validates :item, presence: true, length: { maximum: 255 }
   validates :body, length: { maximum: 65_535 }
 
-  belongs_to :user
+  belongs_to :user, foreign_key: :user_uuid
 
   mount_uploader :item_image, ItemImageUploader
 end

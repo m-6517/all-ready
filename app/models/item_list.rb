@@ -1,5 +1,5 @@
 class ItemList < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, primary_key: :uuid, foreign_key: :user_uuid
   has_many :item_list_original_items, dependent: :destroy
   has_many :original_items, through: :item_list_original_items
   has_many :item_list_default_items, dependent: :destroy

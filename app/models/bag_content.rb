@@ -1,10 +1,10 @@
 class BagContent < ApplicationRecord
   belongs_to :item_list
-  belongs_to :user
-  has_many :bag_content_tags, dependent: :destroy
+  belongs_to :user, foreign_key: :user_uuid
+  has_many :bag_content_tags, primary_key: :uuid, foreign_key: :bag_content_uuid, dependent: :destroy
   has_many :tags, through: :bag_content_tags
 
-  validates :item_list_id, uniqueness: { scope: :user_id }
+  validates :item_list_id, uniqueness: { scope: :user_uuid }
 
   def save_with_tags(tag_name:)
     ActiveRecord::Base.transaction do

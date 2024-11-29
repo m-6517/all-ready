@@ -1,13 +1,13 @@
 class User < ApplicationRecord
-  has_many :recommends, dependent: :destroy
-  has_many :item_lists, dependent: :destroy
+  has_many :recommends, primary_key: :uuid, foreign_key: :user_uuid, dependent: :destroy
+  has_many :item_lists, primary_key: :uuid, foreign_key: :user_uuid
   has_many :original_items, dependent: :destroy
-  has_many :bag_contents, dependent: :destroy
+  has_many :bag_contents, primary_key: :uuid, foreign_key: :user_uuid, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :email, presence: true, uniqueness: true
   validates :encrypted_password, presence: true
-  validates :uid, uniqueness: { scope: :provider }
+  validates :uid, presence: true, uniqueness: { scope: :provider }, if: -> { provider == "google_oauth2" }
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
@@ -16,7 +16,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   def own?(object)
-    id == object&.user_id
+    uuid == object&.user_uuid
   end
 
   def self.from_omniauth(auth)
