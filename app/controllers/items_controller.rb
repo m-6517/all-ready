@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item_list, only: %i[new create update]
 
   def new
-    @original_items = OriginalItem.where(user_id: current_user.id).order(created_at: :asc)
+    @original_items = OriginalItem.where(user_uuid: current_user.uuid).order(created_at: :asc)
     @default_items = DefaultItem.all
     @new_original_item = OriginalItem.new
     @item_status = ItemStatus.new

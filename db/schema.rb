@@ -10,26 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_26_130355) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_28_032246) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "bag_content_tags", force: :cascade do |t|
-    t.integer "bag_content_id", null: false
     t.integer "tag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bag_content_id", "tag_id"], name: "index_bag_content_tags_on_bag_content_id_and_tag_id", unique: true
+    t.uuid "bag_content_uuid", null: false
+    t.index ["bag_content_uuid"], name: "index_bag_content_tags_on_bag_content_uuid"
   end
 
-  create_table "bag_contents", force: :cascade do |t|
+  create_table "bag_contents", primary_key: "uuid", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.bigint "item_list_id", null: false
-    t.bigint "user_id", null: false
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "user_uuid", null: false
     t.index ["item_list_id"], name: "index_bag_contents_on_item_list_id"
-    t.index ["user_id"], name: "index_bag_contents_on_user_id"
+    t.index ["user_uuid"], name: "index_bag_contents_on_user_uuid"
+    t.index ["uuid"], name: "index_bag_contents_on_uuid", unique: true
   end
 
   create_table "default_items", force: :cascade do |t|
@@ -59,11 +61,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_130355) do
 
   create_table "item_lists", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "cover_image"
-    t.index ["user_id"], name: "index_item_lists_on_user_id"
+    t.uuid "user_uuid", null: false
+    t.index ["user_uuid"], name: "index_item_lists_on_user_uuid"
   end
 
   create_table "item_statuses", force: :cascade do |t|
@@ -81,23 +83,24 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_130355) do
   end
 
   create_table "original_items", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position"
-    t.index ["user_id"], name: "index_original_items_on_user_id"
+    t.uuid "user_uuid", null: false
+    t.index ["user_uuid"], name: "index_original_items_on_user_uuid"
   end
 
-  create_table "recommends", force: :cascade do |t|
+  create_table "recommends", primary_key: "uuid", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "place", null: false
     t.string "item", null: false
     t.text "body"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "item_image"
-    t.index ["user_id"], name: "index_recommends_on_user_id"
+    t.uuid "user_uuid", null: false
+    t.index ["user_uuid"], name: "index_recommends_on_user_uuid"
+    t.index ["uuid"], name: "index_recommends_on_uuid", unique: true
   end
 
   create_table "tags", force: :cascade do |t|
@@ -107,7 +110,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_130355) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", primary_key: "uuid", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -121,20 +124,21 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_130355) do
     t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
 
-  add_foreign_key "bag_content_tags", "bag_contents"
+  add_foreign_key "bag_content_tags", "bag_contents", column: "bag_content_uuid", primary_key: "uuid"
   add_foreign_key "bag_content_tags", "tags"
   add_foreign_key "bag_contents", "item_lists"
-  add_foreign_key "bag_contents", "users"
+  add_foreign_key "bag_contents", "users", column: "user_uuid", primary_key: "uuid"
   add_foreign_key "item_list_default_items", "default_items"
   add_foreign_key "item_list_default_items", "item_lists"
   add_foreign_key "item_list_original_items", "item_lists"
   add_foreign_key "item_list_original_items", "original_items"
-  add_foreign_key "item_lists", "users"
+  add_foreign_key "item_lists", "users", column: "user_uuid", primary_key: "uuid"
   add_foreign_key "item_statuses", "default_items"
   add_foreign_key "item_statuses", "item_lists"
   add_foreign_key "item_statuses", "original_items"
-  add_foreign_key "original_items", "users"
-  add_foreign_key "recommends", "users"
+  add_foreign_key "original_items", "users", column: "user_uuid", primary_key: "uuid"
+  add_foreign_key "recommends", "users", column: "user_uuid", primary_key: "uuid"
 end

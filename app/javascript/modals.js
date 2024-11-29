@@ -33,8 +33,8 @@ export function openItemQuantityModal(id) {
 }
 
 // かばんの中身削除
-export function openBagContentDeleteModal(id) {
-  document.getElementById(`bagContentDeleteModal_${id}`).showModal();
+export function openBagContentDeleteModal(uuid) {
+  document.getElementById(`bagContentDeleteModal_${uuid}`).showModal();
 }
 
 window.openMenuModal = openMenuModal;

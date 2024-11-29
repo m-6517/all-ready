@@ -6,7 +6,7 @@
       </div>
       <%= render 'form', recommend: @recommend, submit_label: I18n.t('recommends.edit.submit_label') %>
       <% if user_signed_in? && current_user.own?(@recommend) %>
-        <%= link_to t('recommends.delete.submit_label'), recommend_path(@recommend), id: "button-delete-#{@recommend.id}", data: {turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm')}, class: "p-2 btn btn-bg-base-300 w-full mt-4" %>
+        <%= link_to t('recommends.delete.submit_label'), recommend_path(@recommend), id: "button-delete-#{@recommend.uuid}", data: {turbo_method: :delete, turbo_confirm: t('defaults.delete_confirm')}, class: "p-2 btn btn-bg-base-300 w-full mt-4" %>
       <% end %>
     </div>
   </div>

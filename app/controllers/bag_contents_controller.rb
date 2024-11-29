@@ -16,7 +16,7 @@ class BagContentsController < ApplicationController
   end
 
   def show
-    @bag_content = BagContent.find(params[:id])
+    @bag_content = BagContent.find_by(uuid: params[:id])
   end
 
   def new
@@ -49,11 +49,11 @@ class BagContentsController < ApplicationController
   end
 
   def edit
-    @bag_content = current_user.bag_contents.find(params[:id])
+    @bag_content = current_user.bag_contents.find_by(uuid: params[:id])
   end
 
   def update
-    @bag_content = current_user.bag_contents.find(params[:id])
+    @bag_content = current_user.bag_contents.find_by(uuid: params[:id])
     @bag_content.body = bag_content_params[:body]
 
     if @bag_content.save_with_tags(tag_name: params.dig(:bag_content, :tag_name).split(",").uniq)
@@ -65,7 +65,7 @@ class BagContentsController < ApplicationController
   end
 
   def destroy
-    bag_content = current_user.bag_contents.find(params[:id])
+    bag_content = current_user.bag_contents.find_by(uuid: params[:id])
     bag_content.destroy!
     redirect_to bag_contents_path, notice: t("defaults.flash_message.deleted", item: BagContent.model_name.human), status: :see_other
   end
