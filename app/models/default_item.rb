@@ -4,5 +4,4 @@ class DefaultItem < ApplicationRecord
   has_many :item_statuses, dependent: :destroy
 
   validates :name, presence: true
-  validates :position, numericality: { only_integer: true, allow_nil: true }
 end

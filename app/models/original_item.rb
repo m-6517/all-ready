@@ -6,5 +6,4 @@ class OriginalItem < ApplicationRecord
 
   validates :user, presence: true
   validates :name, presence: true
-  validates :position, numericality: { only_integer: true, allow_nil: true }
 end
