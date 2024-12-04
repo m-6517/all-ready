@@ -19,5 +19,5 @@ class ItemList < ApplicationRecord
     checked_count = item_statuses.where(selected: true, is_checked: true).count
     ready_status = (checked_count / total_selected_count.to_f * 100).to_i
     self.update!(ready_status: ready_status)
-  end  
+  end
 end
