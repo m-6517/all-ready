@@ -4,14 +4,16 @@
     <title><%= page_title(yield(:title)) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= yield :head %>
 
     <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <%= favicon_link_tag "favicon.ico" %>
+    <link rel="icon" href="<%= asset_path('icon.png') %>" type="image/png">
+    <link rel="icon" href="<%= asset_path('icon.svg') %>" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag 'sessions' %>
@@ -19,8 +21,6 @@
     
 
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-
-    <%= favicon_link_tag "favicon.ico" %>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JCGQE1NYWW"></script>
@@ -55,8 +55,6 @@
         </main>
       <% end %>
     </div>
-    <footer class="footer text-base-content p-4 mr-2 flex justify-end">
-      <%= render "shared/footer" %>
-    </footer>
+    <%= render "shared/footer" %>
   </body>
 </html>

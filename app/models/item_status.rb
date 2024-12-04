@@ -7,4 +7,5 @@ class ItemStatus < ApplicationRecord
   validates :selected, inclusion: { in: [ true, false ] }
   validates :is_checked, inclusion: { in: [ true, false ] }
   validates :quantity, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
+  validates :position, numericality: { only_integer: true, allow_nil: true }
 end
