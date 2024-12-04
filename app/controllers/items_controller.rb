@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
     @item_list = ItemList.find(params[:item_list_id])
     max_position = @item_list.item_statuses.maximum(:position).to_i
     new_original_item = OriginalItem.new(original_item_params.merge(user: current_user))
-  
+
     if new_original_item.save
       item_list_original_item = ItemListOriginalItem.find_or_create_by(item_list: @item_list, original_item: new_original_item)
       item_status = ItemStatus.create(item_list: @item_list, original_item: new_original_item, position: max_position + 1, is_checked: false, selected: false, quantity: 1)
