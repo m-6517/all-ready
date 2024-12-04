@@ -16,6 +16,9 @@ class ItemListsController < ApplicationController
     @selected_original_items = @original_items.select do |item|
       item.item_statuses.find_by(item_list_id: @item_list.id)&.selected
     end
+
+    @item_list.update_ready_status
+    @ready_status = @item_list.ready_status
   end
 
   def new
