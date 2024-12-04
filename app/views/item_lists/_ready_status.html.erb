@@ -1,0 +1,8 @@
+<div id="<%= dom_id(item_list, :ready_status) %>" class="flex justify-end mt-6 w-full max-w-md">
+  <div class="w-1/3 bg-base-200 rounded-full overflow-hidden h-5">
+    <div class="flex flex-col justify-center rounded-full bg-primary text-xs text-white text-center h-5 leading-none transition duration-500"
+         style="width: <%= item_list.ready_status %>%; background-color: <%= item_list.ready_status == 0 ? 'text-primary' : 'primary' %>;">
+      <%= content_tag :span, item_list.ready_status.to_s + '%', class: item_list.ready_status == 0 ? 'text-accent pl-2' : '' %>
+    </div>
+  </div>
+</div>

@@ -9,6 +9,15 @@ class ItemList < ApplicationRecord
 
   validates :name, presence: true
   validates :user, presence: true
+  validates :ready_status, inclusion: { in: 0..100 }
 
   mount_uploader :cover_image, CoverImageUploader
+
+  def update_ready_status
+    total_selected_count = item_statuses.where(selected: true).count
+    return self.update!(ready_status: 0) if total_selected_count.zero?
+    checked_count = item_statuses.where(selected: true, is_checked: true).count
+    ready_status = (checked_count / total_selected_count.to_f * 100).to_i
+    self.update!(ready_status: ready_status)
+  end
 end
