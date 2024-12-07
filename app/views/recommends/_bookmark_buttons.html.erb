@@ -1,0 +1,7 @@
+<div class='ms-auto'>
+  <% if current_user.bookmark?(recommend) %>
+    <%= render 'unbookmark', { recommend: recommend } %>
+  <% else %>
+    <%= render 'bookmark', { recommend: recommend } %>
+  <% end %>
+</div>

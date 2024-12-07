@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "bookmark-button-for-recommend-#{@recommend.uuid}" do %>
+  <%= render 'recommends/unbookmark', recommend: @recommend %>
+<% end %>

@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :item_lists, primary_key: :uuid, foreign_key: :user_uuid
   has_many :original_items, dependent: :destroy
   has_many :bag_contents, primary_key: :uuid, foreign_key: :user_uuid, dependent: :destroy
+  has_many :bookmarks, primary_key: :uuid, foreign_key: :user_uuid, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :email, presence: true, uniqueness: true
@@ -26,5 +27,17 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
       user.avatar = auth.info.image
     end
+  end
+
+  def bookmark(bookmarkable)
+    bookmarks.create!(bookmarkable: bookmarkable, user_uuid: uuid)
+  end
+
+  def unbookmark(bookmarkable)
+    bookmarks.find_by(bookmarkable: bookmarkable, user_uuid: uuid)&.destroy
+  end
+
+  def bookmark?(bookmarkable)
+    bookmarks.exists?(bookmarkable: bookmarkable, user_uuid: uuid)
   end
 end

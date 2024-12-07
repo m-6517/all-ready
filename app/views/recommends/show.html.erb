@@ -12,11 +12,11 @@
           <%= image_tag @recommend.item_image_url, class: "w-64 rounded shadow mt-8" %>
         <% end %>
 
-        <div class="flex justify-end">
+        <div class="flex justify-end items-center">
+          <%= render 'bookmark_buttons', { recommend: @recommend } %>
           <% if user_signed_in? && current_user.own?(@recommend) %>
-            <%= link_to edit_recommend_path(@recommend), id: "button-edit-#{@recommend.uuid}", class: "flex flex-col justify-center p-2 gap-2" do %>
+            <%= link_to edit_recommend_path(@recommend), id: "button-edit-#{@recommend.uuid}" do %>
               <span class="material-symbols-outlined">edit</span>
-              <p class="text-xs tracking-wider">編 集</p>
             <% end %>
           <% end %>
         </div>
