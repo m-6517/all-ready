@@ -19,6 +19,12 @@
           <span class="flex-1 ml-3 whitespace-nowrap text-lg">持ち物リスト</span>
         <% end %>
       </li>
+      <li>
+        <%= link_to bookmarks_path, class: "flex items-center p-4 text-gray-900 rounded hover:bg-gray-200 group #{'text-primary font-bold' if request.path.include?('/bookmarks')}" do %>
+          <span class="material-symbols-outlined text-2xl">bookmark</span>
+          <span class="flex-1 ml-3 whitespace-nowrap text-lg">ブックマーク</span>
+        <% end %>
+      </li>
     </ul>
   </div>
 </aside>

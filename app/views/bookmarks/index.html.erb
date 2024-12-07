@@ -1,0 +1,13 @@
+<div>
+  <% if @bookmarked_recommends.any? %>
+    <ul>
+      <% @bookmarked_recommends.each do |recommend| %>
+        <li>
+          <%= link_to recommend.item, recommend_path(recommend) %> 
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <div class="mb-3 text-center text-gray-500">投稿が見つかりませんでした</div>
+  <% end %>
+</div>
