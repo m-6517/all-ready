@@ -32,11 +32,11 @@ class User < ApplicationRecord
   def bookmark(bookmarkable)
     bookmarks.create!(bookmarkable: bookmarkable, user_uuid: uuid)
   end
-  
+
   def unbookmark(bookmarkable)
     bookmarks.find_by(bookmarkable: bookmarkable, user_uuid: uuid)&.destroy
   end
-  
+
   def bookmark?(bookmarkable)
     bookmarks.exists?(bookmarkable: bookmarkable, user_uuid: uuid)
   end

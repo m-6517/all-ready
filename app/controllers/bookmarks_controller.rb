@@ -7,7 +7,7 @@ class BookmarksController < ApplicationController
 
   def create
     bookmarkable_uuid = params[:bookmarkable]
-    @recommend = Recommend.find_by(uuid: bookmarkable_uuid)  
+    @recommend = Recommend.find_by(uuid: bookmarkable_uuid)
     current_user.bookmark(@recommend)
   end
 

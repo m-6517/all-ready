@@ -5,6 +5,6 @@ class CreateBookmarks < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :bookmarks, [:reference_type, :reference_id]
+    add_index :bookmarks, [ :reference_type, :reference_id ]
   end
 end
