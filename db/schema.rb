@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_04_125653) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_06_082910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -32,6 +32,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_125653) do
     t.index ["item_list_id"], name: "index_bag_contents_on_item_list_id"
     t.index ["user_uuid"], name: "index_bag_contents_on_user_uuid"
     t.index ["uuid"], name: "index_bag_contents_on_uuid", unique: true
+  end
+
+  create_table "bookmarks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "bookmarkable_type", null: false
+    t.uuid "bookmarkable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "user_uuid", null: false
+    t.index ["bookmarkable_type", "bookmarkable_id"], name: "index_bookmarks_on_bookmarkable"
+    t.index ["user_uuid"], name: "index_bookmarks_on_user_uuid"
   end
 
   create_table "default_items", force: :cascade do |t|
@@ -131,6 +141,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_125653) do
   add_foreign_key "bag_content_tags", "tags"
   add_foreign_key "bag_contents", "item_lists"
   add_foreign_key "bag_contents", "users", column: "user_uuid", primary_key: "uuid"
+  add_foreign_key "bookmarks", "users", column: "user_uuid", primary_key: "uuid"
   add_foreign_key "item_list_default_items", "default_items"
   add_foreign_key "item_list_default_items", "item_lists"
   add_foreign_key "item_list_original_items", "item_lists"
