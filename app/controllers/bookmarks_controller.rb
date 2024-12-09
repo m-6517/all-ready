@@ -16,10 +16,10 @@ class BookmarksController < ApplicationController
 
   def destroy
     bookmark = current_user.bookmarks.find(params[:id])
-    if bookmark.bookmarkable_type == 'Recommend'
+    if bookmark.bookmarkable_type == "Recommend"
       @recommend = bookmark.bookmarkable
       @bag_content = nil
-    else bookmark.bookmarkable_type == 'BagContent'
+    else bookmark.bookmarkable_type == "BagContent"
       @bag_content = bookmark.bookmarkable
       @recommend = nil
     end
