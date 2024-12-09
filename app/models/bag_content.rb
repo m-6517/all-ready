@@ -3,6 +3,7 @@ class BagContent < ApplicationRecord
   belongs_to :user, foreign_key: :user_uuid
   has_many :bag_content_tags, primary_key: :uuid, foreign_key: :bag_content_uuid, dependent: :destroy
   has_many :tags, through: :bag_content_tags
+  has_many :bookmarks, as: :bookmarkable, dependent: :destroy
 
   validates :item_list_id, uniqueness: { scope: :user_uuid }
 

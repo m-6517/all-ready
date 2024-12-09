@@ -1,19 +1,26 @@
 <% content_for(:title, t('.title')) %>
-  <div class="flex flex-col justify-center">
-    <div class="fixed top-16 right-0 left-0 z-30 flex justify-center p-4 bg-base-100 sticky">
+<div class="container mx-auto pt-3 px-12 py-24">
+  <div class="flex flex-col justify-start items-start bg-base-100">
+    <div class="flex flex-col items-start bg-base-100">
+      <div class="flex items-center mb-6">
+        <span class="material-symbols-outlined text-2xl text-primary" style="font-variation-settings: 'FILL' 1;">work</span>
+        <h1 class="text-lg font-medium ml-3">みんなの持ち物</h1>
+      </div>
       <%= form_with model: @search_form, url: bag_contents_path, method: :get, local: true do |f| %>
-        <div class="input-group flex items-center justify-center gap-4 mb-12">
-          <%= f.text_field :search_term, name: 'q[search_term]', class: "border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500", placeholder: "持ち物・行き先" %>
+        <div class="input-group flex items-center justify-start gap-4 relative">
+          <span class="material-symbols-outlined absolute left-3 pr-3 py-2 text-gray-400">search</span>
+          <%= f.text_field :search_term, name: 'q[search_term]', class: "border border-gray-300 bg-slate-50 rounded-md shadow-sm pl-10 pr-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500", placeholder: "持ち物・行き先" %>
           <%= f.submit t("defaults.search_word"), class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>
 
-    <div class="flex flex-wrap justify-center gap-8">
-      <% if @bag_contents.present? %>
+    <% if @bag_contents.present? %>
+      <div class="flex flex-wrap justify-start mt-12 gap-8">
         <%= render @bag_contents %>
-      <% else %>
-        <p class="text-center text-gray-500">投稿が見つかりませんでした</p>
-      <% end %>
-    </div>
+      </div>
+    <% else %>
+      <p class="text-left text-gray-500 m-12">投稿が見つかりませんでした</p>
+    <% end %>
   </div>
+</div>
