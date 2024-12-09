@@ -4,7 +4,11 @@
     <div class="flex w-full">
       <div class="card grid w-64 place-items-start">
         <h2 class="text-base font-medium text-left mb-4"><%= @bag_content.item_list.name %></h2>
-        <p class="text-sm text-left mb-6"><%= @bag_content.user.name %></p>
+
+        <div class="flex items-center gap-2 mb-4">
+          <%= image_tag @bag_content.user.avatar_url, class: "w-6 h-6 rounded-full" %>
+          <p class="text-sm text-left"><%= @bag_content.user.name %></p>
+        </div>
 
         <% if @bag_content.tag_name.present? %>
           <div class="flex flex-wrap gap-2 mb-4">
@@ -27,7 +31,7 @@
 
       <div class="divider divider-horizontal"></div>
 
-      <div class="card grid grid-cols-1 w-64"> <!-- grid-cols-1で1カラムに -->
+      <div class="card grid grid-cols-1 w-64">
         <ul class="space-y-2 w-full">
           <p class="text-sm font-medium mb-4">持ち物</p>
           <% @bag_content.item_list.default_items.each do |item| %>
@@ -44,11 +48,11 @@
       </div>
     </div>
 
-    <div class="flex justify-end mt-6">
+    <div class="flex justify-end items-center gap-2">
+      <%= render 'bookmark_buttons', { bag_content: @bag_content } %>
       <% if user_signed_in? && current_user.own?(@bag_content) %>
-        <%= link_to edit_bag_content_path(@bag_content), id: "button-edit-#{@bag_content.uuid}", class: "flex flex-col justify-center items-center gap-2" do %>
-          <span class="material-symbols-outlined">edit</span>
-          <p class="text-xs tracking-wider">編 集</p>
+        <%= link_to edit_bag_content_path(@bag_content), id: "button-edit-#{@bag_content.uuid}" do %>
+          <span class="material-symbols-outlined text-primary">edit</span>
         <% end %>
       <% end %>
     </div>
