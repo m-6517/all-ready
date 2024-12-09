@@ -1,3 +1,9 @@
-<%= turbo_stream.replace "bookmark-button-for-recommend-#{@recommend.uuid}" do %>
-  <%= render 'recommends/unbookmark', recommend: @recommend %>
+<% if @recommend.present? %>
+  <%= turbo_stream.replace "bookmark-button-for-recommend-#{@recommend.uuid}" do %>
+    <%= render 'recommends/unbookmark', recommend: @recommend %>
+  <% end %>
+<% else @bag_content.present? %>
+  <%= turbo_stream.replace "bookmark-button-for-bag_content-#{@bag_content.uuid}" do %>
+    <%= render 'bag_contents/unbookmark', bag_content: @bag_content %>
+  <% end %>
 <% end %>

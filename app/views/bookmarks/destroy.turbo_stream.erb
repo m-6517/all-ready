@@ -1,3 +1,9 @@
-<%= turbo_stream.replace "unbookmark-button-for-recommend-#{@recommend.id}" do %>
-  <%= render 'recommends/bookmark', recommend: @recommend %>
+<% if @recommend.present? %>
+  <%= turbo_stream.replace "unbookmark-button-for-recommend-#{@recommend.id}" do %>
+    <%= render 'recommends/bookmark', recommend: @recommend %>
+  <% end %>
+<% else @bag_content.present? %>
+  <%= turbo_stream.replace "unbookmark-button-for-bag_content-#{@bag_content.id}" do %>
+    <%= render 'bag_contents/bookmark', bag_content: @bag_content %>
+  <% end %>
 <% end %>

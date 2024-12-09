@@ -1,0 +1,3 @@
+<%= link_to bookmarks_path(bookmarkable: bag_content), id: "bookmark-button-for-bag_content-#{bag_content.uuid}", data: { turbo_method: :post } do %>
+  <span class="material-symbols-outlined text-primary">bookmark</span>
+<% end %>
