@@ -11,10 +11,12 @@
     <%= yield :head %>
 
     <link rel="manifest" href="/manifest.json">
-    <%= favicon_link_tag "favicon.ico" %>
-    <link rel="icon" href="<%= asset_path('icon.png') %>" type="image/png">
-    <link rel="icon" href="<%= asset_path('icon.svg') %>" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/icon_any_192.png" sizes="192x192" type="image/png">
+    <link rel="icon" href="/icon_any_512.png" sizes="512x512" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon_any_192.png">
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag 'sessions' %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
@@ -57,4 +59,17 @@
     </div>
     <%= render "shared/footer" %>
   </body>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service_worker.js')
+          .then((registration) => {
+            console.log('Service Worker registered:', registration);
+          })
+          .catch((error) => {
+            console.error('Service Worker registration failed:', error);
+          });
+      });
+    }
+  </script>
 </html>

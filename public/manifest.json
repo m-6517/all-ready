@@ -1,0 +1,32 @@
+{
+  "theme_color": "#0577be",
+  "backgrosund_color": "#f8f8f8",
+  "icons": [
+    {
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "/icon_maskable_512.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "512x512",
+      "src": "/icon_any_512.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "192x192",
+      "src": "/icon_any_192.png",
+      "type": "image/png"
+    }
+  ],
+  "orientation": "portrait",
+  "display": "standalone",
+  "dir": "auto",
+  "lang": "ja",
+  "name": "All Ready",
+  "short_name": "All Ready",
+  "start_url": "https://allready.jp",
+  "scope": "https://allready.jp"
+}
