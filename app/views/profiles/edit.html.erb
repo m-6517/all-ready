@@ -1,12 +1,12 @@
 <% content_for(:title, t('.title')) %>
   <div class="flex items-center justify-center p-5">
-    <div class="max-w-md w-full mx-auto bg-slate-50 p-6 rounded shadow">
+    <div class="max-w-xl w-full mx-auto bg-slate-50 p-6 rounded shadow">
       <div class="flex flex-col">
         <%= form_with model: @user, url: profile_path, method: :put do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
           <div class="mb-4">
             <%= f.label :avatar, style: "cursor: pointer;" do %>
-              <%= image_tag(current_user.avatar_url, class: "w-16 h-16 rounded-full hover:opacity-50") %>
+              <%= image_tag(current_user.avatar_url, class: "w-16 h-16 rounded-full transition-all duration-300 hover:brightness-110") %>
             <% end %>
             <%= f.file_field :avatar, class: "hidden", accept: 'image/*' %>
             <%= f.hidden_field :avatar_cache %>
