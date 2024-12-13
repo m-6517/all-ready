@@ -16,6 +16,7 @@ ja:
       updated: "%{item}を更新しました"
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
+      require_login: ログインしてください
   header:
     login: ログイン
     logout: ログアウト
@@ -69,3 +70,6 @@ ja:
   items:
     new:
       title: アイテム編集
+  bookmarks:
+    index:
+      title: ブックマーク
