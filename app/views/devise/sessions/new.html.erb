@@ -33,7 +33,7 @@
       </div>
 
       <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-        <%= link_to "アカウントを作成", new_registration_path(resource_name), class: "btn outline outline-2 outline-primary text-primary w-full mb-6" %>
+        <%= link_to "アカウントを作成", new_registration_path(resource_name), class: "btn outline outline-2 outline-primary bg-white text-primary w-full mb-6" %>
       <% end %>
 
       <div class="divider text-xs">または</div>
@@ -54,8 +54,8 @@
                   <path fill="none" d="M0 0h48v48H0z"></path>
                 </svg>
               </div>
-              <span class="gsi-material-button-contents">Sign in with Google</span>
-              <span style="display: none;">Sign in with Google</span>
+              <span class="gsi-material-button-contents">Googleでログイン</span>
+              <span style="display: none;">Googleでログイン</span>
             </div>
           </div>
         <% end %>
