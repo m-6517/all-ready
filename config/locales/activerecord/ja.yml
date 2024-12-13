@@ -5,6 +5,7 @@ ja:
       recommend: マストアイテム
       item_list: 持ち物リスト
       bag_content: かばんの中身
+      bookmark: ブックマーク
     attributes:
       user:
         name: アカウント名

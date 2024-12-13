@@ -1,28 +1,28 @@
 <aside id="default-sidebar" class="fixed left-0 w-64 z-40 h-full transition-transform md:block hidden" aria-label="Sidebar">
   <div class="h-full px-3 py-4 bg-base-200">
-    <ul class="space-y-6 font-medium mt-12">
+    <ul class="space-y-6 font-medium">
       <li>
         <%= link_to recommends_path, class: "flex items-center p-4 text-gray-900 rounded hover:bg-gray-200 group #{'text-primary font-bold' if request.path.start_with?('/recommends')}", style: ("font-variation-settings: 'FILL' 1;" if request.path.start_with?('/recommends')) do %>
           <span class="material-symbols-outlined text-2xl">lightbulb_2</span>
-          <span class="flex-1 ml-3 whitespace-nowrap text-lg">マストアイテム</span>
+          <span class="flex-1 ml-3 whitespace-nowrap text-base">マストアイテム</span>
         <% end %>
       </li>
       <li>
         <%= link_to bag_contents_path, class: "flex items-center p-4 text-gray-900 rounded hover:bg-gray-200 group #{'text-primary font-bold' if request.path.include?('/bag_contents')}", style: ("font-variation-settings: 'FILL' 1;" if request.path.include?('/bag_contents')) do %>
           <span class="material-symbols-outlined text-2xl">work</span>
-          <span class="flex-1 ml-3 whitespace-nowrap text-lg">みんなの持ち物</span>
+          <span class="flex-1 ml-3 whitespace-nowrap text-base">みんなの持ち物</span>
         <% end %>
       </li>
       <li>
         <%= link_to item_lists_path, class: "flex items-center p-4 text-gray-900 rounded hover:bg-gray-200 group #{'text-primary font-bold' if request.path.start_with?('/item_lists') && !request.path.include?('/bag_contents')}", style: ("font-variation-settings: 'FILL' 1;" if request.path.start_with?('/item_lists')) do %>
           <span class="material-symbols-outlined text-2xl">playlist_add</span>
-          <span class="flex-1 ml-3 whitespace-nowrap text-lg">持ち物リスト</span>
+          <span class="flex-1 ml-3 whitespace-nowrap text-base">持ち物リスト</span>
         <% end %>
       </li>
       <li>
         <%= link_to bookmarks_path, class: "flex items-center p-4 text-gray-900 rounded hover:bg-gray-200 group #{'text-primary font-bold' if request.path.include?('/bookmarks')}", style: ("font-variation-settings: 'FILL' 1;" if request.path.include?('/bookmarks')) do %>
           <span class="material-symbols-outlined text-2xl">bookmark</span>
-          <span class="flex-1 ml-3 whitespace-nowrap text-lg">ブックマーク</span>
+          <span class="flex-1 ml-3 whitespace-nowrap text-base">ブックマーク</span>
         <% end %>
       </li>
     </ul>

@@ -1,6 +1,4 @@
 class BookmarksController < ApplicationController
-  before_action :authenticate_user!
-
   def index
     @bookmarked_recommends = current_user.bookmarks.includes(:bookmarkable).map(&:bookmarkable)
     @bookmarked_bag_contents = current_user.bookmarks.includes(:bookmarkable).map(&:bookmarkable)
