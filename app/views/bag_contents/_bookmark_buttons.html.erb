@@ -1,5 +1,5 @@
 <div class='ms-auto'>
-  <% if current_user.bookmark?(bag_content) %>
+  <% if current_user && current_user.bookmark?(bag_content) %>
     <%= render 'unbookmark', { bag_content: bag_content } %>
   <% else %>
     <%= render 'bookmark', { bag_content: bag_content } %>
