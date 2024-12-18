@@ -134,7 +134,7 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.12.1)
       devise (>= 4.9.0)
-    dotenv (3.1.4)
+    dotenv (3.1.7)
     draper (4.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
