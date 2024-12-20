@@ -73,3 +73,6 @@ ja:
   bookmarks:
     index:
       title: ブックマーク
+  static_pages:
+    form:
+      title: お問い合わせフォーム
