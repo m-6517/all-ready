@@ -76,3 +76,5 @@ ja:
   static_pages:
     form:
       title: お問い合わせフォーム
+    policy:
+      title: プライバシーポリシー
