@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :bookmarks, only: %i[index create destroy]
 
   get "form", to: "static_pages#form", as: "inquiry_form"
+  get "policy", to: "static_pages#policy", as: "privacy_policy"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
