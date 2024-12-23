@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 
   get "form", to: "static_pages#form", as: "inquiry_form"
   get "policy", to: "static_pages#policy", as: "privacy_policy"
+  get "terms", to: "static_pages#terms", as: "terms"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
