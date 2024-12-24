@@ -26,15 +26,15 @@
     <div class="container flex flex-col justify-center items-center mt-8 gap-4">
       <% if @selected_original_items.empty? && @selected_default_items.empty? %>
         <p class="text-center text-gray-500">持ち物がありません</p>
-      <% else %>
-        <% @selected_original_items.each do |item| %>
+      <% else %>        
+        <% @selected_default_items.each do |item| %>
           <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
           <div class="flex items-center gap-2 w-full max-w-md">
             <%= render "item_statuses/item_status", item_status: status %>
           </div>
         <% end %>
-        
-        <% @selected_default_items.each do |item| %>
+
+        <% @selected_original_items.each do |item| %>
           <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
           <div class="flex items-center gap-2 w-full max-w-md">
             <%= render "item_statuses/item_status", item_status: status %>

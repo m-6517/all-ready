@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
 
     if new_original_item.save
       item_list_original_item = ItemListOriginalItem.find_or_create_by(item_list: @item_list, original_item: new_original_item)
-      item_status = ItemStatus.create(item_list: @item_list, original_item: new_original_item, position: max_position + 1, is_checked: false, selected: false, quantity: 1)
+      item_status = ItemStatus.create(item_list: @item_list, original_item: new_original_item, position: max_position + 1, is_checked: false, selected: true, quantity: 1)
       redirect_to new_item_list_item_path(@item_list)
     else
       render :new
