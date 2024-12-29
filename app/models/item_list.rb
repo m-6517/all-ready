@@ -24,6 +24,7 @@ class ItemList < ApplicationRecord
   def duplicate
     duplicated_list = self.dup
     duplicated_list.name = "#{self.name}のコピー"
+    duplicated_list.cover_image = nil
     duplicated_list.save!
 
     self.original_items.each do |original_item|
