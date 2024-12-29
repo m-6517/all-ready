@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     end
     resources :quantities, only: %i[index edit update]
     resources :bag_contents, only: %i[show new create]
+    post :duplicate, on: :member
   end
 
   resources :bag_contents, only: %i[index edit update destroy]
