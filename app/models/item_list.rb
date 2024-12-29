@@ -22,8 +22,10 @@ class ItemList < ApplicationRecord
   end
 
   def duplicate
-    duplicated_list = self.dup
+    duplicated_list = ItemList.new
     duplicated_list.name = "#{self.name}のコピー"
+    duplicated_list.user_uuid = self.user_uuid
+    duplicated_list.ready_status = 0
     duplicated_list.cover_image = nil
     duplicated_list.save!
 
