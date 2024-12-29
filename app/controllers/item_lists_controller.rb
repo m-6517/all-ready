@@ -1,4 +1,6 @@
 class ItemListsController < ApplicationController
+  include ActionView::RecordIdentifier
+
   def index
     @item_lists = ItemList.where(user_uuid: current_user.uuid).includes(:user).order(created_at: :asc)
     @bag_contents = BagContent.all
@@ -73,6 +75,13 @@ class ItemListsController < ApplicationController
     @item_list = ItemList.find(params[:id])
     duplicated_item_list = @item_list.duplicate
     redirect_to item_lists_path
+  end
+
+  def clear_checked_items
+    @item_list = ItemList.find(params[:id])
+    @item_list.clear_checked_items
+    @item_statuses = @item_list.item_statuses
+    redirect_to item_list_path(@item_list)
   end
 
   private
