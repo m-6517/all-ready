@@ -69,6 +69,12 @@ class ItemListsController < ApplicationController
     redirect_to item_lists_path, notice: t("defaults.flash_message.deleted", item: ItemList.model_name.human), status: :see_other
   end
 
+  def duplicate
+    @item_list = ItemList.find(params[:id])
+    duplicated_item_list = @item_list.duplicate
+    redirect_to item_lists_path
+  end
+
   private
 
   def item_list_params
