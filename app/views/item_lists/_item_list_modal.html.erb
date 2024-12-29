@@ -9,6 +9,12 @@
         <span class="material-symbols-outlined">image</span>
         カバー画像を設定
       </button>
+      <%= form_with url: duplicate_item_list_path(item_list), method: :post, local: true do %>
+        <button type="submit" class="btn btn-primary flex items-center w-full">
+          <span class="material-symbols-outlined">content_copy</span>
+          リストを複製
+        </button>
+      <% end %>
       <% unless current_user.bag_contents.exists?(item_list_id: item_list.id) %>
         <button class="btn btn-primary flex items-center gap-2" onclick="openShareModal(<%= item_list.id %>)">
           <span class="material-symbols-outlined">share</span>
