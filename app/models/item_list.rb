@@ -63,4 +63,9 @@ class ItemList < ApplicationRecord
 
     duplicated_list
   end
+
+  def clear_checked_items
+    item_statuses.where(is_checked: true).update_all(is_checked: false)
+    update!(ready_status: 0)
+  end
 end
