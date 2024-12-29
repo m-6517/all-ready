@@ -15,6 +15,12 @@
               <span class="material-symbols-outlined">exposure_plus_1</span>
               アイテム数を変更
             <% end %>
+            <%= form_with url: clear_checked_items_item_list_path(@item_list), method: :patch, local: true do %>
+              <button type="submit" class="btn btn-primary flex items-center w-full">
+                <span class="material-symbols-outlined">refresh</span>
+                準備済みのアイテムをクリア
+              </button>
+            <% end %>
             <button class="btn btn-ghost w-full" onclick="document.getElementById('itemModal').close()">キャンセル</button>
           </div>
         </div>
