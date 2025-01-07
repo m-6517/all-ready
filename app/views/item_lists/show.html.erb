@@ -35,7 +35,7 @@
       <% else %>
         <ul data-sortable-target="list" class="w-full max-w-md p-0 m-0">
           <% (@selected_default_items + @selected_original_items)
-              .sort_by { |item| item.item_statuses.find_by(item_list_id: @item_list.id).position }
+              .sort_by { |item| item.item_statuses.find_by(item_list_id: @item_list.id)&.position || 0 }
               .each do |item| %>
             <li data-item-id="<%= item.id %>" class="flex items-center gap-2 p-2">
               <span class="material-symbols-outlined cursor-move drag-handle text-base-300">drag_handle</span>
