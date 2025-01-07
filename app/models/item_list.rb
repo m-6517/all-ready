@@ -4,7 +4,7 @@ class ItemList < ApplicationRecord
   has_many :original_items, through: :item_list_original_items
   has_many :item_list_default_items, dependent: :destroy
   has_many :default_items, through: :item_list_default_items
-  has_many :item_statuses, dependent: :destroy
+  has_many :item_statuses, -> { order(position: :asc) }, dependent: :destroy
   has_many :bag_contents, dependent: :destroy
 
   validates :name, presence: true
