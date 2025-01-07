@@ -1,5 +1,5 @@
 <% if item_status.present? %>
-  <turbo-frame id="<%= dom_id(item_status) %>" class="w-full max-w-md">
+  <turbo-frame id="<%= dom_id(item_status) %>" class="w-full">
     <%= button_to toggle_item_status_path(item_status), 
                   method: :patch, 
                   class: "btn w-full flex justify-between items-center text-left px-4 

@@ -1,4 +1,5 @@
 class ItemStatus < ApplicationRecord
+  acts_as_list scope: :item_list
   belongs_to :item_list
   belongs_to :original_item, optional: true
   belongs_to :default_item, optional: true

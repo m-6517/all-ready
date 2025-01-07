@@ -14,9 +14,14 @@ class ItemListsController < ApplicationController
 
     @selected_default_items = @default_items.select do |item|
       item.item_statuses.find_by(item_list_id: @item_list.id)&.selected
+    end.sort_by do |item|
+      item.item_statuses.find_by(item_list_id: @item_list.id)&.position || 0
     end
+
     @selected_original_items = @original_items.select do |item|
       item.item_statuses.find_by(item_list_id: @item_list.id)&.selected
+    end.sort_by do |item|
+      item.item_statuses.find_by(item_list_id: @item_list.id)&.position || 0
     end
   end
 
@@ -84,7 +89,19 @@ class ItemListsController < ApplicationController
     redirect_to item_list_path(@item_list)
   end
 
+  def update_position
+    @item_list = ItemList.find(params[:id])
+    if params[:item_ids].present?
+      @item_list.update_position(params[:item_ids])
+      head :ok
+    end
+  end
+
   private
+
+  def set_item_list
+    @item_list = ItemList.find(params[:id])
+  end
 
   def item_list_params
     params.require(:item_list).permit(:name, :cover_image, :cover_image_cache, original_item_ids: [], default_item_ids: [])

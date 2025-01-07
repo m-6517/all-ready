@@ -21,12 +21,14 @@ Rails.application.routes.draw do
     resources :bag_contents, only: %i[show new create]
     post :duplicate, on: :member
     patch :clear_checked_items, on: :member
+    patch :update_position, on: :member
   end
 
   resources :bag_contents, only: %i[index edit update destroy]
 
   resources :item_statuses, only: %i[update] do
     patch :toggle, on: :member
+    patch :sort, on: :member
   end
 
   resource :profile, only: %i[show edit update]

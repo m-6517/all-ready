@@ -4,7 +4,7 @@ class ItemList < ApplicationRecord
   has_many :original_items, through: :item_list_original_items
   has_many :item_list_default_items, dependent: :destroy
   has_many :default_items, through: :item_list_default_items
-  has_many :item_statuses, dependent: :destroy
+  has_many :item_statuses, -> { order(position: :asc) }, dependent: :destroy
   has_many :bag_contents, dependent: :destroy
 
   validates :name, presence: true
@@ -67,5 +67,16 @@ class ItemList < ApplicationRecord
   def clear_checked_items
     item_statuses.where(is_checked: true).update_all(is_checked: false)
     update!(ready_status: 0)
+  end
+
+  def update_position(item_ids)
+    item_statuses.update_all(position: nil)
+
+    item_ids.each_with_index do |item_id, index|
+      item_status = ItemStatus.find_by(default_item_id: item_id, item_list_id: self.id) ||
+                    ItemStatus.find_by(original_item_id: item_id, item_list_id: self.id)
+
+      item_status.update(position: index + 1) if item_status
+    end
   end
 end
