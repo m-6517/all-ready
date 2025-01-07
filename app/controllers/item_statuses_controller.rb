@@ -20,7 +20,7 @@ class ItemStatusesController < ApplicationController
       item_status = ItemStatus.find(id)
       item_status.update(position: index + 1)
     end
-  
+
     head :ok
   end
 

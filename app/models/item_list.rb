@@ -73,7 +73,7 @@ class ItemList < ApplicationRecord
     item_statuses.update_all(position: nil)
 
     item_ids.each_with_index do |item_id, index|
-      item_status = ItemStatus.find_by(default_item_id: item_id, item_list_id: self.id) || 
+      item_status = ItemStatus.find_by(default_item_id: item_id, item_list_id: self.id) ||
                     ItemStatus.find_by(original_item_id: item_id, item_list_id: self.id)
 
       item_status.update(position: index + 1) if item_status

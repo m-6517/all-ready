@@ -8,16 +8,16 @@ class ItemListsController < ApplicationController
 
   def show
     @item_list = ItemList.find(params[:id])
-  
+
     @default_items = DefaultItem.includes(:item_statuses).all
     @original_items = OriginalItem.includes(:item_statuses).all
-  
+
     @selected_default_items = @default_items.select do |item|
       item.item_statuses.find_by(item_list_id: @item_list.id)&.selected
     end.sort_by do |item|
       item.item_statuses.find_by(item_list_id: @item_list.id)&.position || 0
     end
-  
+
     @selected_original_items = @original_items.select do |item|
       item.item_statuses.find_by(item_list_id: @item_list.id)&.selected
     end.sort_by do |item|
