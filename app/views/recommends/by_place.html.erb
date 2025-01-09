@@ -4,7 +4,7 @@
     <div class="flex flex-wrap justify-start gap-8">
       <% if @recommends.present? %>
         <% @recommends.each do |recommend| %>
-          <%= link_to recommend_path(recommend), class: "card bg-slate-50 w-64 h-64 shadow rounded p-5 flex flex-col relative" do %>
+          <%= link_to recommend_path(recommend), class: "card bg-slate-50 w-64 h-64 shadow rounded p-5 flex flex-col relative dark:bg-base-200" do %>
             <h2 class="text-base font-medium mb-2"><%= recommend.item %></h2>
             <p class="text-sm mb-4 flex-grow"><%= recommend.body.truncate(30) %></p>
             <% if recommend.item_image? %>

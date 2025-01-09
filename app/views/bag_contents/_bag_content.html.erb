@@ -1,5 +1,5 @@
 <% if bag_content.item_list.cover_image.present? %>
-  <div class="card bg-slate-50 w-64 aspect-[16/9] rounded shadow relative">
+  <div class="card bg-slate-50 w-64 aspect-[16/9] rounded shadow relative dark:bg-base-200">
     <div class="card-title flex justify-between items-center p-2 text-lg w-full relative">
       <div class="flex-grow pl-2" style="cursor: default;">
         <%= bag_content.item_list.name %>
@@ -12,7 +12,7 @@
     </figure>
   </div>
 <% else %>
-  <div class="card bg-slate-50 w-64 aspect-[16/9] rounded shadow relative">
+  <div class="card bg-slate-50 w-64 aspect-[16/9] rounded shadow relative dark:bg-base-200">
     <div class="card-title flex justify-between items-center p-2 text-lg w-full relative">
       <div class="flex-grow pl-2" style="cursor: default;">
         <%= bag_content.item_list.name %>

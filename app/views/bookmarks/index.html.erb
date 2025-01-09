@@ -15,7 +15,7 @@
     <div class="flex flex-wrap justify-start gap-8 mt-6">
       <% @bookmarked_recommends.each do |recommend_or_bag_content| %>
         <% if recommend_or_bag_content.is_a?(Recommend) %>
-          <%= link_to recommend_path(recommend_or_bag_content), class: "card bg-slate-50 w-64 shadow rounded p-5 flex flex-col relative" do %>
+          <%= link_to recommend_path(recommend_or_bag_content), class: "card bg-slate-50 w-64 shadow rounded p-5 flex flex-col relative dark:bg-base-200" do %>
             <h2 class="text-base font-medium mb-6"><%= recommend_or_bag_content.place %></h2>
             <h3 class="text-base font-medium"><%= recommend_or_bag_content.item %></h3>
           <% end %>
@@ -33,7 +33,7 @@
       <% @bookmarked_recommends.each do |recommend_or_bag_content| %>
         <% if recommend_or_bag_content.is_a?(BagContent) %>
           <% if recommend_or_bag_content.item_list.cover_image.present? %>
-            <div class="card bg-slate-50 w-64 aspect-[16/9] rounded shadow relative">
+            <div class="card bg-slate-50 w-64 aspect-[16/9] rounded shadow relative dark:bg-base-200">
               <div class="card-title flex justify-between items-center p-2 text-base w-full relative">
                 <div class="flex-grow pl-2" style="cursor: default;">
                   <%= recommend_or_bag_content.item_list.name %>
@@ -46,7 +46,7 @@
               </figure>
             </div>
           <% else %>
-            <div class="card bg-slate-50 w-64 aspect-[16/9] rounded shadow relative">
+            <div class="card bg-slate-50 w-64 aspect-[16/9] rounded shadow relative dark:bg-base-200">
               <div class="card-title flex justify-between items-center p-2 text-base w-full relative">
                 <div class="flex-grow pl-2" style="cursor: default;">
                   <%= recommend_or_bag_content.item_list.name %>

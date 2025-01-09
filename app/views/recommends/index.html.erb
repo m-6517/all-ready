@@ -9,7 +9,7 @@
     <div class="flex flex-wrap justify-start gap-8 mt-12">
       <% if @recommends.present? %>
         <% @recommends.each do |place, recommends| %>
-          <div class="card shadow rounded p-5 flex flex-col w-full max-w-lg bg-slate-50">
+          <div class="card shadow rounded p-5 flex flex-col w-full max-w-lg bg-slate-50 dark:bg-base-200">
             <%= link_to by_place_recommends_path(place), class: "block h-full" do %>
               <h2 class="text-lg font-semibold text-center"><%= place %></h2>
             <% end %>
