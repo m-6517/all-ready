@@ -8,14 +8,14 @@
         <% end %>
         <p class="text-sm">お出かけの準備をサポートするアプリ</p>
       </div>
-      <div data-controller="theme" class="flex items-center">
-        <label class="swap swap-rotate">
-          <input type="checkbox" data-theme-target="toggle" data-action="change->theme#toggle" />
-          <span class="material-symbols-outlined swap-off" id="theme-toggle-light-icon">light_mode</span>
-          <span class="material-symbols-outlined swap-on" id="theme-toggle-dark-icon">dark_mode</span>
-        </label>
-      </div>
-      <div class="flex-none flex items-center gap-2">
+      <div class="flex-none flex items-center gap-6">
+        <div data-controller="theme" class="flex items-center">
+          <label class="swap swap-rotate">
+            <input type="checkbox" data-theme-target="toggle" data-action="change->theme#toggle" />
+            <span class="material-symbols-outlined swap-off" id="theme-toggle-light-icon">light_mode</span>
+            <span class="material-symbols-outlined swap-on" id="theme-toggle-dark-icon">dark_mode</span>
+          </label>
+        </div>
         <div class="dropdown dropdown-hover dropdown-bottom dropdown-end">
           <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar mr-4">
             <div class="w-10 h-10 rounded-full">

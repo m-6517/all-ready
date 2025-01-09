@@ -8,14 +8,14 @@
         <% end %>
         <p class="text-sm">お出かけの準備をサポートするアプリ</p>
       </div>
-      <div data-controller="theme" class="flex items-center">
-        <label class="swap swap-rotate">
-          <input type="checkbox" data-theme-target="toggle" data-action="change->theme#toggle" />
-          <span class="material-symbols-outlined swap-off" id="theme-toggle-light-icon">light_mode</span>
-          <span class="material-symbols-outlined swap-on" id="theme-toggle-dark-icon">dark_mode</span>
-        </label>
-      </div>
-      <div class="md:flex space-x-4 mr-4 font-semibold">
+      <div class="md:flex items-center gap-6 mr-4 font-semibold">
+        <div data-controller="theme" class="flex items-center">
+          <label class="swap swap-rotate">
+            <input type="checkbox" data-theme-target="toggle" data-action="change->theme#toggle" />
+            <span class="material-symbols-outlined swap-off" id="theme-toggle-light-icon">light_mode</span>
+            <span class="material-symbols-outlined swap-on" id="theme-toggle-dark-icon">dark_mode</span>
+          </label>
+        </div>
         <%= link_to new_user_session_path, class: "btn btn-primary text-sm px-5 flex items-center" do %>
           <span class="material-symbols-outlined mr-2">login</span>
           <%= t('header.login') %>
