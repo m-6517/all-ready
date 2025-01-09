@@ -1,6 +1,6 @@
 <% content_for(:title, t('.title')) %>
   <div class="flex items-center justify-center p-5">
-    <div class="max-w-md w-full mx-auto bg-slate-50 p-6 rounded shadow">
+    <div class="max-w-md w-full mx-auto bg-slate-50 p-6 rounded shadow dark:bg-base-200">
       <div class="flex items-center space-x-4">
         <h1 class="text-lg font-medium mb-6"><%= t('.title') %></h1>
       </div>
@@ -20,7 +20,7 @@
       <% if user_signed_in? && current_user.own?(@bag_content) %>
         <button class="btn btn-bg-base-300 w-full mt-4" onclick="openBagContentDeleteModal('<%= j @bag_content.uuid %>')"><%= t('bag_contents.delete.submit_label') %></button>
         <dialog id="bagContentDeleteModal_<%= j @bag_content.uuid %>" class="modal">
-          <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12">
+          <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
             <div class="text-center">
               <p class="py-2">投稿を削除しても</p>
               <p>持ち物リストは削除されません。</p>

@@ -1,5 +1,5 @@
 <dialog id="menuModal_<%= item_list.id %>" class="modal">
-  <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12">
+  <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
     <div class="modal-action flex flex-col justify-center w-full space-y-6">
       <button class="btn btn-primary flex items-center gap-4" onclick="openRenameModal(<%= item_list.id %>)">
         <span class="material-symbols-outlined">edit_note</span>
@@ -40,7 +40,7 @@
 </dialog>
 
 <dialog id="renameModal_<%= item_list.id %>" class="modal">
-  <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12">
+  <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
     <%= form_with model: item_list, url: item_list_path(item_list), method: :patch, local: true do |f| %>
       <label class="form-control w-full max-w-xs">
         <input type="text" name="item_list[name]" class="input input-bordered w-full max-w-xs" value="<%= item_list.name %>" required />
@@ -56,7 +56,7 @@
 </dialog>
 
 <dialog id="coverImageModal_<%= item_list.id %>" class="modal">
-  <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12">
+  <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
     <%= form_with model: item_list, url: item_list_path(item_list), method: :patch, local: true do |f| %>
       <div>
         <%= f.file_field :cover_image, class: "file-input file-input-bordered file-input-primary file-input-sm w-full mt-2 mb-4", accept: 'image/*' %>
@@ -73,7 +73,7 @@
 </dialog>
 
 <dialog id="shareModal_<%= item_list.id %>" class="modal">
-  <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12">
+  <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
     <h2 class="text-base font-medium mb-4">
       <%= link_to item_list.name, item_list_path(item_list) %>
     </h2>
@@ -99,7 +99,7 @@
 </dialog>
 
 <dialog id="deleteModal_<%= item_list.id %>" class="modal">
-  <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12">
+  <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
     <h3 class="font-semibold text-base text-accent">リストを削除しますか？</h3>
     <div class="modal-action mt-4">
       <form method="post" action="<%= item_list_path(item_list) %>">

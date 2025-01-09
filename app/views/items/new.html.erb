@@ -8,7 +8,7 @@
       </div>
       <div class="flex gap-8">
           <div class="flex">
-            <div class="container bg-slate-50 p-6 rounded shadow w-96">
+            <div class="container bg-slate-50 p-6 rounded shadow w-96 dark:bg-base-200">
               <div class="flex flex-col items-start gap-4">
                 <h3 class="text-sm">既存のアイテム</h3>
                 <% @default_items.each do |item| %>
@@ -36,7 +36,7 @@
           </div>
         <% end %>
 
-        <div class="container bg-slate-50 p-6 rounded shadow">
+        <div class="container bg-slate-50 p-6 rounded shadow dark:bg-base-200">
           <h3 class="text-sm text-left mb-6">アイテムを追加</h3>
           <%= form_with model: @new_original_item, url: item_list_items_path(@item_list), local: true do |f| %>
             <label class="form-control w-full max-w-xs">
