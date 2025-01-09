@@ -10,9 +10,12 @@ export default class extends Controller {
     // HTMLのルート要素に現在のテーマを設定
     document.documentElement.setAttribute("data-theme", theme);
 
-    // 現在のテーマが "dark" の場合、トグルスイッチをオンに設定
+    // 現在のテーマが "dark" の場合、ルート要素に "dark" クラスを追加
     if (theme === "dark") {
+      document.documentElement.classList.add("dark");
       this.toggleTarget.checked = true;
+    } else {
+      document.documentElement.classList.remove("dark");
     }
   }
 
@@ -20,11 +23,18 @@ export default class extends Controller {
     // 現在のテーマを取得
     const currentTheme = document.documentElement.getAttribute("data-theme");
 
-    // 現在のテーマが "mytheme" なら "dark" に、"dark"なら "mytheme" に切り替え
+    // 新しいテーマを決定
     const newTheme = currentTheme === "mytheme" ? "dark" : "mytheme";
 
     // 新しいテーマをHTMLのルート要素に設定
     document.documentElement.setAttribute("data-theme", newTheme);
+
+    // HTMLのルート要素のクラスを更新
+    if (newTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
 
     // 新しいテーマをローカルストレージに保存
     localStorage.setItem("theme", newTheme);
