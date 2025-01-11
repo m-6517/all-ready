@@ -10,6 +10,8 @@ export default class extends Controller {
   connect() {
     // Sortableインスタンスを作成し、リストを並べ替え可能にする
     this.sortable = new Sortable(this.listTarget, {
+      // ドラッグ可能なハンドルを指定
+      handle: '.drag-handle',
       // 並べ替えが終了した時にonSortEndを呼び出す
       onEnd: (evt) => this.onSortEnd(evt)
     });
