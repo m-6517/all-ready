@@ -2,3 +2,4 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "./modals"
+import "./password_toggle"
