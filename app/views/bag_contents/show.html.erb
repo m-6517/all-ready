@@ -1,13 +1,13 @@
 <% content_for(:title, t('.title')) %>
 <div class="flex items-center justify-center p-5">
-  <div class="max-w-xl w-full bg-slate-50 p-6 rounded shadow dark:bg-base-200">
-    <div class="flex w-full">
-      <div class="card grid w-64 place-items-start">
-        <h2 class="text-base font-medium text-left mb-4"><%= @bag_content.item_list.name %></h2>
+  <div class="w-full md:w-2/3 bg-slate-50 p-6 rounded shadow dark:bg-base-200">
+    <div class="flex flex-col md:flex-row w-full">
+      <div class="card grid w-full md:w-1/2 place-items-start">
+        <h2 class="text-base md:text-lg font-medium text-left mb-4"><%= @bag_content.item_list.name %></h2>
 
         <div class="flex items-center gap-2 mb-4">
           <%= image_tag @bag_content.user.avatar_url, class: "w-6 h-6 rounded-full" %>
-          <p class="text-sm text-left"><%= @bag_content.user.name %></p>
+          <p class="text-xs md:text-sm text-left"><%= @bag_content.user.name %></p>
         </div>
 
         <% if @bag_content.tag_name.present? %>
@@ -17,29 +17,26 @@
         <% end %>
 
         <% if @bag_content.body.present? %>
-          <div class="mt-4 text-xs break-words">
+          <div class="mt-2 md:mt-4 text-xs md:text-sm break-words">
             <%= simple_format(@bag_content.body) %>
           </div>
         <% end %>
 
         <% if @bag_content.item_list.cover_image.present? %>
           <div class="relative mt-2">
-            <%= image_tag @bag_content.item_list.cover_image.url, class: "w-64 rounded shadow mt-8" %>
+            <%= image_tag @bag_content.item_list.cover_image.url, class: "h-40 w-auto object-contain rounded shadow mt-4 md:mt-8" %>
           </div>
         <% end %>
       </div>
 
-      <div class="divider divider-horizontal"></div>
+      <div class="divider md:divider-horizontal"></div> <!-- hide divider on small screens -->
 
-      <div class="card grid grid-cols-1 w-64">
+      <div class="card grid w-full md:w-1/2">
         <ul class="space-y-2 w-full">
           <p class="text-sm font-medium mb-4">持ち物</p>
-          <% @bag_content.item_list.default_items.each do |item| %>
-            <li class="flex items-center space-x-4">
-              <span class="text-xs"><%= item.name %></span>
-            </li>
-          <% end %>
-          <% @bag_content.item_list.original_items.each do |item| %>
+          <% (@bag_content.item_list.default_items + @bag_content.item_list.original_items)
+              .sort_by { |item| item.item_statuses.find_by(item_list_id: @bag_content.item_list.id)&.position || 0 }
+              .each do |item| %>
             <li class="flex items-center space-x-4">
               <span class="text-xs"><%= item.name %></span>
             </li>
@@ -48,11 +45,11 @@
       </div>
     </div>
 
-    <div class="flex justify-end items-center gap-2">
+    <div class="flex justify-end items-center gap-4 mt-6">
       <%= render 'bookmark_buttons', { bag_content: @bag_content } %>
       <% if user_signed_in? && current_user.own?(@bag_content) %>
         <%= link_to edit_bag_content_path(@bag_content), id: "button-edit-#{@bag_content.uuid}" do %>
-          <span class="material-symbols-outlined text-primary">edit</span>
+          <span class="material-symbols-outlined text-primary dark:text-neutral">edit</span>
         <% end %>
       <% end %>
     </div>
