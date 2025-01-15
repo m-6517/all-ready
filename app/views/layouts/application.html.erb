@@ -39,7 +39,7 @@
     <% else %>
       <%= render "shared/before_login_header" %>
     <% end %>
-    <div class="flex-grow pt-16">
+    <div class="<%= request.path == "/" ? "" : "pt-16" %> flex-grow">
       <% unless @show_menu == false %>
         <%= render 'shared/menu' %>
       <% end %>

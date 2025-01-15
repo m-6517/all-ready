@@ -1,5 +1,5 @@
 <% content_for(:title, t('sessions.new.title')) %>
-<div class="flex items-center justify-center m-12">
+<div class="flex items-center justify-center md:m-12">
   <div class="max-w-md w-full p-6 rounded shadow">
     <h1 class="text-lg font-medium mb-6">ログイン</h1>
 
@@ -15,16 +15,16 @@
         <%= f.password_field :password, autocomplete: "current-password", class: "input input-bordered input-sm w-full" %>
       </div>
 
-      <div class="flex items-center justify-between">
+      <div class="flex flex-col justify-start md:flex-row md:justify-between md:items-center">
         <% if devise_mapping.rememberable? %>
-          <div class="field flex items-center gap-2">
+          <div class="field flex items-center gap-2 mb-6 md:mb-0">
             <%= f.check_box :remember_me %>
-            <%= f.label :remember_me, class: "text-xs" %>
+            <%= f.label :remember_me, class: "text-xs text-nowrap" %>
           </div>
         <% end %>
 
         <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-          <%= link_to "パスワードをお忘れの方はこちら", new_password_path(resource_name), class: "text-xs" %>
+          <%= link_to "パスワードをお忘れの方はこちら", new_password_path(resource_name), class: "text-xs text-nowrap" %>
         <% end %>
       </div>
 
@@ -33,7 +33,7 @@
       </div>
 
       <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-        <%= link_to "アカウントを作成", new_registration_path(resource_name), class: "btn outline outline-2 outline-primary bg-white text-primary w-full mb-6" %>
+        <%= link_to "アカウントを作成", new_registration_path(resource_name), class: "btn btn-outline bg-white text-primary border-primary hover:bg-gray-100 hover:border-primary hover:text-primary w-full mb-6" %>
       <% end %>
 
       <div class="divider text-xs">または</div>
@@ -41,8 +41,8 @@
     <% end %>
     <%- if devise_mapping.omniauthable? %>
       <%- resource_class.omniauth_providers.each do |provider| %>
-        <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false } do %>
-          <div class="gsi-material-button mt-4" style="width:400px">
+        <%= button_to user_google_oauth2_omniauth_authorize_path, class: "w-full", method: :post, data: { turbo: false } do %>
+          <div class="gsi-material-button mt-4">
             <div class="gsi-material-button-state"></div>
             <div class="gsi-material-button-content-wrapper">
               <div class="gsi-material-button-icon">

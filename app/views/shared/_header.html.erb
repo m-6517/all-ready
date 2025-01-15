@@ -1,14 +1,13 @@
-<div class="fixed top-0 z-50 flex h-16 w-full items-center pl-1 shadow bg-base-100 bg-opacity-90 dark:shadow-neutral">
+<div class="fixed top-0 z-50 flex h-16 w-full items-center md:pl-1 shadow bg-base-100 bg-opacity-90 dark:shadow-neutral">
   <nav class="navbar w-full">
     <div class="flex justify-between w-full items-center">
       <div class="flex items-center space-x-4">
-        <%= link_to "/", class: "btn btn-ghost flex items-center space-x-2" do %>
-          <%= image_tag "logo.png", class: "w-10 object-contain" %>
-          <h1 class="md:text-xl font-bold">All Ready</h1>
+        <%= link_to "/", class: "btn btn-ghost flex items-center space-x-2 md:space-x-4" do %>
+          <%= image_tag "logo.png", class: "w-7 md:w-9 object-contain" %>
+          <h1 class="text-lg md:text-xl font-bold tracking-wider">All Ready</h1>
         <% end %>
-        <p class="text-sm">お出かけの準備をサポートするアプリ</p>
       </div>
-      <div class="flex-none flex items-center gap-6">
+      <div class="flex items-center gap-6 mr-4 font-semibold">
         <div data-controller="theme" class="flex items-center">
           <label class="swap swap-rotate">
             <input type="checkbox" data-theme-target="toggle" data-action="change->theme#toggle" />
@@ -17,20 +16,20 @@
           </label>
         </div>
         <div class="dropdown dropdown-hover dropdown-bottom dropdown-end">
-          <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar mr-4">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
             <div class="w-10 h-10 rounded-full">
               <%= image_tag current_user.avatar_url, class: "w-10 h-10 rounded-full" %>
             </div>
           </div>
-          <ul tabindex="0" class="dropdown-content menu bg-slate-50 text-neutral rounded-box z-[1] w-64 h-32 p-2 shadow space-y-4 dark:bg-base-200 dark:text-neutral">
+          <ul tabindex="0" class="dropdown-content menu bg-slate-50 text-neutral rounded-box z-[1] w-52 md:w-64 h-32 p-2 shadow space-y-4 dark:bg-base-200 dark:text-neutral">
             <li>
-              <%= link_to profile_path, class: "text-base flex items-center" do %>
+              <%= link_to profile_path, class: "text-sm md:text-base flex items-center" do %>
                 <span class="material-symbols-outlined mr-2">person</span>
                 <%= current_user.decorate.name %>
               <% end %>
             </li>
             <li>
-              <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "text-base flex items-center" do %>
+              <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "text-sm md:text-base flex items-center" do %>
                 <span class="material-symbols-outlined mr-2">logout</span>
                 <%= t('header.logout') %>
               <% end %>

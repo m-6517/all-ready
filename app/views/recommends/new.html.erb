@@ -2,7 +2,7 @@
   <div class="flex items-center justify-center p-5">
     <div class="max-w-md w-full mx-auto bg-slate-50 p-6 rounded shadow dark:bg-base-200">
       <div class="flex items-center space-x-4">
-        <h1 class="text-lg font-medium mb-6"><%= t('.title') %></h1>
+        <h1 class="text-base md:text-lg font-medium mb-2 md:mb-6"><%= t('.title') %></h1>
       </div>
       <%= render 'form', recommend: @recommend, submit_label: I18n.t('recommends.new.submit_label') %>
     </div>

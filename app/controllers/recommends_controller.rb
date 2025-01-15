@@ -2,7 +2,7 @@ class RecommendsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index by_place show]
 
   def index
-    @recommends = Recommend.includes(:user).all.group_by(&:place)
+    @recommends = Recommend.order(:created_at).group_by(&:place)
   end
 
   def by_place

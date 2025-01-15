@@ -33,7 +33,7 @@ module.exports = {
           "base-100": "#1E293B",
           "base-200": "#334155",
           "base-300": "#475569",
-          "neutral": "#FFFFFF",
+          "neutral": "#eaeaea",
         },
       }
     ]

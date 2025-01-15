@@ -1,23 +1,24 @@
-<div class="container mx-auto pt-3 px-12 py-24">
+<% content_for(:title, t('.title')) %>
+<div class="container mx-auto pt-3 px-2 md:px-12 py-24">
   <div class="flex flex-col justify-center">
     <div class="fixed top-16 right-0 left-0 z-30 flex justify-start items-center bg-base-100 sticky">
-      <span class="material-symbols-outlined text-2xl text-primary" style="font-variation-settings: 'FILL' 1;">bookmark</span>
-      <h1 class="text-lg font-medium ml-3"><%= t('.title') %></h1>
+      <span class="material-symbols-outlined md:text-2xl text-primary" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+      <h1 class="text-base md:text-lg font-medium ml-3"><%= t('.title') %></h1>
     </div>
     <% if @bookmarked_recommends.empty? && @bookmarked_bag_contents.empty? %>
-      <p class="text-center text-gray-500 m-12">投稿が見つかりませんでした</p>
+      <p class="text-center text-sm md:text-base text-gray-500 m-12">投稿が見つかりませんでした</p>
     <% end %>
 
     <div class="flex items-center mt-6">
-      <span class="material-symbols-outlined text-2xl text-primary">lightbulb_2</span>
-      <h1 class="text-lg font-medium ml-3">マストアイテム</h1>
+      <span class="material-symbols-outlined md:text-2xl text-primary">lightbulb_2</span>
+      <h1 class="text-base md:text-lg font-medium ml-3">マストアイテム</h1>
     </div>
-    <div class="flex flex-wrap justify-start gap-8 mt-6">
+    <div class="flex flex-wrap justify-start gap-5 md:gap-8 mt-6">
       <% @bookmarked_recommends.each do |recommend_or_bag_content| %>
         <% if recommend_or_bag_content.is_a?(Recommend) %>
-          <%= link_to recommend_path(recommend_or_bag_content), class: "card bg-slate-50 w-64 shadow rounded p-5 flex flex-col relative dark:bg-base-200" do %>
-            <h2 class="text-base font-medium mb-6"><%= recommend_or_bag_content.place %></h2>
-            <h3 class="text-base font-medium"><%= recommend_or_bag_content.item %></h3>
+          <%= link_to recommend_path(recommend_or_bag_content), class: "card bg-slate-50 w-40 md:w-64 shadow rounded p-3 md:p-5 flex flex-col relative dark:bg-base-200" do %>
+            <h2 class="text-sm md:text-base font-medium mb-2 md:mb-6"><%= recommend_or_bag_content.place %></h2>
+            <h3 class="text-xs md:text-sm font-medium"><%= recommend_or_bag_content.item %></h3>
           <% end %>
         <% end %>
       <% end %>
@@ -26,28 +27,28 @@
     <div class="divider"></div>
 
     <div class="flex items-center">
-      <span class="material-symbols-outlined text-2xl text-primary">work</span>
-      <h1 class="text-lg font-medium ml-3">持ち物リスト</h1>
+      <span class="material-symbols-outlined md:text-2xl text-primary">work</span>
+      <h1 class="text-base md:text-lg font-medium ml-3">持ち物リスト</h1>
     </div>
-    <div class="flex flex-wrap justify-start gap-8 mt-6">
+    <div class="flex flex-wrap justify-start gap-5 md:gap-8 mt-6">
       <% @bookmarked_recommends.each do |recommend_or_bag_content| %>
         <% if recommend_or_bag_content.is_a?(BagContent) %>
           <% if recommend_or_bag_content.item_list.cover_image.present? %>
-            <div class="card bg-slate-50 w-64 aspect-[16/9] rounded shadow relative dark:bg-base-200">
-              <div class="card-title flex justify-between items-center p-2 text-base w-full relative">
+            <div class="card bg-slate-50 w-40 h-40 rounded shadow relative dark:bg-base-200">
+              <div class="card-title flex justify-between items-center p-2 text-sm md:text-base w-full relative">
                 <div class="flex-grow pl-2" style="cursor: default;">
                   <%= recommend_or_bag_content.item_list.name %>
                 </div>
               </div>
               <figure>
                 <%= link_to item_list_bag_content_path(recommend_or_bag_content.item_list, recommend_or_bag_content), class: "w-full h-full block" do %>
-                  <%= image_tag recommend_or_bag_content.item_list.cover_image.url, class: "w-64 aspect-[16/9] object-cover" %>
+                  <%= image_tag recommend_or_bag_content.item_list.cover_image.url, class: "object-cover" %>
                 <% end %>
               </figure>
             </div>
           <% else %>
-            <div class="card bg-slate-50 w-64 aspect-[16/9] rounded shadow relative dark:bg-base-200">
-              <div class="card-title flex justify-between items-center p-2 text-base w-full relative">
+            <div class="card bg-slate-50 w-40 h-40 rounded shadow relative dark:bg-base-200">
+              <div class="card-title flex justify-between items-center p-2 text-sm md:text-base w-full relative">
                 <div class="flex-grow pl-2" style="cursor: default;">
                   <%= recommend_or_bag_content.item_list.name %>
                 </div>

@@ -7,11 +7,11 @@
       <%= form_with model: @bag_content, url: bag_content_path(@bag_content), local: true do |f| %>
         <div>
           <%= f.label :tag_name, "タグ", class: "block text-sm font-medium mb-2" %>
-          <%= f.text_field :tag_name, placeholder: "カンマ区切りで入力", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs" %>
+          <%= f.text_field :tag_name, placeholder: "カンマ区切りで入力", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200" %>
         </div>
         <div class="mt-4">
           <%= f.label :body, class: "block text-sm font-medium mb-2" %>
-          <%= f.text_area :body, placeholder: "こだわりポイント、おすすめのアイテムなど", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs", rows: 5 %>
+          <%= f.text_area :body, placeholder: "こだわりポイント、おすすめのアイテムなど", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200", rows: 5 %>
         </div>
         <div class="modal-action mt-4">
           <%= f.submit t('bag_contents.edit.submit_label'), class: "btn btn-primary w-full" %>

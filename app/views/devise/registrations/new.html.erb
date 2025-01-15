@@ -1,5 +1,5 @@
 <% content_for(:title, t('registrations.new.title')) %>
-<div class="flex items-center justify-center m-12">
+<div class="flex items-center justify-center md:m-12">
   <div class="max-w-md w-full p-6 rounded shadow">
     <h1 class="text-lg font-medium mb-6">アカウントを作成</h1>
 
@@ -16,16 +16,30 @@
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered input-sm w-full" %>
       </div>
 
-      <div class="field">
+      <div class="field relative">
         <%= f.label :password, "パスワード", class: "text-sm" %>
         <% if @minimum_password_length %>
         <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password", class: "input input-bordered input-sm w-full" %>
+        <div class="relative">
+          <%= f.password_field :password, id: "password_field", autocomplete: "new-password", class: "input input-bordered input-sm w-full pr-10" %>
+          <label class="swap swap-rotate absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer">
+            <%= check_box_tag 'show_password', '1', false, id: 'show_password', onclick: 'togglePasswordVisibility("password_field", "show_password")' %>
+            <span class="material-symbols-outlined swap-off text-gray-400">visibility_off</span>
+            <span class="material-symbols-outlined swap-on text-gray-400">visibility</span>
+          </label>
+        </div>
       </div>
 
-      <div class="field">
+      <div class="field relative">
         <%= f.label :password_confirmation, "パスワード（確認用）", class: "text-sm" %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered input-sm w-full" %>
+        <div class="relative">
+          <%= f.password_field :password_confirmation, id: "password_confirmation_field", autocomplete: "new-password", class: "input input-bordered input-sm w-full pr-10" %>
+          <label class="swap swap-rotate absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer">
+            <%= check_box_tag 'show_password_confirmation', '1', false, id: 'show_password_confirmation', onclick: 'togglePasswordVisibility("password_confirmation_field", "show_password_confirmation")' %>
+            <span class="material-symbols-outlined swap-off text-gray-400">visibility_off</span>
+            <span class="material-symbols-outlined swap-on text-gray-400">visibility</span>
+          </label>
+        </div>
       </div>
 
       <div class="actions">
