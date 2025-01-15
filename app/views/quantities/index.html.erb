@@ -13,7 +13,7 @@
     </div>
 
     <dialog id="itemQuantityModal_<%= status.id %>" class="modal">
-      <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
+      <div class="modal-box bg-slate-50 w-72 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
         <%= form_with model: status, url: item_list_quantity_path(item_list_id: @item_list.id, id: status.id), method: :patch, local: true do |f| %>
           <label class="form-control w-full max-w-xs">
             <input type="number" name="item_status[quantity]" class="input input-bordered w-full max-w-xs" value="<%= status.quantity %>" min="1" required />
@@ -22,7 +22,7 @@
             <%= f.submit '決定', class: "btn btn-primary w-full" %>
           </div>
         <% end %>
-        <button class="btn btn-ghost" onclick="document.getElementById('itemQuantityModal_<%= status.id %>').close()">キャンセル</button>
+        <button class="btn btn-ghost mt-4" onclick="document.getElementById('itemQuantityModal_<%= status.id %>').close()">キャンセル</button>
       </div>
     </dialog>
   <% end %>

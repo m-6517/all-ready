@@ -30,7 +30,7 @@
           <% end %>
         <% end %>
       <% end %>
-      <button class="btn btn-bg-base-300 flex items-center gap-2" onclick="openDeleteModal(<%= item_list.id %>)">
+      <button class="btn btn-base-300 flex items-center gap-2 dark:btn-outline"" onclick="openDeleteModal(<%= item_list.id %>)">
         <span class="material-symbols-outlined">playlist_remove</span>
         リストを削除
       </button>
@@ -56,14 +56,14 @@
 </dialog>
 
 <dialog id="coverImageModal_<%= item_list.id %>" class="modal">
-  <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
-    <%= form_with model: item_list, url: item_list_path(item_list), method: :patch, local: true do |f| %>
+  <div class="modal-box bg-slate-50 md:w-2/3 mx-auto flex flex-col items-center p-10 dark:bg-base-200">
+    <%= form_with model: item_list, url: item_list_path(item_list), method: :patch, class: "w-full", local: true do |f| %>
       <div>
-        <%= f.file_field :cover_image, class: "file-input file-input-bordered file-input-primary file-input-sm w-full mt-2 mb-4", accept: 'image/*' %>
+        <%= f.file_field :cover_image, class: "file-input file-input-bordered file-input-primary file-input-sm w-full mt-2 mb-2 dark:file-input-secondary", accept: 'image/*' %>
         <%= f.hidden_field :cover_image_cache %>
       </div>
       <div class="flex mt-4 justify-end">
-        <%= f.submit t('item_lists.new.submit_label'), class: "btn btn-primary w-full mt-4" %>
+        <%= f.submit t('item_lists.new.submit_label'), class: "btn btn-primary w-full" %>
       </div>
     <% end %>
     <div class="modal-action">
@@ -73,19 +73,19 @@
 </dialog>
 
 <dialog id="shareModal_<%= item_list.id %>" class="modal">
-  <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
+  <div class="modal-box bg-slate-50 md:w-2/3 mx-auto flex flex-col items-center px-10 py-6 dark:bg-base-200">
     <h2 class="text-base font-medium mb-4">
       <%= link_to item_list.name, item_list_path(item_list) %>
     </h2>
-    <%= form_with model: @bag_content || BagContent.new(item_list_id: item_list.id), url: item_list_bag_contents_path(item_list), local: true do |f| %>
+    <%= form_with model: @bag_content || BagContent.new(item_list_id: item_list.id), url: item_list_bag_contents_path(item_list), class: "w-full", local: true do |f| %>
       <%= f.hidden_field :item_list_id, value: item_list.id %>
       <div>
-        <%= f.label :tag_name, "タグ　<span class='text-xs text-gray-500'>(カンマ区切り・3つまで)</span>".html_safe, class: "block text-sm font-medium mb-2" %>
-        <%= f.text_field :tag_name, placeholder: "例：秋, 温泉, 食べ歩き", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs" %>
+        <%= f.label :tag_name, "タグ　<span class='text-xs text-gray-500 dark:text-neutral'>(カンマ区切り・3つまで)</span>".html_safe, class: "block text-sm font-medium mb-2" %>
+        <%= f.text_field :tag_name, placeholder: "例：秋, 温泉, 食べ歩き", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200" %>
       </div>
       <div class="mt-4">
         <%= f.label :body, class: "block text-sm font-medium mb-2" %>
-        <%= f.text_area :body, placeholder: "こだわりポイント、おすすめのアイテムなど", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs", rows: 5 %>
+        <%= f.text_area :body, placeholder: "こだわりポイント、おすすめのアイテムなど", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200", rows: 5 %>
       </div>
       <div class="modal-action mt-4">
         <%= f.submit t('bag_contents.new.submit_label'), class: "btn btn-primary w-full" %>
