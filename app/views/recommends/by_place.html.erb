@@ -1,19 +1,24 @@
 <% content_for(:title, t('.title')) %>
-  <div class="container mx-auto pt-3 px-12 py-24">
-    <h1 class="text-lg font-medium mb-12"><%= @place %>のマストアイテム</h1>
-    <div class="flex flex-wrap justify-start gap-8">
-      <% if @recommends.present? %>
-        <% @recommends.each do |recommend| %>
-          <%= link_to recommend_path(recommend), class: "card bg-slate-50 w-64 h-64 shadow rounded p-5 flex flex-col relative dark:bg-base-200" do %>
-            <h2 class="text-base font-medium mb-2"><%= recommend.item %></h2>
-            <p class="text-sm mb-4 flex-grow"><%= recommend.body.truncate(30) %></p>
-            <% if recommend.item_image? %>
-              <%= image_tag recommend.item_image_url, class: "w-full h-32 object-cover rounded shadow" %>
-            <% end %>
+<div class="container mx-auto pt-3 px-2 md:px-12 py-24">
+  <h1 class="text-base md:text-lg font-medium mb-6 md:mb-12"><%= @place %>のマストアイテム</h1>
+  <div class="flex flex-wrap justify-start gap-5 md:gap-8">
+    <% if @recommends.present? %>
+      <% @recommends.each do |recommend| %>
+        <%= link_to recommend_path(recommend), class: "card bg-slate-50 w-40 h-40 md:w-60 md:h-60 shadow rounded relative overflow-hidden flex items-center justify-center dark:bg-base-200" do %>
+          <% if recommend.item_image? %>
+            <%= image_tag recommend.item_image_url, class: "absolute inset-0 w-full h-full object-contain bg-black" %>
+            <div class="absolute inset-0 bg-black bg-opacity-40"></div> <!-- オーバーレイ -->
           <% end %>
+          <div class="relative z-10 text-white text-center px-3">
+            <h2 class="text-sm md:text-base font-medium"><%= recommend.item %></h2>
+          </div>
         <% end %>
-      <% else %>
-        <p class="text-center text-gray-500">マストアイテムが見つかりませんでした</p>
       <% end %>
-    </div>
+    <% else %>
+      <p class="text-center text-sm md:text-base text-gray-500">マストアイテムが見つかりませんでした</p>
+    <% end %>
   </div>
+  <%= link_to new_recommend_path, class: "fixed bottom-20 right-5 md:right-20 z-60 bg-primary text-white font-bold rounded-full text-base md:text-lg p-4 md:p-5 flex items-center justify-center shadow transition-all duration-300 hover:brightness-110" do %>
+    <span class="material-symbols-outlined text-2xl">add</span>
+  <% end %>
+</div>

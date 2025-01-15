@@ -3,26 +3,30 @@
   <div class="flex items-center w-full max-w-xl justify-between">
     <div class="card bg-slate-50 w-full shadow rounded p-6 dark:bg-base-200">
       <div class="flex flex-col">
-        <div class="text-lg mb-4"><%= "#{@recommend.item}" %></div>
-        <div class="flex items-center gap-2 mb-4">
-          <%= image_tag @recommend.user.avatar_url, class: "w-6 h-6 rounded-full" %>
-          <%= "#{@recommend.user.name}" %>
+        <div class="text-base md:text-lg mb-4"><%= "#{@recommend.item}" %></div>
+
+        <div class="flex items-center gap-2 mb-4 justify-start">
+          <%= image_tag @recommend.user.avatar_url, class: "w-6 h-6 rounded-full mr-2" %>
+          <span class="text-xs md:text-sm"><%= @recommend.user.name %></span>
         </div>
 
-        <div class="mt-6 text-sm">
+        <div class="mt-4 text-xs md:text-sm">
           <%= simple_format(@recommend.body) %>
         </div>
 
         <% if @recommend.item_image? %>
-          <%= image_tag @recommend.item_image_url, class: "w-64 rounded shadow mt-8" %>
+          <!-- 画像を親要素で左揃えにする -->
+          <div class="flex justify-start">
+            <%= image_tag @recommend.item_image_url, class: "h-40 w-auto object-contain rounded shadow mt-8" %>
+          </div>
         <% end %>
       </div>
 
-      <div class="flex justify-end items-center">
+      <div class="flex justify-end items-center gap-4 mt-6">
         <%= render 'bookmark_buttons', { recommend: @recommend } %>
         <% if user_signed_in? && current_user.own?(@recommend) %>
           <%= link_to edit_recommend_path(@recommend), id: "button-edit-#{@recommend.uuid}" do %>
-            <span class="material-symbols-outlined text-primary">edit</span>
+            <span class="material-symbols-outlined text-primary dark:text-neutral">edit</span>
           <% end %>
         <% end %>
       </div>

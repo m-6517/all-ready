@@ -5,21 +5,21 @@
       <%= f.label :place, class: "block text-sm font-medium" %>
       <span class="text-accent ml-1">*</span>
     </div>
-    <%= f.text_field :place, class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+    <%= f.text_field :place, class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-base-200" %>
   </div>
   <div>
     <div class="flex items-center">
       <%= f.label :item, class: "block text-sm font-medium mb-1" %>
       <span class="text-accent ml-1">*</span>
     </div>
-    <%= f.text_field :item, class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500" %>
+    <%= f.text_field :item, class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-base-200" %>
   </div>
   <div>
     <%= f.label :body, class: "block text-sm font-medium mb-2" %>
-    <%= f.text_area :body, placeholder: "購入場所、価格帯、おすすめポイントなど", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs", rows: 5 %>
+    <%= f.text_area :body, placeholder: "購入場所、価格帯、おすすめポイントなど", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-base-200 placeholder:text-xs", rows: 5 %>
   </div>
   <div>
-    <%= f.file_field :item_image, class: "file-input file-input-bordered file-input-primary file-input-sm w-full mt-2 mb-4", accept: 'image/*' %>
+    <%= f.file_field :item_image, class: "file-input file-input-bordered file-input-primary file-input-sm w-full mt-2 mb-4 dark:file-input-secondary", accept: 'image/*' %>
     <%= f.hidden_field :item_image_cache %>
   </div>
   <div class="flex mt-4 justify-end">
