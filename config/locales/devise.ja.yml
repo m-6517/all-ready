@@ -10,58 +10,60 @@ ja:
     models:
       user: "ユーザー"
   devise:
-    confirmations:
-      new:
-        resend_confirmation_instructions: "アカウント確認メール再送"
+    failure:
+      already_authenticated: "すでにログインしています"
+      inactive: "アカウントが有効化されていません"
+      invalid: "%{authentication_keys} またはパスワードが無効です"
+      locked: "アカウントがロックされています"
+      last_attempt: "アカウントがロックされる前にあと1回試行できます"
+      not_found_in_database: "%{authentication_keys} またはパスワードが無効です"
+      timeout: "セッションが期限切れのため再度ログインが必要です"
+      unauthenticated: "ログインが必要です"
+      unconfirmed: "メールアドレスの確認後に続行する必要があります"
     mailer:
       confirmation_instructions:
-        action: "アカウント確認"
-        greeting: "ようこそ、%{recipient}さん!"
-        instruction: "次のリンクでメールアドレスの確認が完了します:"
+        subject: "確認手順"
       reset_password_instructions:
-        action: "パスワード変更"
-        greeting: "こんにちは、%{recipient}さん!"
-        instruction: "誰かがパスワードの再設定を希望しました。次のリンクでパスワードの再設定が出来ます。"
-        instruction_2: "あなたが希望したのではないのなら、このメールは無視してください。"
-        instruction_3: "上のリンクにアクセスして新しいパスワードを設定するまで、パスワードは変更されません。"
+        subject: "パスワードリセット手順"
       unlock_instructions:
-        action: "アカウントのロック解除"
-        greeting: "こんにちは、%{recipient}さん!"
-        instruction: "アカウントのロックを解除するには下のリンクをクリックしてください。"
-        message: "ログイン失敗が繰り返されたため、アカウントはロックされています。"
+        subject: "アンロック手順"
+      email_changed:
+        subject: "メールアドレスを変更しました"
+      password_change:
+        subject: "パスワードを変更しました"
+    omniauth_callbacks:
+      failure: "%{kind} アカウントでログインできませんでした: \"%{reason}\"."
+      success: "%{kind} アカウントでログインしました"
     passwords:
-      edit:
-        change_my_password: "パスワードを変更する"
-        change_your_password: "パスワードを変更"
-        confirm_new_password: "確認用新しいパスワード"
-        new_password: "新しいパスワード"
-      new:
-        forgot_your_password: "パスワードを忘れましたか?"
-        send_me_reset_password_instructions: "パスワードの再設定方法を送信する"
+      no_token: "パスワード再設定メールからアクセス可能なページです。提供された完全なURLを使用したことを確認してください。"
+      send_instructions: "パスワード再設定の手順を数分以内にメールで送信します"
+      send_paranoid_instructions: "パスワード再設定の手順を数分以内にメールで送信します"
+      updated: "パスワードを変更しました"
+      updated_not_active: "パスワードを変更しました"
     registrations:
-      edit:
-        are_you_sure: "本当に良いですか?"
-        cancel_my_account: "アカウント削除"
-        currently_waiting_confirmation_for_email: "%{email} の確認待ち"
-        leave_blank_if_you_don_t_want_to_change_it: "空欄のままなら変更しません"
-        title: "%{resource}編集"
-        unhappy: "気に入りません"
-        update: "更新"
-        we_need_your_current_password_to_confirm_your_changes: "変更を反映するには現在のパスワードを入力してください"
-      new:
-        sign_up: "アカウント登録"
+      destroyed: "アカウントを削除しました"
+      signed_up: "アカウントを作成しました"
+      signed_up_but_inactive: "アカウントを作成しましたが、アカウントが有効化されていないためログインできませんでした"
+      signed_up_but_locked: "アカウントを作成しましたが、アカウントがロックされているためログインできませんでした"
+      signed_up_but_unconfirmed: "確認リンクを記載したメールを送信しました。リンクをクリックしてアカウントを有効化する必要があります。"
+      update_needs_confirmation: "アカウントを更新しましたが、新しいメールアドレスの確認が必要です。メールの確認リンクを開いてください。"
+      updated: "アカウントを更新しました"
+      updated_but_not_signed_in: "アカウントを更新しましたが、パスワードの変更により再度ログインする必要があります"
     sessions:
-      new:
-        sign_in: "ログイン"
-    shared:
-      links:
-        back: "戻る"
-        didn_t_receive_confirmation_instructions: "アカウント確認のメールを受け取っていませんか?"
-        didn_t_receive_unlock_instructions: "アカウントの凍結解除方法のメールを受け取っていませんか?"
-        forgot_your_password: "パスワードを忘れましたか?"
-        sign_in: "ログイン"
-        sign_in_with_provider: "%{provider}でログイン"
-        sign_up: "アカウント登録"
+      signed_in: "ログインしました"
+      signed_out: "ログアウトしました"
+      already_signed_out: "ログアウトしました"
     unlocks:
-      new:
-        resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
+      send_instructions: "アカウントのアンロック手順を数分以内にメールで送信します"
+      send_paranoid_instructions: "アカウントのアンロック手順を数分以内にメールで送信します"
+      unlocked: "アカウントのロックを解除したため、ログインしてください"
+  errors:
+    messages:
+      already_confirmed: "すでに確認されているため、ログインをお試しください"
+      confirmation_period_expired: "確認は %{period} 内に完了する必要があるため、新しい確認リンクをリクエストしてください"
+      expired: "期限が切れたため、新しいリンクをリクエストしてください"
+      not_found: "見つかりませんでした"
+      not_locked: "ロックされていません"
+      not_saved:
+        one: "%{resource} は保存されませんでした: 1つのエラーがあります"
+        other: "%{resource} は保存されませんでした: %{count} のエラーがあります"
