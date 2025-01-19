@@ -8,10 +8,10 @@ class BookmarksController < ApplicationController
 
   def create
     unless user_signed_in?
-      flash[:alert] = t('defaults.flash_message.require_login')
+      flash[:alert] = t("defaults.flash_message.require_login")
       redirect_to request.referer and return
     end
-  
+
     bookmarkable_uuid = params[:bookmarkable]
     @recommend = Recommend.find_by(uuid: bookmarkable_uuid)
     @bag_content = BagContent.find_by(uuid: bookmarkable_uuid)
