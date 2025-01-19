@@ -39,21 +39,20 @@
     <% else %>
       <%= render "shared/before_login_header" %>
     <% end %>
-    <div class="<%= request.path == "/" ? "" : "pt-16" %> flex-grow">
+    
+    <div class="<%= (request.path == "/" && flash.any?) ? 'pt-16 flex-grow' : (request.path == "/" ? 'flex-grow' : 'pt-16 flex-grow') %>">
       <% unless @show_menu == false %>
         <%= render 'shared/menu' %>
       <% end %>
-      <% if request.path == "/" %>
-        <main class="flex-1">
-          <%= render "shared/flash_messages" %>
-          <%= yield %>
-        </main>
-      <% else %>
-        <main class="flex-1 p-4 md:pl-64">
-          <%= render "shared/flash_messages" %>
-          <%= yield %>
-        </main>
-      <% end %>
+
+      <main class="<%= request.path == "/" ? "flex-1" : "flex-1 p-4 md:pl-64" %>">
+        <%= render "shared/flash_messages" %>
+        <%= yield %>
+        
+        <% if request.path == "/" %>
+          <%= render "shared/footer" %>
+        <% end %>
+      </main>
     </div>
   </body>
   <script>
