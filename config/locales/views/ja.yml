@@ -16,7 +16,7 @@ ja:
       updated: "%{item}を更新しました"
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
-      require_login: ログインしてください
+      require_login: ログインが必要です
   header:
     login: ログイン
     logout: ログアウト
