@@ -73,19 +73,27 @@ class OgpCreator
       config.draw "text #{TEXT_POSITION_USER} '#{user_text}'"
     end
 
-    # 最終的な画像を返す
-    image
+    # 保存先を決定して保存
+    if Rails.env.production?
+      file_path = upload_to_s3(image)
+    else
+      image
+    end
   end
 
   private
 
-  # アップロードされた画像のパスを取得（存在しない場合はデフォルト画像を使用）
-  def self.uploaded_image_path(base_path:, image_url:)
-    if image_url.present?
-      Rails.root.join("public", "uploads", base_path, image_url).to_s
-    else
-      DEFAULT_IMAGE_PATH
+  def self.upload_to_s3(image)
+    file_name = "ogp_dynamic_#{SecureRandom.hex(8)}.png"
+    bucket = Aws::S3::Resource.new.bucket(ENV["S3_BUCKET_NAME"])
+    obj = bucket.object("ogp/#{file_name}")
+
+    Tempfile.open(file_name) do |tempfile|
+      image.write(tempfile.path)
+      obj.upload_file(tempfile.path, acl: "public-read")
     end
+
+    obj.public_url
   end
 
   # 長いテキストを改行で整形
