@@ -75,7 +75,13 @@ class OgpCreator
 
     # 保存先を決定して保存
     if Rails.env.production?
-      file_path = upload_to_s3(image)
+      name = case content
+      when Recommend
+        content.uuid
+      when BagContent
+        content.uuid
+      end
+      file_path = upload_to_s3(image, name)
     else
       image
     end
