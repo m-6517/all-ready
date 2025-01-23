@@ -75,12 +75,7 @@ class OgpCreator
 
     # 保存先を決定して保存
     if Rails.env.production?
-      name = case content
-      when Recommend
-        content.uuid
-      when BagContent
-        content.uuid
-      end
+      name = recommend ? recommend.uuid : bag_content.uuid
       file_path = upload_to_s3(image, name)
     else
       image
