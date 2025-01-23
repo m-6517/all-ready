@@ -13,7 +13,7 @@ class OgpCreator
   ROW_LIMIT = 8
   DEFAULT_IMAGE_PATH = "./app/assets/images/placeholder.png"
 
-  def self.build(item, place, user_name, recommend: nil, bag_content: nil)
+  def self.build(item, place, user, recommend: nil, bag_content: nil, name: nil)
     if recommend
       place_text = "#{recommend.place}のマストアイテム"
       item_text = prepare_text(recommend.item)

@@ -89,7 +89,7 @@ class BagContentsController < ApplicationController
 
     # OGP画像を動的に生成
     name = bag_content.uuid
-    image_for_bag_content = OgpCreator.build(item, place, user, bag_content: bag_content, name: name)
+    image = OgpCreator.build(item, place, user, bag_content: bag_content, name: name)
 
     # 生成したOGP画像を保存
     image_path = Rails.root.join("public", "images", "ogp_dynamic.png")

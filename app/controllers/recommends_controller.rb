@@ -59,7 +59,7 @@ class RecommendsController < ApplicationController
 
     # OGP画像を動的に生成
     name = recommend.uuid
-    image_for_recommend = OgpCreator.build(item, place, user, recommend: recommend, name: name)
+    image = OgpCreator.build(item, place, user, recommend: recommend, name: name)
 
     # 生成したOGP画像を保存
     image_path = Rails.root.join("public", "images", "ogp_dynamic.png")
