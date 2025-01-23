@@ -83,8 +83,8 @@ class OgpCreator
 
   private
 
-  def self.upload_to_s3(image)
-    file_name = "ogp_dynamic_#{SecureRandom.hex(8)}.png"
+  def self.upload_to_s3(image, name)
+    file_name = "ogp_dynamic_#{name}_#{SecureRandom.hex(8)}.png"
     bucket = Aws::S3::Resource.new.bucket(ENV["S3_BUCKET_NAME"])
     obj = bucket.object("ogp/#{file_name}")
 
