@@ -61,7 +61,7 @@ class RecommendsController < ApplicationController
     image = OgpCreator.build(item, place, user, recommend: recommend)
 
     # 生成したOGP画像を保存
-    image_path = Rails.root.join('public', 'images', 'ogp_dynamic.png')
+    image_path = Rails.root.join("public", "images", "ogp_dynamic.png")
     image.write(image_path)
 
     # 生成したOGP画像のURLを設定

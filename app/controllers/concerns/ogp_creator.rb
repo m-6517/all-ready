@@ -82,7 +82,7 @@ class OgpCreator
   # アップロードされた画像のパスを取得（存在しない場合はデフォルト画像を使用）
   def self.uploaded_image_path(base_path:, image_url:)
     if image_url.present?
-      Rails.root.join('public', 'uploads', base_path, image_url).to_s
+      Rails.root.join("public", "uploads", base_path, image_url).to_s
     else
       DEFAULT_IMAGE_PATH
     end
