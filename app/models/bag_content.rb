@@ -21,4 +21,12 @@ class BagContent < ApplicationRecord
     # NOTE: pluckだと新規作成失敗時に値が残らない(返り値がnilになる)
     tags.map(&:name).join(",")
   end
+
+  def image_path
+    if self.item_list.present? && self.item_list.cover_image.present?
+      Rails.root.join("public/uploads/item_list/cover_image", self.item_list.id, self.item_list.cover_image.file.file).to_s
+    else
+      nil
+    end
+  end
 end

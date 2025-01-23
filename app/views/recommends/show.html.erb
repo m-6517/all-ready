@@ -15,7 +15,6 @@
         </div>
 
         <% if @recommend.item_image? %>
-          <!-- 画像を親要素で左揃えにする -->
           <div class="flex justify-start">
             <%= image_tag @recommend.item_image_url, class: "h-40 w-auto object-contain rounded shadow mt-8" %>
           </div>
@@ -23,6 +22,12 @@
       </div>
 
       <div class="flex justify-end items-center gap-4 mt-6">
+        <% prepare_meta_tags @recommend %>
+        <% twitter_share_url = "https://twitter.com/intent/tweet?text=#{CGI.escape(@recommend.place)}のマストアイテム：#{CGI.escape(@recommend.item)}%0A&hashtags=#{CGI.escape('AllReady')}" %>
+        <%= link_to twitter_share_url, target: '_blank', class: "mb-1.5" do %>
+          <i class="fa-brands fa-x-twitter fa-lg text-primary dark:text-neutral"></i>
+        <% end %>
+
         <%= render 'bookmark_buttons', { recommend: @recommend } %>
         <% if user_signed_in? && current_user.own?(@recommend) %>
           <%= link_to edit_recommend_path(@recommend), id: "button-edit-#{@recommend.uuid}" do %>

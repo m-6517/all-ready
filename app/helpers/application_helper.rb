@@ -19,7 +19,7 @@ module ApplicationHelper
   def default_meta_tags
     {
       site: "All Ready",
-      title: "お出かけの準備をサポートするアプリ",
+      title: "All Ready",
       reverse: true,
       charset: "utf-8",
       description: "All Readyは、行き先ごとに持ち物リストを作成・共有できるサービスです。

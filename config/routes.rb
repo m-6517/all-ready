@@ -39,6 +39,8 @@ Rails.application.routes.draw do
   get "policy", to: "static_pages#policy", as: "privacy_policy"
   get "terms", to: "static_pages#terms", as: "terms"
 
+  get "images/ogp.png", to: "images#ogp", as: "images_ogp"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

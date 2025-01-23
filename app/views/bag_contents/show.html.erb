@@ -46,6 +46,12 @@
     </div>
 
     <div class="flex justify-end items-center gap-4 mt-6">
+      <% prepare_meta_tags @bag_content %>
+      <% twitter_share_url = "https://twitter.com/intent/tweet?text=#{CGI.escape("#{@bag_content.item_list.name}の持ち物リスト")}%0A&hashtags=#{CGI.escape('AllReady')}" %>
+      <%= link_to twitter_share_url, target: '_blank', class: "mb-1.5" do %>
+        <i class="fa-brands fa-x-twitter fa-lg text-primary dark:text-neutral"></i>
+      <% end %>
+
       <%= render 'bookmark_buttons', { bag_content: @bag_content } %>
       <% if user_signed_in? && current_user.own?(@bag_content) %>
         <%= link_to edit_bag_content_path(@bag_content), id: "button-edit-#{@bag_content.uuid}" do %>

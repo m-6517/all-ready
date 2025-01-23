@@ -1,6 +1,7 @@
 class BagContentsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_item_list, only: %i[ show new create ]
+  helper_method :prepare_meta_tags
 
   def index
     bag_contents = BagContent.all
@@ -17,6 +18,7 @@ class BagContentsController < ApplicationController
 
   def show
     @bag_content = BagContent.find_by(uuid: params[:id])
+    prepare_meta_tags(@bag_content)
   end
 
   def new
@@ -78,6 +80,36 @@ class BagContentsController < ApplicationController
 
   def search_params
     params.fetch(:q, {}).permit(:search_term)
+  end
+
+  def prepare_meta_tags(bag_content)
+    item = bag_content.item_list.name
+    user = bag_content.user.name
+    place = ""
+
+    # OGP画像を動的に生成
+    image = OgpCreator.build(item, place, user, bag_content: bag_content)
+
+    # 生成したOGP画像を保存
+    image_path = Rails.root.join("public", "images", "ogp_dynamic.png")
+    image.write(image_path)
+
+    # 生成したOGP画像のURLを設定
+    image_url = "#{request.base_url}/images/ogp_dynamic.png"
+
+    set_meta_tags og: {
+                    site_name: "All Ready",
+                    title: "#{bag_content.item_list.name} | All Ready",
+                    type: "website",
+                    url: request.original_url,
+                    image: image_url,
+                    locale: "ja-JP"
+                  },
+                  twitter: {
+                    card: "summary_large_image",
+                    site: "@kumateq",
+                    image: image_url
+                  }
   end
 
   def bag_content_params
