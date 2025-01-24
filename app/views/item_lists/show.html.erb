@@ -21,6 +21,10 @@
                 準備済みのアイテムをクリア
               </button>
             <% end %>
+            <button id="filterChecked" class="btn btn-primary w-full gap-4" onclick="document.getElementById('itemModal').close()">
+              <span class="material-symbols-outlined" id="filterIcon">visibility_off</span>
+              <span id="filterText">準備済みのアイテムを非表示</span>
+            </button>
             <button class="btn btn-ghost w-full" onclick="document.getElementById('itemModal').close()">キャンセル</button>
           </div>
         </div>
