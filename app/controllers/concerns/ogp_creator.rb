@@ -14,6 +14,9 @@ class OgpCreator
   DEFAULT_IMAGE_PATH = "./app/assets/images/placeholder.png"
 
   def self.build(item, place, user, recommend: nil, bag_content: nil, name: nil)
+    # `name`がnilの場合にデフォルト値を設定
+    name ||= SecureRandom.hex(8)  # または他の適切なデフォルト値
+
     if recommend
       place_text = "#{recommend.place}のマストアイテム"
       item_text = prepare_text(recommend.item)
