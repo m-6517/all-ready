@@ -95,21 +95,21 @@ class OgpCreator
 
   def self.upload_to_s3(image)
     # S3リソースの初期化
-    s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
-  
+    s3 = Aws::S3::Resource.new(region: ENV["AWS_REGION"])
+
     # S3のバケットを取得
-    bucket = s3.bucket(ENV['AWS_BUCKET_NAME'])
-  
+    bucket = s3.bucket(ENV["AWS_BUCKET_NAME"])
+
     # 一時ファイルを作成
-    tempfile = Tempfile.new(['ogp_dynamic', '.png'])
+    tempfile = Tempfile.new([ "ogp_dynamic", ".png" ])
     image.write(tempfile.path)
-  
+
     # S3にアップロードする際のオブジェクト名を設定
     object = bucket.object("ogp_dynamic.png")
-  
+
     # アップロード
-    object.upload_file(tempfile.path, acl: 'public-read')
-  
+    object.upload_file(tempfile.path, acl: "public-read")
+
     # アップロードされたオブジェクトのURLを取得
     object.public_url
   end
