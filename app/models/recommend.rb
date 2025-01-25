@@ -10,7 +10,7 @@ class Recommend < ApplicationRecord
 
   def image_path
     if self.item_image.present?
-      "https://#{ENV['S3_BUCKET_NAME']}.s3.amazonaws.com/recommend/item_image/#{self.uuid}/#{self.item_image.file.file}"
+      "https://#{ENV['S3_BUCKET_NAME']}.s3.amazonaws.com/recommend/item_image/#{self.uuid}/#{self.item_image.url}"
     else
       nil
     end
