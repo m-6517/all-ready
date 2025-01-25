@@ -10,11 +10,7 @@ class Recommend < ApplicationRecord
 
   def image_path
     if self.item_image.present?
-      if Rails.env.production?
-        self.item_image.url
-      else
-        Rails.root.join("public/uploads/recommend/item_image", self.uuid, self.item_image.file.file).to_s
-      end
+      "https://#{ENV['S3_BUCKET_NAME']}.s3.amazonaws.com/recommend/item_image/#{self.uuid}/#{self.item_image.file.file}"
     else
       nil
     end

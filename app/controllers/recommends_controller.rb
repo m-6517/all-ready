@@ -58,15 +58,10 @@ class RecommendsController < ApplicationController
     user = recommend.user.name
 
     # OGP画像を動的に生成
-    name = recommend.uuid
-    image = OgpCreator.build(item, place, user, recommend: recommend, name: name)
+    image = OgpCreator.build(item, place, user, recommend: recommend)
 
-    # 生成したOGP画像を保存
-    image_path = Rails.root.join("public", "images", "ogp_dynamic.png")
-    image.write(image_path)
-
-    # 生成したOGP画像のURLを設定
-    image_url = "#{request.base_url}/images/ogp_dynamic.png"
+    # 本番環境ではS3に画像をアップロード
+    image_url = OgpCreator.upload_to_s3(image)
 
     set_meta_tags og: {
                     site_name: "All Ready",

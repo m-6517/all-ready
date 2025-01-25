@@ -24,11 +24,7 @@ class BagContent < ApplicationRecord
 
   def image_path
     if self.item_list.present? && self.item_list.cover_image.present?
-      if Rails.env.production?
-        self.item_list.cover_image.url
-      else
-        Rails.root.join("public/uploads/item_list/cover_image", self.item_list.id.to_s, self.item_list.cover_image.file.file).to_s
-      end
+      "https://#{ENV['S3_BUCKET_NAME']}.s3.amazonaws.com/item_list/cover_image/#{self.item_list.id}/#{self.item_list.cover_image.file.file}"
     else
       nil
     end

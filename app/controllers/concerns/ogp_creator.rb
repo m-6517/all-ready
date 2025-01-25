@@ -13,10 +13,7 @@ class OgpCreator
   ROW_LIMIT = 8
   DEFAULT_IMAGE_PATH = "./app/assets/images/placeholder.png"
 
-  def self.build(item, place, user, recommend: nil, bag_content: nil, name: nil)
-    # `name`がnilの場合にデフォルト値を設定
-    name ||= SecureRandom.hex(8)  # または他の適切なデフォルト値
-
+  def self.build(item, place, user_name, recommend: nil, bag_content: nil)
     if recommend
       place_text = "#{recommend.place}のマストアイテム"
       item_text = prepare_text(recommend.item)
@@ -76,32 +73,44 @@ class OgpCreator
       config.draw "text #{TEXT_POSITION_USER} '#{user_text}'"
     end
 
-    # 保存先を決定して保存
-    if Rails.env.production?
-      name = recommend ? recommend.uuid : bag_content.uuid
-      file_path = upload_to_s3(image, name)
-    else
-      image
-    end
+    # 最終的な画像を返す
+    image
   end
 
   private
 
-  def self.upload_to_s3(image, name)
-    file_name = "ogp_dynamic_#{name}_#{SecureRandom.hex(8)}.png"
-    bucket = Aws::S3::Resource.new.bucket(ENV["S3_BUCKET_NAME"])
-    obj = bucket.object("ogp/#{file_name}")
-
-    Tempfile.open(file_name) do |tempfile|
-      image.write(tempfile.path)
-      obj.upload_file(tempfile.path, acl: "public-read")
+  # アップロードされた画像のパスを取得（存在しない場合はデフォルト画像を使用）
+  def self.uploaded_image_path(base_path:, image_url:)
+    if image_url.present?
+      Rails.root.join("public", "uploads", base_path, image_url).to_s
+    else
+      DEFAULT_IMAGE_PATH
     end
-
-    obj.public_url
   end
 
   # 長いテキストを改行で整形
   def self.prepare_text(text)
     text.to_s.scan(/.{1,#{INDENTION_COUNT}}/)[0...ROW_LIMIT].join("\n")
+  end
+
+  def self.upload_to_s3(image)
+    # S3リソースの初期化
+    s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
+  
+    # S3のバケットを取得
+    bucket = s3.bucket(ENV['AWS_BUCKET_NAME'])
+  
+    # 一時ファイルを作成
+    tempfile = Tempfile.new(['ogp_dynamic', '.png'])
+    image.write(tempfile.path)
+  
+    # S3にアップロードする際のオブジェクト名を設定
+    object = bucket.object("ogp_dynamic.png")
+  
+    # アップロード
+    object.upload_file(tempfile.path, acl: 'public-read')
+  
+    # アップロードされたオブジェクトのURLを取得
+    object.public_url
   end
 end
