@@ -24,7 +24,7 @@ class BagContent < ApplicationRecord
 
   def image_path
     if self.item_list.present? && self.item_list.cover_image.present?
-      "https://#{ENV['S3_BUCKET_NAME']}.s3.amazonaws.com/item_list/cover_image/#{self.item_list.id}/#{self.item_list.cover_image.url}"
+      "https://#{ENV['S3_BUCKET_NAME']}.s3.ap-northeast-1.amazonaws.com/#{self.item_list.cover_image.url}"
     else
       nil
     end
