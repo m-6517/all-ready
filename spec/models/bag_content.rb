@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe BagContent, type: :model do
   it 'item_list_idとuser_uuidの組み合わせは一意であること' do
-
     item_list = create(:item_list)
     user = create(:user)
     create(:bag_content, item_list: item_list, user_uuid: user.uuid)
