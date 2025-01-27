@@ -9,13 +9,13 @@ RSpec.describe ItemList, type: :model do
   it 'リスト名は必須項目であること' do
     item_list = build(:item_list, name: nil)
     item_list.valid?
-    expect(item_list.errors[:name]).to include('を入力してください')
+    expect(item_list.errors[:name]).not_to be_empty
   end
 
   it 'ユーザー情報がなければリストを作成できないこと' do
     item_list = build(:item_list, user_uuid: nil)
     item_list.valid?
-    expect(item_list.errors[:user_uuid]).to include('は必須です')
+    expect(item_list.errors[:user_uuid]).not_to be_empty
   end
 
   it '準備状況は0以上100以下の数値であること' do

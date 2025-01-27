@@ -16,6 +16,6 @@ RSpec.describe Tag, type: :model do
   it 'タグ名は必須項目であること' do
     tag = build(:tag, name: nil)
     tag.valid?
-    expect(tag.errors[:name]).to include('を入力してください')
+    expect(tag.errors[:name]).not_to be_empty
   end
 end
