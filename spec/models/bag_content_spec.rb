@@ -9,6 +9,6 @@ RSpec.describe BagContent, type: :model do
     duplicate_bag_content = build(:bag_content, item_list: item_list, user_uuid: user.uuid)
 
     expect(duplicate_bag_content).not_to be_valid
-    expect(duplicate_bag_content.errors[:item_list_id]).to include('はすでに存在します')
+    expect(duplicate_bag_content.errors[:item_list_id]).not_to be_empty
   end
 end

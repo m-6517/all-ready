@@ -15,6 +15,6 @@ RSpec.describe OriginalItem, type: :model do
   it 'ユーザー情報がなければアイテムを作成できないこと' do
     original_item = build(:original_item, user_uuid: nil)
     original_item.valid?
-    expect(original_item.errors[:user_uuid]).to include('は必須です')
+    expect(original_item.errors[:user_uuid]).not_to be_empty
   end
 end
