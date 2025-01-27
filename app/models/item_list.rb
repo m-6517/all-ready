@@ -8,7 +8,7 @@ class ItemList < ApplicationRecord
   has_many :bag_contents, dependent: :destroy
 
   validates :name, presence: true
-  validates :user, presence: true
+  validates :user_uuid, presence: true
   validates :ready_status, inclusion: { in: 0..100 }
 
   mount_uploader :cover_image, CoverImageUploader
