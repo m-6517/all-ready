@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe Recommend, type: :model do
   it '持って行く場所、持って行くものがあれば有効であること' do
     recommend = build(:recommend)
     expect(recommend).to be_valid
