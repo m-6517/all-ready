@@ -8,7 +8,7 @@ class OgpCreator
   TEXT_POSITION_USER = "650,350"
   FONT = "./app/assets/fonts/ZenKakuGothicNew-Bold.ttf"
   FONT_SIZE = 35
-  USER_FONT_SIZE = 30
+  USER_FONT_SIZE = 25
   INDENTION_COUNT = 12
   ROW_LIMIT = 8
   DEFAULT_IMAGE_PATH = "./app/assets/images/placeholder.png"
