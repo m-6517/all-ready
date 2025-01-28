@@ -25,13 +25,12 @@ module ApplicationHelper
       description: "All Readyは、行き先ごとに持ち物リストを作成・共有できるサービスです。
       さらに、マストアイテムを1つ共有することもできます。
       自分の持ち物を整理し他のユーザーと共有することで、より充実した準備ができるようサポートします。",
-      canonical: "https://www.allready.jp/",
-      separator: "|",
+      canonical: request.original_url,
       og: {
         site_name: "All Ready",
         title: "All Ready",
         type: "website",
-        url: "https://www.allready.jp/",
+        url: request.original_url,
         image: image_url("ogp.png"),
         local: "ja-JP"
       },
