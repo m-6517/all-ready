@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_06_082910) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_28_074321) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_06_082910) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "user_uuid", null: false
+    t.string "ogp"
     t.index ["item_list_id"], name: "index_bag_contents_on_item_list_id"
     t.index ["user_uuid"], name: "index_bag_contents_on_user_uuid"
     t.index ["uuid"], name: "index_bag_contents_on_uuid", unique: true
@@ -109,6 +110,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_06_082910) do
     t.datetime "updated_at", null: false
     t.string "item_image"
     t.uuid "user_uuid", null: false
+    t.string "ogp"
     t.index ["user_uuid"], name: "index_recommends_on_user_uuid"
     t.index ["uuid"], name: "index_recommends_on_uuid", unique: true
   end

@@ -1,0 +1,5 @@
+class AddOgpToRecommends < ActiveRecord::Migration[7.2]
+  def change
+    add_column :recommends, :ogp, :string
+  end
+end
