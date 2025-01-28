@@ -26,7 +26,7 @@ class BagContent < ApplicationRecord
 
   def image_path
     if self.item_list.present? && self.item_list.cover_image.present?
-      self.item_list.cover_image.url
+      Rails.env.production? ? self.item_list.cover_image.url : self.item_list.cover_image.path
     else
       nil
     end

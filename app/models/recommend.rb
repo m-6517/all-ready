@@ -11,7 +11,7 @@ class Recommend < ApplicationRecord
 
   def image_path
     if self.item_image.present?
-      self.item_image.url
+      Rails.env.production? ? self.item_image.url : self.item_image.path
     else
       nil
     end
