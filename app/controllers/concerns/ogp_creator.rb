@@ -3,13 +3,13 @@ class OgpCreator
 
   BASE_IMAGE_PATH = "./app/assets/images/ogp_dynamic.png"
   GRAVITY = "northwest"
-  TEXT_POSITION_PLACE = "700,100"
-  TEXT_POSITION_ITEM = "700,200"
-  TEXT_POSITION_USER = "700,300"
-  FONT = "./app/assets/fonts/ZenKakuGothicNew-Regular.ttf"
-  FONT_SIZE = 30
-  USER_FONT_SIZE = 25
-  INDENTION_COUNT = 16
+  TEXT_POSITION_PLACE = "650,150"
+  TEXT_POSITION_ITEM = "650,250"
+  TEXT_POSITION_USER = "650,350"
+  FONT = "./app/assets/fonts/ZenKakuGothicNew-Bold.ttf"
+  FONT_SIZE = 35
+  USER_FONT_SIZE = 30
+  INDENTION_COUNT = 12
   ROW_LIMIT = 8
   DEFAULT_IMAGE_PATH = "./app/assets/images/placeholder.png"
 
