@@ -11,7 +11,7 @@ class Recommend < ApplicationRecord
 
   def image_path
     if self.item_image.present?
-      Rails.root.join("public/uploads/recommend/item_image", self.uuid, self.item_image.file.file).to_s
+      self.item_image.url
     else
       nil
     end
