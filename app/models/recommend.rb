@@ -7,10 +7,11 @@ class Recommend < ApplicationRecord
   has_many :bookmarks, as: :bookmarkable, dependent: :destroy
 
   mount_uploader :item_image, ItemImageUploader
+  mount_uploader :ogp, OgpUploader
 
   def image_path
     if self.item_image.present?
-      "https://#{ENV['S3_BUCKET_NAME']}.s3.ap-northeast-1.amazonaws.com#{self.item_image.url}"
+      Rails.root.join("public/uploads/recommend/item_image", self.uuid, self.item_image.file.file).to_s
     else
       nil
     end

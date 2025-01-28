@@ -73,44 +73,18 @@ class OgpCreator
       config.draw "text #{TEXT_POSITION_USER} '#{user_text}'"
     end
 
-    # 最終的な画像を返す
-    image
+    # CarrierWaveを使用し画像を保存
+    uploader = Recommend.new.ogp
+    uploader.store!(image)
+
+    # 保存したOGP画像のURLを取得
+    uploader.url
   end
 
   private
 
-  # アップロードされた画像のパスを取得（存在しない場合はデフォルト画像を使用）
-  def self.uploaded_image_path(base_path:, image_url:)
-    if image_url.present?
-      Rails.root.join("public", "uploads", base_path, image_url).to_s
-    else
-      DEFAULT_IMAGE_PATH
-    end
-  end
-
   # 長いテキストを改行で整形
   def self.prepare_text(text)
     text.to_s.scan(/.{1,#{INDENTION_COUNT}}/)[0...ROW_LIMIT].join("\n")
-  end
-
-  def self.upload_to_s3(image)
-    # S3リソースの初期化
-    s3 = Aws::S3::Resource.new(region: ENV["AWS_REGION"])
-
-    # S3のバケットを取得
-    bucket = s3.bucket(ENV["AWS_BUCKET_NAME"])
-
-    # 一時ファイルを作成
-    tempfile = Tempfile.new([ "ogp_dynamic", ".png" ])
-    image.write(tempfile.path)
-
-    # S3にアップロードする際のオブジェクト名を設定
-    object = bucket.object("ogp_dynamic.png")
-
-    # アップロード
-    object.upload_file(tempfile.path, acl: "public-read")
-
-    # アップロードされたオブジェクトのURLを取得
-    object.public_url
   end
 end

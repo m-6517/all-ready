@@ -56,13 +56,13 @@ class RecommendsController < ApplicationController
     item = recommend.item
     place = recommend.place
     user = recommend.user.name
-
+  
     # OGP画像を動的に生成
     image = OgpCreator.build(item, place, user, recommend: recommend)
-
-    # 本番環境ではS3に画像をアップロード
-    image_url = OgpCreator.upload_to_s3(image)
-
+  
+    # 生成したOGP画像のURLを設定
+    image_url = image
+  
     set_meta_tags og: {
                     site_name: "All Ready",
                     title: "#{recommend.item} | All Ready",

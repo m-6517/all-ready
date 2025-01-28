@@ -7,6 +7,8 @@ class BagContent < ApplicationRecord
 
   validates :item_list_id, uniqueness: { scope: :user_uuid }
 
+  mount_uploader :ogp_image, OgpUploader
+
   def save_with_tags(tag_name:)
     ActiveRecord::Base.transaction do
       self.tags = tag_name.map { |name| Tag.find_or_initialize_by(name: name.strip) }
@@ -24,7 +26,7 @@ class BagContent < ApplicationRecord
 
   def image_path
     if self.item_list.present? && self.item_list.cover_image.present?
-      "https://#{ENV['S3_BUCKET_NAME']}.s3.ap-northeast-1.amazonaws.com/#{self.item_list.cover_image.url}"
+      Rails.root.join("public/uploads/item_list/cover_image", self.item_list.id, self.item_list.cover_image.file.file).to_s
     else
       nil
     end

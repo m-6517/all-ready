@@ -90,8 +90,8 @@ class BagContentsController < ApplicationController
     # OGP画像を動的に生成
     image = OgpCreator.build(item, place, user, bag_content: bag_content)
 
-    # 本番環境ではS3に画像をアップロード
-    image_url = OgpCreator.upload_to_s3(image)
+    # 生成したOGP画像のURLを設定
+    image_url = image
 
     set_meta_tags og: {
                     site_name: "All Ready",
