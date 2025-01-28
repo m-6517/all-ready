@@ -28,9 +28,8 @@ module ApplicationHelper
       canonical: "https://www.allready.jp/",
       separator: "|",
       og: {
-        site_name: :site,
-        title: :title,
-        description: :description,
+        site_name: "All Ready",
+        title: "All Ready",
         type: "website",
         url: "https://www.allready.jp/",
         image: image_url("ogp.png"),
