@@ -8,7 +8,11 @@ class OgpUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    "uploads/ogp_images/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    if model.is_a?(Recommend)
+      "uploads/ogp_images/recommend/#{model.id}"
+    else model.is_a?(BagContent)
+      "uploads/ogp_images/bag_content/#{model.id}"
+    end
   end
 
   def extension_white_list
