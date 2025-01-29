@@ -11,11 +11,6 @@ module ApplicationHelper
     title.present? ? "#{title} | #{base_title}" : base_title
   end
 
-  def show_meta_tags
-    assign_meta_tags if display_meta_tags.blank?
-    display_meta_tags
-  end
-
   def default_meta_tags
     {
       site: "All Ready",
