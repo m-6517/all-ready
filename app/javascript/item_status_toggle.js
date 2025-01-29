@@ -1,5 +1,5 @@
 // Turboのページ読み込み完了時に実行
-document.addEventListener("turbo:load", () => {
+document.addEventListener("turbo:render", () => {
   // アイテムの状態を切り替えるボタンを取得
   const toggleButtons = document.querySelectorAll("[data-toggle='item-status']");
   
@@ -47,7 +47,7 @@ document.addEventListener("turbo:load", () => {
   function toggleFilter() {
     // 状態を反転させ、表示/非表示を切り替え
     hideCheckedItems = !hideCheckedItems;
-    
+
     // 新しい状態をローカルストレージに保存
     localStorage.setItem("hideCheckedItems", JSON.stringify(hideCheckedItems));
 
@@ -58,6 +58,8 @@ document.addEventListener("turbo:load", () => {
     // アイテムの表示/非表示を再更新
     updateItemVisibility();
   }
+
+  filterButton.addEventListener("click", toggleFilter);
 
   // ページが読み込まれた時に初期化処理を実行
   initialize();
