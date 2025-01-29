@@ -22,7 +22,6 @@
       </div>
 
       <div class="flex justify-end items-center gap-4 mt-6">
-        <% prepare_meta_tags @recommend %>
         <% twitter_share_url = "https://twitter.com/intent/tweet?url=#{request.url}&text=#{CGI.escape(@recommend.place)}のマストアイテム：#{CGI.escape(@recommend.item)}%0A&hashtags=#{CGI.escape('AllReady')}" %>
         <%= link_to twitter_share_url, target: '_blank', class: "mb-1.5" do %>
           <i class="fa-brands fa-x-twitter fa-lg text-primary dark:text-neutral"></i>
