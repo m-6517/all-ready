@@ -83,15 +83,7 @@ class BagContentsController < ApplicationController
   end
 
   def prepare_meta_tags(bag_content)
-    item = bag_content.item_list.name
-    user = bag_content.user.name
-    place = ""
-
-    # OGP画像を動的に生成
-    image = OgpCreator.build(item, place, user, bag_content: bag_content)
-
-    # 生成したOGP画像のURLを設定
-    image_url = image
+    image_url = OgpCreator.build(bag_content.item_list.name, bag_content.user.name, "", bag_content: bag_content)
 
     set_meta_tags og: {
                     site_name: "All Ready",

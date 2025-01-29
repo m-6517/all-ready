@@ -53,15 +53,7 @@ class RecommendsController < ApplicationController
   private
 
   def prepare_meta_tags(recommend)
-    item = recommend.item
-    place = recommend.place
-    user = recommend.user.name
-
-    # OGP画像を動的に生成
-    image = OgpCreator.build(item, place, user, recommend: recommend)
-
-    # 生成したOGP画像のURLを設定
-    image_url = image
+    image_url = OgpCreator.build(recommend.item, recommend.place, recommend.user.name, recommend: recommend)
 
     set_meta_tags og: {
                     site_name: "All Ready",
