@@ -18,7 +18,7 @@
         </div>
       <% end %>
       <% if user_signed_in? && current_user.own?(@bag_content) %>
-        <button class="btn btn-bg-base-300 w-full mt-4" onclick="openBagContentDeleteModal('<%= j @bag_content.uuid %>')"><%= t('bag_contents.delete.submit_label') %></button>
+        <button class="btn btn-base-300 w-full mt-4 dark:btn-outline" onclick="openBagContentDeleteModal('<%= j @bag_content.uuid %>')"><%= t('bag_contents.delete.submit_label') %></button>
         <dialog id="bagContentDeleteModal_<%= j @bag_content.uuid %>" class="modal">
           <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
             <div class="text-center">

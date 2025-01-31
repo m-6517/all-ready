@@ -3,7 +3,34 @@
     <div class="flex flex-col w-full md:w-1/2">
       <div class="flex items-center w-full justify-between">
         <h1 class="text-base md:text-lg font-medium text-center flex-grow"><%= @item_list.name %></h1>
-        <span class="material-symbols-outlined md:hidden" onclick="openItemModal()">edit_square</span>
+        <span class="material-symbols-outlined text-primary dark:text-neutral md:hidden" onclick="openItemModal()">edit_square</span>
+
+        <!-- md未満はモーダル -->
+        <dialog id="itemModal" class="modal md:hidden">
+          <div class="modal-box bg-base-100 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
+            <div class="modal-action flex flex-col mx-auto w-full space-y-6">
+              <%= link_to new_item_list_item_path(@item_list), class: "btn btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full" do %>
+                <span class="material-symbols-outlined">checklist</span>
+                アイテムを編集
+              <% end %>
+              <%= link_to item_list_quantities_path(@item_list), class: "btn btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full" do %>
+                <span class="material-symbols-outlined">exposure_plus_1</span>
+                アイテム数を変更
+              <% end %>
+              <%= form_with url: clear_checked_items_item_list_path(@item_list), method: :patch, local: true do %>
+                <button type="submit" class="btn btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full">
+                  <span class="material-symbols-outlined">refresh</span>
+                  準備済みのアイテムをクリア
+                </button>
+              <% end %>
+              <button id="filterChecked" class="btn btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full gap-4">
+                <span class="material-symbols-outlined" id="filterIcon">visibility_off</span>
+                <span id="filterText">準備済みのアイテムを非表示</span>
+              </button>
+              <button class="btn btn-ghost w-full" onclick="document.getElementById('itemModal').close()">キャンセル</button>
+            </div>
+          </div>
+        </dialog>
       </div>
 
       <%= render "item_lists/ready_status", item_list: @item_list, id: dom_id(@item_list, :ready_status) %>
@@ -55,33 +82,5 @@
         </button>
       </div>
     </div>
-
-
-    <!-- md未満はモーダル -->
-    <dialog id="itemModal" class="modal md:hidden">
-      <div class="modal-box bg-base-100 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
-        <div class="modal-action flex flex-col mx-auto w-full space-y-6">
-          <%= link_to new_item_list_item_path(@item_list), class: "btn btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full" do %>
-            <span class="material-symbols-outlined">checklist</span>
-            アイテムを編集
-          <% end %>
-          <%= link_to item_list_quantities_path(@item_list), class: "btn btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full" do %>
-            <span class="material-symbols-outlined">exposure_plus_1</span>
-            アイテム数を変更
-          <% end %>
-          <%= form_with url: clear_checked_items_item_list_path(@item_list), method: :patch, local: true do %>
-            <button type="submit" class="btn btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full">
-              <span class="material-symbols-outlined">refresh</span>
-              準備済みのアイテムをクリア
-            </button>
-          <% end %>
-          <button id="filterChecked" class="btn btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full gap-4">
-            <span class="material-symbols-outlined" id="filterIcon">visibility_off</span>
-            <span id="filterText">準備済みのアイテムを非表示</span>
-          </button>
-          <button class="btn btn-ghost w-full" onclick="document.getElementById('itemModal').close()">キャンセル</button>
-        </div>
-      </div>
-    </dialog>
   </div>
 </div>

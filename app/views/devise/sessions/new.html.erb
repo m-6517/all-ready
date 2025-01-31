@@ -1,18 +1,18 @@
 <% content_for(:title, t('sessions.new.title')) %>
 <div class="flex items-center justify-center md:m-12">
-  <div class="max-w-md w-full p-6 rounded shadow">
+  <div class="max-w-md w-full p-6 rounded shadow bg-base-100 dark:bg-base-200">
     <h1 class="text-lg font-medium mb-6">ログイン</h1>
 
     <%= form_with model: resource, url: session_path(resource_name), local: true, class: "space-y-4" do |f| %>
 
       <div class="field">
         <%= f.label :email, class: "text-sm" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered input-sm w-full" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered input-sm w-full dark:bg-base-200" %>
       </div>
 
       <div class="field">
         <%= f.label :password, class: "text-sm" %>
-        <%= f.password_field :password, autocomplete: "current-password", class: "input input-bordered input-sm w-full" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "input input-bordered input-sm w-full dark:bg-base-200" %>
       </div>
 
       <div class="flex flex-col justify-start md:flex-row md:justify-between md:items-center">
@@ -33,9 +33,12 @@
       </div>
 
       <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-        <%= link_to "アカウントを作成", new_registration_path(resource_name),
-          class: "btn btn-outline text-primary bg-white dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary
-          dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full mb-6" %>
+        <%= link_to new_registration_path(resource_name),
+          class: "relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-primary rounded-lg group bg-gradient-to-tl from-primary to-cyan-500 hover:bg-base200 hover:text-primary dark:text-neutral w-full" do %>
+          <span class="relative flex items-center justify-center w-full py-2.5 transition-all ease-in duration-75 bg-white dark:bg-base-200 rounded-md group-hover:bg-base-200 dark:group-hover:bg-base-300">
+            <span class="whitespace-nowrap">アカウントを作成</span>
+          </span>
+        <% end %>
       <% end %>
 
       <div class="divider text-xs">または</div>
