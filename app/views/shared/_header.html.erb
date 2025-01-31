@@ -8,28 +8,37 @@
         <% end %>
       </div>
       <div class="flex items-center gap-6 mr-4 font-semibold">
-        <div data-controller="theme" class="flex items-center">
-          <label class="swap swap-rotate">
-            <input type="checkbox" data-theme-target="toggle" data-action="change->theme#toggle" />
-            <span class="material-symbols-outlined swap-off" id="theme-toggle-light-icon">light_mode</span>
-            <span class="material-symbols-outlined swap-on" id="theme-toggle-dark-icon">dark_mode</span>
-          </label>
-        </div>
         <div class="dropdown dropdown-hover dropdown-bottom dropdown-end">
           <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
             <div class="w-10 h-10 rounded-full">
               <%= image_tag current_user.avatar_url, class: "w-10 h-10 rounded-full" %>
             </div>
           </div>
-          <ul tabindex="0" class="dropdown-content menu bg-slate-50 text-neutral rounded-box z-[1] w-52 md:w-64 h-32 p-2 shadow space-y-4 dark:bg-base-200 dark:text-neutral">
+          <ul tabindex="0" class="dropdown-content menu bg-slate-50 text-neutral rounded-box z-[1] w-52 md:w-64 p-2 shadow space-y-4 dark:bg-base-200 dark:text-neutral">
             <li>
-              <%= link_to profile_path, class: "text-sm md:text-base flex items-center" do %>
+              <%= link_to profile_path, class: "text-sm md:text-base flex items-center font-medium" do %>
                 <span class="material-symbols-outlined mr-2">person</span>
                 <%= current_user.decorate.name %>
               <% end %>
             </li>
             <li>
-              <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "text-sm md:text-base flex items-center" do %>
+              <div data-controller="theme" class="text-sm md:text-base flex items-center font-medium">
+                <label class="swap swap-rotate">
+                  <input type="checkbox" data-theme-target="toggle" data-action="change->theme#toggle" />
+                  <span class="material-symbols-outlined swap-off mr-2" id="theme-toggle-light-icon">light_mode</span>
+                  <span class="material-symbols-outlined swap-on mr-2" id="theme-toggle-dark-icon">dark_mode</span>
+                </label>
+                <%= t('header.themes') %>
+              </div>
+            </li>
+            <li>
+              <%=link_to how_to_use_path, class: "text-sm md:text-base flex items-center font-medium" do %>
+                <span class="material-symbols-outlined mr-2">help</span>
+                <%= t('header.how_to_use') %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "text-sm md:text-base flex items-center font-medium" do %>
                 <span class="material-symbols-outlined mr-2">logout</span>
                 <%= t('header.logout') %>
               <% end %>

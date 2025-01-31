@@ -15,6 +15,9 @@
             <span class="material-symbols-outlined swap-on" id="theme-toggle-dark-icon">dark_mode</span>
           </label>
         </div>
+        <%=link_to how_to_use_path, class: "flex items-center" do %>
+          <span class="material-symbols-outlined">help</span>
+        <% end %>
         <%= link_to new_user_session_path, class: "btn btn-primary text-sm md:px-5 flex items-center" do %>
           <span class="material-symbols-outlined mr-2">login</span>
           <%= t('header.login') %>
