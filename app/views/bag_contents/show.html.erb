@@ -2,7 +2,7 @@
 <div class="flex items-center justify-center p-5">
   <div class="w-full md:w-2/3 bg-slate-50 p-6 rounded shadow dark:bg-base-200">
     <div class="flex flex-col md:flex-row w-full">
-      <div class="card grid w-full md:w-1/2 place-items-start">
+      <div class="card w-full md:w-1/2 place-items-start">
         <h2 class="text-base md:text-lg font-medium text-left mb-4"><%= @bag_content.item_list.name %></h2>
 
         <div class="flex items-center gap-2 mb-4">
@@ -31,7 +31,7 @@
 
       <div class="divider md:divider-horizontal"></div> <!-- hide divider on small screens -->
 
-      <div class="card grid w-full md:w-1/2">
+      <div class="card w-full md:w-1/2">
         <ul class="space-y-2 w-full">
           <p class="text-sm font-medium mb-4">持ち物</p>
           <% (@bag_content.item_list.default_items + @bag_content.item_list.original_items)

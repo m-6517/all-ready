@@ -33,7 +33,9 @@
       </div>
 
       <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-        <%= link_to "アカウントを作成", new_registration_path(resource_name), class: "btn btn-outline bg-white text-primary border-primary hover:bg-gray-100 hover:border-primary hover:text-primary w-full mb-6" %>
+        <%= link_to "アカウントを作成", new_registration_path(resource_name),
+          class: "btn btn-outline text-primary bg-white dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary
+          dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full mb-6" %>
       <% end %>
 
       <div class="divider text-xs">または</div>

@@ -1,14 +1,14 @@
 <%= form_with model: @recommend, class: "space-y-4 bg-slate-50 dark:bg-base-200" do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div>
-    <div class="flex items-center">
+    <div class="flex items-start">
       <%= f.label :place, class: "block text-sm font-medium" %>
       <span class="text-accent ml-1">*</span>
     </div>
     <%= f.text_field :place, class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-base-200" %>
   </div>
   <div>
-    <div class="flex items-center">
+    <div class="flex items-start">
       <%= f.label :item, class: "block text-sm font-medium mb-1" %>
       <span class="text-accent ml-1">*</span>
     </div>

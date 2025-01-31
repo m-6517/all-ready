@@ -6,11 +6,10 @@
       <% @recommends.each do |recommend| %>
         <%= link_to recommend_path(recommend), class: "card bg-slate-50 w-40 h-40 md:w-60 md:h-60 shadow rounded relative overflow-hidden flex items-center justify-center dark:bg-base-200" do %>
           <% if recommend.item_image? %>
-            <%= image_tag recommend.item_image_url, class: "absolute inset-0 w-full h-full object-contain bg-black" %>
-            <div class="absolute inset-0 bg-black bg-opacity-40"></div> <!-- オーバーレイ -->
+            <%= image_tag recommend.item_image_url, class: "absolute inset-0 w-full h-full object-contain opacity-40" %>
           <% end %>
-          <div class="relative z-10 text-white text-center px-3">
-            <h2 class="text-sm md:text-base font-medium"><%= recommend.item %></h2>
+          <div class="relative z-10 text-center px-3">
+            <h2 class="text-sm md:text-lg font-bold"> <%= recommend.item %></h2>
           </div>
         <% end %>
       <% end %>
@@ -18,7 +17,9 @@
       <p class="text-center text-sm md:text-base text-gray-500">マストアイテムが見つかりませんでした</p>
     <% end %>
   </div>
-  <%= link_to new_recommend_path, class: "fixed bottom-20 right-5 md:right-20 z-60 bg-primary text-white font-bold rounded-full text-base md:text-lg p-4 md:p-5 flex items-center justify-center shadow transition-all duration-300 hover:brightness-110" do %>
+  <%= link_to new_recommend_path,
+    class: "fixed bottom-24 right-5 md:right-20 z-60 bg-gradient-to-t from-primary to-cyan-500 text-white font-bold
+    rounded-full text-base md:text-lg p-4 md:p-5 flex items-center justify-center shadow transition-all duration-300 hover:brightness-110" do %>
     <span class="material-symbols-outlined text-2xl">add</span>
   <% end %>
 </div>
