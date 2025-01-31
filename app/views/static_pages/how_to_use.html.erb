@@ -1,0 +1,173 @@
+<div class="container mx-auto pt-3 px-2 md:px-12 py-24">
+  <div class="flex justify-start items-center bg-base-100">
+    <div class="flex items-center">
+      <span class="material-symbols-outlined md:text-2xl text-primary" style="font-variation-settings: 'FILL' 1;">help</span>
+      <h1 class="text-base md:text-lg font-medium ml-3"><%= t('.title') %></h1>
+    </div>
+  </div>
+  <div class="space-y-4 md:space-y-6 mt-6">
+    <div class="collapse collapse-arrow bg-base-200 dark:bg-base-200">
+      <input type="radio" name="my-accordion-1" />
+      <div class="collapse-title flex items-center">
+        <span class="material-symbols-outlined md:text-2xl">lightbulb_2</span>
+        <h1 class="text-sm md:text-base font-medium ml-2">マストアイテム</h1>
+      </div>
+      <div class="collapse-content text-xs md:text-sm">
+        <p>出かける時に必ず持って行くアイテムを場所ごとに投稿できます。</p>
+        <p>右下の＋ボタンを押し、投稿を作成します。</p>
+      </div>
+    </div>
+    <div class="collapse collapse-arrow bg-base-200 dark:bg-base-200">
+      <input type="radio" name="my-accordion-2" />
+      <div class="collapse-title flex items-center">
+        <span class="material-symbols-outlined md:text-2xl">work</span>
+        <h1 class="text-sm md:text-base font-medium ml-2">みんなの持ち物</h1>
+      </div>
+      <div class="collapse-content text-xs md:text-sm">
+        <p>作成した持ち物リストにタグやコメントを付け加えて投稿できます。</p>
+        <p>投稿方法は、持ち物リスト ＞ リスト右上のメニュー ＞ リストを共有 をご覧ください。</p>
+      </div>
+    </div>
+    <div class="collapse collapse-arrow bg-base-200 dark:bg-base-200">
+      <input type="radio" name="my-accordion-3" />
+      <div class="collapse-title flex items-center">
+        <span class="material-symbols-outlined md:text-2xl">playlist_add</span>
+        <h1 class="text-sm md:text-base font-medium ml-2">持ち物リスト</h1>
+      </div>
+      <div class="collapse-content">
+        <div class="collapse collapse-arrow bg-base-200">
+          <input type="radio" name="my-accordion-4" />
+          <div class="collapse-title text-sm md:text-base font-medium">持ち物リスト作成</div>
+          <div class="collapse-content text-xs md:text-sm">
+            <p>右下の＋ボタンを押し、リスト名を入力します。</p>
+          </div>
+        </div>
+        <div class="collapse collapse-arrow bg-base-200">
+          <input type="radio" name="my-accordion-5" />
+          <div class="collapse-title text-sm md:text-base font-medium">リスト右上のメニュー</div>
+          <div class="collapse-content text-xs md:text-sm space-y-4">
+            <div class="flex flex-col">
+              <div class="flex items-center">
+                <span class="material-symbols-outlined text-primary">edit_note</span>
+                <p class="ml-2">リスト名を変更</p>
+              </div>
+            </div>
+            <div class="flex flex-col">
+              <div class="flex items-center">
+                <span class="material-symbols-outlined text-primary">image</span>
+                <p class="ml-2">カバー画像を設定</p>
+              </div>
+            </div>
+            <div class="flex flex-col">
+              <div class="flex items-center">
+                <span class="material-symbols-outlined text-primary">content_copy</span>
+                <p class="ml-2">リストを複製</p>
+              </div>
+            </div>
+            <div class="flex flex-col">
+              <div class="flex flex-col">
+                <div class="flex items-center">
+                  <span class="material-symbols-outlined text-primary">share</span>
+                  <p class="ml-2 mb-2">リストを共有</p>
+                </div>
+                <p class="text-xs ml-8">タグやコメントを追加し持ち物リストを投稿すると"みんなの持ち物"に表示されます。
+                  投稿を削除しても持ち物リスト自体は削除されません。</p>
+                <p class="text-xs ml-8">※空の持ち物リストは共有できません。</p>
+              </div>
+            </div>
+            <div class="flex flex-col">
+              <div class="flex items-center">
+                <span class="material-symbols-outlined text-primary">playlist_remove</span>
+                <p class="ml-2">リストを削除</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="collapse collapse-arrow bg-base-200">
+          <input type="radio" name="my-accordion-6" />
+          <div class="collapse-title text-sm md:text-base font-medium">リスト内のメニュー</div>
+          <div class="collapse-content text-xs md:text-sm space-y-4">
+            <div class="flex flex-col">
+              <div class="flex items-center">
+                <span class="material-symbols-outlined text-primary">checklist</span>
+                <p class="ml-2 mb-2">アイテムを編集</p>
+              </div>
+              <p class="text-xs ml-8">アイテムを追加・削除し、チェックを入れ"リストを保存"を押すと、持ち物リストが更新されます。</p>
+            </div>
+            <div class="flex flex-col">
+              <div class="flex items-center">
+                <span class="material-symbols-outlined text-primary">exposure_plus_1</span>
+                <p class="ml-2 mb-2">アイテム数を変更</p>
+              </div>
+              <p class="text-xs ml-8">複数持っていきたいアイテムの数を設定すると、持ち物リストに表示されます。</p>
+            </div>
+            <div class="flex flex-col">
+              <div class="flex items-center">
+                <span class="material-symbols-outlined text-primary">refresh</span>
+                <p class="ml-2 mb-2">準備済みのアイテムをクリア</p>
+              </div>
+              <p class="text-xs ml-8">アイテムの準備状況を元に戻します。</p>
+            </div>
+            <div class="flex items-center">
+              <span class="material-symbols-outlined text-primary">visibility_off</span>
+              <p class="ml-2">準備済みのアイテムを非表示</p>
+            </div>
+          </div>
+        </div>
+        <div class="collapse collapse-arrow bg-base-200">
+          <input type="radio" name="my-accordion-7" />
+          <div class="collapse-title text-sm md:text-base font-medium">リストの使い方</div>
+          <div class="collapse-content text-xs md:text-sm">
+            <p>準備したアイテムを押すと色が変わり、ゲージのパーセントが増えていきます。100%になると準備完了です！</p>
+            <p>左側のハンドルをドラッグすると順番を並び替えられます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="collapse collapse-arrow bg-base-200 dark:bg-base-200">
+      <input type="radio" name="my-accordion-8" />
+      <div class="collapse-title flex items-center">
+        <span class="material-symbols-outlined md:text-2xl">bookmark</span>
+        <h1 class="text-sm md:text-base font-medium ml-2">ブックマーク</h1>
+      </div>
+      <div class="collapse-content text-xs md:text-sm">
+        <p>"マストアイテム" および "みんなの持ち物" の投稿を保存し、持ち物をブラッシュアップしましょう！</p>
+      </div>
+    </div>
+    <div class="collapse collapse-arrow bg-base-200 dark:bg-base-200">
+      <input type="radio" name="my-accordion-9" />
+      <div class="collapse-title flex items-center">
+        <span class="material-symbols-outlined md:text-2xl">person</span>
+        <h1 class="text-sm md:text-base font-medium ml-2">マイページ</h1>
+      </div>
+      <div class="collapse-content text-xs md:text-sm">
+        <p>ヘッダーのドロップダウンメニューより、アカウント名・メールアドレス・アバターを編集できます。</p>
+      </div>
+    </div>
+    <div class="collapse collapse-arrow bg-base-200 dark:bg-base-200">
+      <input type="radio" name="my-accordion-10" />
+      <div class="collapse-title flex items-center">
+        <span class="material-symbols-outlined md:text-2xl">download</span>
+        <h1 class="text-sm md:text-base font-medium ml-2">アプリのインストール</h1>
+      </div>
+      <div class="collapse-content text-xs md:text-sm">
+        <p>PWA（Progressive Web Apps）を導入しているため、PCやスマートフォンにインストールしホーム画面にアイコンを追加できます。</p>
+      </div>
+    </div>
+    <div class="collapse collapse-arrow bg-base-200 dark:bg-base-200">
+      <input type="radio" name="my-accordion-11" />
+      <div class="collapse-title flex items-center">
+        <span class="material-symbols-outlined md:text-2xl">description</span>
+        <h1 class="text-sm md:text-base font-medium ml-2">その他</h1>
+      </div>
+        <div class="collapse-content">
+          <div class="flex flex-col space-y-6">
+            <%= link_to "利用規約", terms_path, class: "text-xs md:text-sm text-nowrap" %>
+            <%= link_to "プライバシーポリシー", privacy_policy_path, class: "text-xs md:text-sm text-nowrap" %>
+            <%= link_to "お問い合わせ", inquiry_form_path, class: "text-xs md:text-sm text-nowrap" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
