@@ -1,7 +1,7 @@
 <% if bag_content.item_list.cover_image.present? %>
-  <div class="card bg-slate-50 w-40 h-40 w-50 h-50 rounded shadow relative dark:bg-base-200">
+  <div class="card bg-slate-50 w-40 h-40 md:w-48 md:h-48 rounded shadow relative dark:bg-base-200">
     <div class="card-title flex justify-between items-center p-2 text-sm md:text-lg w-full relative">
-      <div class="flex-grow pl-2" style="cursor: default;">
+      <div class="flex-grow pl-2 font-medium" style="cursor: default;">
         <%= bag_content.item_list.name %>
       </div>
     </div>
@@ -12,13 +12,13 @@
     </figure>
   </div>
 <% else %>
-  <div class="card bg-slate-50 w-40 h-40 w-50 h-50 rounded shadow relative dark:bg-base-200">
+  <div class="card bg-slate-50 w-40 h-40 md:w-48 md:h-48 rounded shadow relative dark:bg-base-200">
     <div class="card-title flex justify-between items-center p-2 text-sm md:text-lg w-full relative">
-      <div class="flex-grow pl-2" style="cursor: default;">
+      <div class="flex-grow pl-2 font-medium" style="cursor: default;">
         <%= bag_content.item_list.name %>
       </div>
     </div>
-    <%= link_to item_list_bag_content_path(bag_content.item_list, bag_content), class: "w-full h-full block rounded bg-base-200 dark:bg-base-300" do %>
+    <%= link_to item_list_bag_content_path(bag_content.item_list, bag_content), class: "w-full h-full block rounded-b-lg bg-base-200 dark:bg-base-300" do %>
     <% end %>
   </div>
 <% end %>

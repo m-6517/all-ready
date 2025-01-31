@@ -3,7 +3,7 @@
     <%= button_to toggle_item_status_path(item_status), 
                   method: :patch, 
                   data: { toggle: "item-status", checked: item_status.is_checked },
-                  class: "btn w-full flex justify-between items-center text-left px-4 
+                  class: "btn w-full flex justify-between items-center text-left font-normal px-4 
                          #{item_status.is_checked ? 'btn-active' : 'btn-inactive'} 
                          #{item_status.is_checked ? 'bg-secondary border-0 shadow dark:bg-base-200' : 'bg-base-100'}" do %>
       <span><%= item_status.original_item&.name || item_status.default_item&.name %></span>

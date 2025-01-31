@@ -11,7 +11,7 @@
 
     <div class="flex items-center mt-6">
       <span class="material-symbols-outlined md:text-2xl text-primary">lightbulb_2</span>
-      <h1 class="text-base md:text-lg font-medium ml-3">マストアイテム</h1>
+      <h1 class="text-sm md:text-base font-medium ml-3">マストアイテム</h1>
     </div>
     <div class="flex flex-wrap justify-start gap-5 md:gap-8 mt-6">
       <% @bookmarked_recommends.each do |recommend_or_bag_content| %>
@@ -28,32 +28,32 @@
 
     <div class="flex items-center">
       <span class="material-symbols-outlined md:text-2xl text-primary">work</span>
-      <h1 class="text-base md:text-lg font-medium ml-3">持ち物リスト</h1>
+      <h1 class="text-sm md:text-base font-medium ml-3">持ち物リスト</h1>
     </div>
     <div class="flex flex-wrap justify-start gap-5 md:gap-8 mt-6">
       <% @bookmarked_recommends.each do |recommend_or_bag_content| %>
         <% if recommend_or_bag_content.is_a?(BagContent) %>
           <% if recommend_or_bag_content.item_list.cover_image.present? %>
-            <div class="card bg-slate-50 w-40 h-40 rounded shadow relative dark:bg-base-200">
+            <div class="card bg-slate-50 w-40 h-40 md:w-44 md:h-44 rounded shadow relative dark:bg-base-200">
               <div class="card-title flex justify-between items-center p-2 text-sm md:text-base w-full relative">
-                <div class="flex-grow pl-2" style="cursor: default;">
+                <div class="flex-grow pl-2 pr-10 font-medium" style="cursor: default; word-wrap: break-word; overflow-wrap: break-word;">
                   <%= recommend_or_bag_content.item_list.name %>
                 </div>
               </div>
-              <figure>
+              <figure class="w-full h-full">
                 <%= link_to item_list_bag_content_path(recommend_or_bag_content.item_list, recommend_or_bag_content), class: "w-full h-full block" do %>
-                  <%= image_tag recommend_or_bag_content.item_list.cover_image.url, class: "object-cover" %>
+                  <%= image_tag recommend_or_bag_content.item_list.cover_image.url, class: "w-full h-full object-cover object-bottom" %>
                 <% end %>
               </figure>
             </div>
           <% else %>
-            <div class="card bg-slate-50 w-40 h-40 rounded shadow relative dark:bg-base-200">
+            <div class="card bg-slate-50 w-40 h-40 md:w-44 md:h-44 rounded shadow relative dark:bg-base-200">
               <div class="card-title flex justify-between items-center p-2 text-sm md:text-base w-full relative">
-                <div class="flex-grow pl-2" style="cursor: default;">
+                <div class="flex-grow pl-2 font-medium" style="cursor: default;">
                   <%= recommend_or_bag_content.item_list.name %>
                 </div>
               </div>
-              <%= link_to item_list_bag_content_path(recommend_or_bag_content.item_list, recommend_or_bag_content), class: "w-full h-full block bg-base-200" do %>
+              <%= link_to item_list_bag_content_path(recommend_or_bag_content.item_list, recommend_or_bag_content), class: "w-full h-full block rounded-b-lg bg-base-200 dark:bg-base-300" do %>
               <% end %>
             </div>
           <% end %>
