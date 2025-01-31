@@ -23,6 +23,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://kit.fontawesome.com/f242c6364d.js" crossorigin="anonymous"></script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
+
     <%= display_meta_tags(default_meta_tags) %>
 
     <!-- Google tag (gtag.js) -->
@@ -36,7 +40,7 @@
     </script>
   </head>
 
-  <body class="flex flex-col min-h-screen bg-base-100 font-zen-kaku-gothic-new">
+  <body class="flex flex-col min-h-screen bg-base-100 font-zen-kaku-gothic-new text-neutral dark:text-neutral">
     <% if user_signed_in? %>
       <%= render "shared/header" %>
     <% else %>
