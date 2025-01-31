@@ -1,6 +1,6 @@
 <% content_for(:title, t('registrations.new.title')) %>
 <div class="flex items-center justify-center md:m-12">
-  <div class="max-w-md w-full p-6 rounded shadow">
+  <div class="max-w-md w-full p-6 rounded shadow bg-base-100 dark:bg-base-200">
     <h1 class="text-lg font-medium mb-6">アカウントを作成</h1>
 
     <%= form_with model: resource, url: registration_path(resource_name), local: true, class: "space-y-4" do |f| %>
@@ -8,12 +8,12 @@
 
       <div class="field">
         <%= f.label :name, "アカウント名", class: "text-sm" %><br />
-        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "input input-bordered input-sm w-full" %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "input input-bordered input-sm w-full dark:bg-base-200" %>
       </div>
 
       <div class="field">
         <%= f.label :email, "メールアドレス", class: "text-sm" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered input-sm w-full" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered input-sm w-full dark:bg-base-200" %>
       </div>
 
       <div class="field relative">
@@ -21,7 +21,7 @@
         <% if @minimum_password_length %>
         <% end %><br />
         <div class="relative">
-          <%= f.password_field :password, id: "password_field", autocomplete: "new-password", class: "input input-bordered input-sm w-full pr-10" %>
+          <%= f.password_field :password, id: "password_field", autocomplete: "new-password", class: "input input-bordered input-sm w-full pr-10 dark:bg-base-200" %>
           <label class="swap swap-rotate absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer">
             <%= check_box_tag 'show_password', '1', false, id: 'show_password', onclick: 'togglePasswordVisibility("password_field", "show_password")' %>
             <span class="material-symbols-outlined swap-off text-gray-400">visibility_off</span>
@@ -33,7 +33,7 @@
       <div class="field relative">
         <%= f.label :password_confirmation, "パスワード（確認用）", class: "text-sm" %><br />
         <div class="relative">
-          <%= f.password_field :password_confirmation, id: "password_confirmation_field", autocomplete: "new-password", class: "input input-bordered input-sm w-full pr-10" %>
+          <%= f.password_field :password_confirmation, id: "password_confirmation_field", autocomplete: "new-password", class: "input input-bordered input-sm w-full pr-10 dark:bg-base-200" %>
           <label class="swap swap-rotate absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer">
             <%= check_box_tag 'show_password_confirmation', '1', false, id: 'show_password_confirmation', onclick: 'togglePasswordVisibility("password_confirmation_field", "show_password_confirmation")' %>
             <span class="material-symbols-outlined swap-off text-gray-400">visibility_off</span>

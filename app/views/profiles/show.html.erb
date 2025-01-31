@@ -1,9 +1,9 @@
 <% content_for(:title, t('.title')) %>
-  <div class="flex items-center justify-center p-5">
+  <div class="flex items-center justify-center p-5 md:m-12">
     <div class="max-w-xl w-full mx-auto bg-slate-50 p-6 rounded shadow dark:bg-base-200">
       <div class="flex flex-col">
         <div class="flex items-center gap-8">
-          <%= image_tag current_user.avatar_url, class: "w-16 h-16 rounded-full" %>
+          <%= image_tag current_user.avatar_url, class: "w-20 h-20 rounded-full" %>
           <div class="flex flex-col space-y-2">
             <span class="text-base text-gray-900 text-lg dark:text-neutral">
               <%= current_user.decorate.name %>

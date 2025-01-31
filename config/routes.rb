@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   get "form", to: "static_pages#form", as: "inquiry_form"
   get "policy", to: "static_pages#policy", as: "privacy_policy"
   get "terms", to: "static_pages#terms", as: "terms"
+  get "how_to_use", to: "static_pages#how_to_use", as: "how_to_use"
 
   get "images/ogp.png", to: "images#ogp", as: "images_ogp"
 

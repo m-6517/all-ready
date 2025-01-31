@@ -2,37 +2,40 @@
   <div class="absolute inset-0 bg-cover bg-no-repeat bg-right-bottom rotate-90 md:rotate-0 z-0" style="background-image: url('<%= asset_path 'background.webp' %>');"></div>
 
   <div class="relative z-10 flex-1 mt-16 px-7 py-10 flex flex-col gap-10 w-full md:w-1/2 dark:text-base-100 bg-opacity-90">
-    <%= link_to recommends_path, class: "card glass shadow-xl rounded-lg md:p-3 flex flex-col w-full md:w-xl md:transition-all md:duration-300 md:hover:scale-110" do %>
-      <div class="card-body md:space-y-6">
+    <%= link_to recommends_path, class: "card shadow-xl rounded-lg md:p-3 flex flex-col w-full md:w-xl md:transition-all md:duration-300 md:hover:scale-110" do %>
+      <div class="absolute inset-0 bg-gradient-to-t from-secondary to-[#F8F8F8] opacity-90 rounded-lg"></div>
+      <div class="relative card-body md:space-y-6">
         <div class="flex items-center gap-4">
           <span class="material-symbols-outlined md:text-2xl">lightbulb_2</span>
           <h1 class="card-title text-sm md:text-xl">マストアイテム</h1>
         </div>
-        <p class="text-xs md:text-base">
+        <p class="text-xs md:text-base text-nowrap">
           かばんに必ず入れるアイテムを行き先ごとに紹介
         </p>
       </div>
     <% end %>
 
-    <%= link_to bag_contents_path, class: "card glass shadow-xl rounded-lg md:p-3 flex flex-col w-full md:w-xl md:transition-all md:duration-300 md:hover:scale-110" do %>
-      <div class="card-body md:space-y-6">
+    <%= link_to bag_contents_path, class: "card shadow-xl rounded-lg md:p-3 flex flex-col w-full md:w-xl md:transition-all md:duration-300 md:hover:scale-110" do %>
+      <div class="absolute inset-0 bg-gradient-to-t from-secondary to-[#F8F8F8] opacity-90 rounded-lg"></div>
+      <div class="relative card-body md:space-y-6">
         <div class="flex items-center gap-4">
           <span class="material-symbols-outlined md:text-2xl">work</span>
           <h1 class="card-title text-sm md:text-xl">みんなの持ち物</h1>
         </div>
-        <p class="text-xs md:text-base">
-          ライフスタイルやこだわりが詰まったかばんの中身をのぞく
+        <p class="text-xs md:text-base text-nowrap">
+          ライフスタイルやこだわりが詰まったかばんの中身
         </p>
       </div>
     <% end %>
 
-    <%= link_to item_lists_path, class: "card glass shadow-xl rounded-lg md:p-3 flex flex-col w-full md:w-xl md:transition-all md:duration-300 md:hover:scale-110" do %>
-      <div class="card-body md:space-y-6">
+    <%= link_to item_lists_path, class: "card shadow-xl rounded-lg md:p-3 flex flex-col w-full md:w-xl md:transition-all md:duration-300 md:hover:scale-110" do %>
+      <div class="absolute inset-0 bg-gradient-to-t from-secondary to-[#F8F8F8] opacity-90 rounded-lg"></div>
+      <div class="relative card-body md:space-y-6">
         <div class="flex items-center gap-4">
           <span class="material-symbols-outlined md:text-2xl">playlist_add</span>
           <h1 class="card-title text-sm md:text-xl">持ち物リスト</h1>
         </div>
-        <p class="text-xs md:text-base">
+        <p class="text-xs md:text-base text-nowrap">
           行き先に合わせてカスタマイズし準備をスムーズに
         </p>
       </div>

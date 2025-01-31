@@ -1,12 +1,12 @@
 <% content_for(:title, t('.title')) %>
-  <div class="flex items-center justify-center p-5">
+  <div class="flex items-center justify-center p-5 md:m-12">
     <div class="max-w-xl w-full mx-auto bg-slate-50 p-6 rounded shadow dark:bg-base-200">
       <div class="flex flex-col">
         <%= form_with model: @user, url: profile_path, method: :put do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
           <div class="mb-4">
             <%= f.label :avatar, style: "cursor: pointer;" do %>
-              <%= image_tag(current_user.avatar_url, class: "w-16 h-16 rounded-full transition-all duration-300 hover:brightness-110") %>
+              <%= image_tag(current_user.avatar_url, class: "w-20 h-20 rounded-full transition-all duration-300 hover:brightness-110") %>
             <% end %>
             <%= f.file_field :avatar, class: "hidden", accept: 'image/*' %>
             <%= f.hidden_field :avatar_cache %>
@@ -15,13 +15,13 @@
             <div class="label">
               <span class="label-text">アカウント名</span>
             </div>
-            <%= f.text_field :name, class: "input input-bordered w-full bg-slate-50 dark:text-base-300" %>
+            <%= f.text_field :name, class: "input input-bordered w-full bg-slate-50 dark:bg-base-200 dark:text-neutral" %>
           </label>
           <label class="form-control w-full mb-4">
             <div class="label">
               <span class="label-text">メールアドレス</span>
             </div>
-            <%= f.text_field :email, class: "input input-bordered w-full bg-slate-50 dark:text-base-300" %>
+            <%= f.text_field :email, class: "input input-bordered w-full bg-slate-50 dark:bg-base-200 dark:text-neutral" %>
           </label>
           <div>
             <%= f.submit t('profiles.edit.submit_label'), class: "btn btn-primary w-full mt-4" %>

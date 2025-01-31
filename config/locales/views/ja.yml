@@ -20,6 +20,8 @@ ja:
   header:
     login: ログイン
     logout: ログアウト
+    how_to_use: 使い方のヒント
+    themes: テーマの切り替え
   recommends:
     index:
       title: マストアイテム
@@ -80,3 +82,5 @@ ja:
       title: プライバシーポリシー
     terms:
       title: 利用規約
+    how_to_use:
+      title: 使い方のヒント

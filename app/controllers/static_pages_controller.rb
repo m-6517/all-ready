@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[top form policy terms]
+  skip_before_action :authenticate_user!, only: %i[top form policy terms how_to_use]
   def top
     @show_menu = false
   end
@@ -9,4 +9,6 @@ class StaticPagesController < ApplicationController
   def policy; end
 
   def terms; end
+
+  def how_to_use; end
 end
