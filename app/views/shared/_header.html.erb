@@ -1,4 +1,4 @@
-<div class="fixed top-0 z-50 flex h-16 w-full items-center md:pl-1 shadow bg-base-100 bg-opacity-90 dark:shadow-neutral">
+<div class="fixed top-0 z-50 flex h-16 w-full items-center md:pl-1 shadow bg-base-100 dark:shadow-neutral">
   <nav class="navbar w-full">
     <div class="flex justify-between w-full items-center">
       <div class="flex items-center space-x-4">
@@ -22,13 +22,13 @@
               <% end %>
             </li>
             <li>
-              <div data-controller="theme" class="text-sm md:text-base flex items-center font-medium">
-                <label class="swap swap-rotate">
-                  <input type="checkbox" data-theme-target="toggle" data-action="change->theme#toggle" />
+              <div data-controller="theme" class="text-sm md:text-base flex items-center font-medium text-no-wrap">
+                <label class="swap swap-rotate flex items-center">
+                  <input type="checkbox" data-theme-target="toggle" data-action="change->theme#toggle" class="hidden" />
                   <span class="material-symbols-outlined swap-off mr-2" id="theme-toggle-light-icon">light_mode</span>
                   <span class="material-symbols-outlined swap-on mr-2" id="theme-toggle-dark-icon">dark_mode</span>
+                  <%= t('header.themes') %>
                 </label>
-                <%= t('header.themes') %>
               </div>
             </li>
             <li>

@@ -5,7 +5,7 @@
                   data: { toggle: "item-status", checked: item_status.is_checked },
                   class: "btn w-full flex justify-between items-center text-left font-normal px-4 
                          #{item_status.is_checked ? 'btn-active' : 'btn-inactive'} 
-                         #{item_status.is_checked ? 'bg-secondary border-0 shadow dark:bg-base-200' : 'bg-base-100'}" do %>
+                         #{item_status.is_checked ? 'bg-secondary border-0 shadow-lg dark:bg-base-200 dark:drop-shadow-lg' : 'bg-base-100 shadow dark:drop-shadpw'}" do %>
       <span><%= item_status.original_item&.name || item_status.default_item&.name %></span>
       <% if item_status.quantity > 1 %>
         <div class="badge badge-primary badge-sm py-2 ml-2"><%= item_status.quantity %></div>

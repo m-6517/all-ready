@@ -29,7 +29,7 @@
   </div>
 </aside>
 
-<div class="fixed bottom-0 left-0 z-50 w-full h-20 bg-base-200 border-t border-gray-200 md:hidden">
+<div class="fixed bottom-0 left-0 z-50 w-full h-24 bg-base-200 border-t border-gray-200 md:hidden">
   <div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
     <%= link_to recommends_path, class: "inline-flex flex-col items-center justify-center px-5 group #{request.path.start_with?('/recommends') ? 'bg-gray-200 dark:bg-[#263448] text-primary font-bold' : 'hover:bg-gray-50 dark:hover:bg-base-300 text-neutral'}", style: ("font-variation-settings: 'FILL' 1;" if request.path.start_with?('/recommends')) do %>
       <span class="material-symbols-outlined text-2xl mb-2">lightbulb_2</span>

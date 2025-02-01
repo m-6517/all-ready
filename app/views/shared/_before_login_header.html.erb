@@ -1,8 +1,8 @@
-<div class="fixed top-0 z-50 flex h-16 w-full items-center md:pl-1 shadow bg-base-100 bg-opacity-90 dark:shadow-neutral">
+<div class="fixed top-0 z-50 flex h-16 w-full items-center md:pl-1 shadow bg-base-100 dark:shadow-neutral">
   <nav class="navbar w-full">
     <div class="flex justify-between w-full">
       <div class="flex items-center">
-        <%= link_to "/", class: "btn btn-ghost flex items-center space-x-2 md:space-x-4" do %>
+        <%= link_to "/", class: "btn btn-ghost flex items-center gap-4" do %>
           <%= image_tag "logo.png", class: "w-7 md:w-9 object-contain" %>
           <h1 class="text-lg md:text-xl font-bold tracking-wider">All Ready</h1>
         <% end %>
@@ -15,11 +15,8 @@
             <span class="material-symbols-outlined swap-on" id="theme-toggle-dark-icon">dark_mode</span>
           </label>
         </div>
-        <%=link_to how_to_use_path, class: "flex items-center" do %>
-          <span class="material-symbols-outlined">help</span>
-        <% end %>
-        <%= link_to new_user_session_path, class: "btn btn-primary text-sm md:px-5 flex items-center" do %>
-          <span class="material-symbols-outlined mr-2">login</span>
+        <%= link_to new_user_session_path, class: "btn btn-sm md:btn btn-primary text-sm text-white md:text-white md:px-5 flex items-center" do %>
+          <span class="material-symbols-outlined md:mr-2">login</span>
           <%= t('header.login') %>
         <% end %>
       </div>
