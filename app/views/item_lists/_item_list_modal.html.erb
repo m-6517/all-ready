@@ -1,11 +1,11 @@
 <dialog id="menuModal_<%= item_list.id %>" class="modal">
   <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
     <div class="modal-action flex flex-col justify-center w-full space-y-6">
-      <button class="btn btn-primary flex items-center gap-4" onclick="openRenameModal(<%= item_list.id %>)">
+      <button class="btn btn-primary flex items-center w-full gap-4" onclick="openRenameModal(<%= item_list.id %>)">
         <span class="material-symbols-outlined">edit_note</span>
         リスト名を変更
       </button>
-      <button class="btn btn-primary flex items-center gap-4" onclick="openCoverImageModal(<%= item_list.id %>)">
+      <button class="btn btn-primary flex items-center w-full gap-4" onclick="openCoverImageModal(<%= item_list.id %>)">
         <span class="material-symbols-outlined">image</span>
         カバー画像を設定
       </button>
@@ -30,7 +30,7 @@
           <% end %>
         <% end %>
       <% end %>
-      <button class="btn btn-base-300 flex items-center gap-2 dark:btn-outline"" onclick="openDeleteModal(<%= item_list.id %>)">
+      <button class="btn btn-base-300 flex items-center gap-2 dark:btn-outline" onclick="openDeleteModal(<%= item_list.id %>)">
         <span class="material-symbols-outlined">playlist_remove</span>
         リストを削除
       </button>
