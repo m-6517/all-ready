@@ -48,7 +48,7 @@ class ItemListsController < ApplicationController
     if @item_list.update(item_list_params)
       if params[:item_list][:original_item_ids].present? || params[:item_list][:default_item_ids].present?
         @item_list.item_statuses.update_all(selected: false)
-  
+
         if params[:item_list][:original_item_ids].present?
           selected_original_ids = params[:item_list][:original_item_ids].map(&:to_i)
           @item_list.original_items.each do |item|
@@ -56,7 +56,7 @@ class ItemListsController < ApplicationController
             item_status.update(selected: selected_original_ids.include?(item.id))
           end
         end
-  
+
         if params[:item_list][:default_item_ids].present?
           selected_default_ids = params[:item_list][:default_item_ids].map(&:to_i)
           @item_list.default_items.each do |item|
