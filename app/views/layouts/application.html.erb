@@ -55,10 +55,6 @@
       <main class="<%= request.path == "/" ? "flex-1" : "flex-1 p-4 md:pl-64" %>">
         <%= render "shared/flash_messages" %>
         <%= yield %>
-        
-        <% if request.path == "/" %>
-          <%= render "shared/footer" %>
-        <% end %>
       </main>
     </div>
   </body>

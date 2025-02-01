@@ -1,5 +1,5 @@
 <div class="min-h-screen flex flex-col relative bg-fixed">
-  <div class="absolute inset-0 bg-cover bg-no-repeat bg-right-bottom rotate-90 md:rotate-0 z-0" style="background-image: url('<%= asset_path 'background.webp' %>');"></div>
+  <div class="absolute inset-0 bg-cover bg-no-repeat bg-right-bottom z-0" style="background-image: url('<%= asset_path 'background.jpg' %>');"></div>
 
   <div class="relative z-10 flex-1 mt-16 px-7 py-10 flex flex-col gap-10 w-full md:w-1/2 dark:text-base-100 bg-opacity-90">
     <%= link_to recommends_path, class: "card shadow-xl rounded-lg md:p-3 flex flex-col w-full md:w-xl md:transition-all md:duration-300 md:hover:scale-110" do %>
@@ -41,4 +41,17 @@
       </div>
     <% end %>
   </div>
+  <footer class="z-50 bg-base-100 text-sm text-nowrap px-7 py-4 bg-opacity-80 w-full">
+    <div class="flex flex-col md:flex-row md:justify-between">
+      <div class="flex flex-col md:flex-row md:justify-between space-y-6 md:space-y-0">
+        <%=link_to "使い方のヒント", how_to_use_path, class: "md:hidden" %>
+        <%= link_to "利用規約", terms_path, class: "mr-10"  %>
+        <%= link_to "プライバシーポリシー", privacy_policy_path, class: "mr-10" %>
+        <%= link_to "お問い合わせ", inquiry_form_path, class: "mr-10"  %>
+      </div>
+      <div class="flex justify-end mt-4 md:mt-0">
+        <p>© 2025. All Ready</p>
+      </div>
+    </div>
+  </footer>
 </div>
