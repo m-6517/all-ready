@@ -7,7 +7,7 @@ class BagContent < ApplicationRecord
 
   validates :item_list_id, uniqueness: { scope: :user_uuid }
 
-  mount_uploader :ogp_image, OgpUploader
+  mount_uploader :ogp, OgpUploader
 
   def save_with_tags(tag_name:)
     ActiveRecord::Base.transaction do
