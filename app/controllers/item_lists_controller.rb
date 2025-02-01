@@ -48,7 +48,7 @@ class ItemListsController < ApplicationController
     if @item_list.update(item_list_params)
       if params[:item_list][:original_item_ids].present? || params[:item_list][:default_item_ids].present?
         @item_list.item_statuses.update_all(selected: false)
-
+  
         if params[:item_list][:original_item_ids].present?
           selected_original_ids = params[:item_list][:original_item_ids].map(&:to_i)
           @item_list.original_items.each do |item|
@@ -56,7 +56,7 @@ class ItemListsController < ApplicationController
             item_status.update(selected: selected_original_ids.include?(item.id))
           end
         end
-
+  
         if params[:item_list][:default_item_ids].present?
           selected_default_ids = params[:item_list][:default_item_ids].map(&:to_i)
           @item_list.default_items.each do |item|
@@ -64,8 +64,12 @@ class ItemListsController < ApplicationController
             item_status.update(selected: selected_default_ids.include?(item.id))
           end
         end
+        # チェックボックスの変更
+        redirect_to item_list_path(@item_list), notice: t("defaults.flash_message.updated", item: ItemList.model_name.human)
+      else
+        # リスト名、カバー画像などの変更
+        redirect_to item_lists_path, notice: t("defaults.flash_message.updated", item: ItemList.model_name.human)
       end
-      redirect_to item_lists_path, notice: t("defaults.flash_message.updated", item: ItemList.model_name.human)
     end
   end
 
