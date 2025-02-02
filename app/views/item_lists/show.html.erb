@@ -1,6 +1,6 @@
 <div class="container mx-auto pt-3 px-2 md:px-12 py-24">
   <div class="flex flex-col md:flex-row mx-auto w-full">
-    <div class="flex flex-col w-full md:w-1/2">
+    <div class="flex flex-col w-full md:w-1/2 md:mx-7">
       <div class="container flex flex-col justify-center items-center md:ml-12 gap-4 w-full">
         <div class="flex justify-between items-center w-full">
           <h1 class="text-base md:text-lg font-medium text-center flex-grow"><%= @item_list.name %></h1>
@@ -39,21 +39,22 @@
 
       <%= render "item_lists/ready_status", item_list: @item_list, id: dom_id(@item_list, :ready_status) %>
 
-      <div class="container flex flex-col justify-center items-center mt-8 md:ml-12 gap-4 w-full">
+      <div class="flex flex-col justify-center items-center mt-8 md:ml-12 gap-4 w-full" data-controller="sortable" data-sortable-url="<%= item_list_path(@item_list) %>">
         <% if @selected_default_items.empty? && @selected_original_items.empty? %>
           <p class="text-center text-gray-500">持ち物がありません</p>
         <% else %>
-          <ul class="w-full p-0 m-0">
+          <ul data-sortable-target="list" class="w-full p-0 m-0">
             <% (@selected_default_items + @selected_original_items)
                 .sort_by { |item| item.item_statuses.find_by(item_list_id: @item_list.id)&.position || 0 }
                 .each do |item| %>
-              <li class="flex items-center gap-2 p-2">
+              <li data-item-id="<%= item.id %>" class="flex items-center gap-2 p-2">
                 <span class="material-symbols-outlined cursor-move drag-handle text-base-300">drag_handle</span>
                 <%= render "item_statuses/item_status", item_status: item.item_statuses.find_by(item_list_id: @item_list.id) %>
               </li>
             <% end %>
           </ul>
         <% end %>
+        <%= hidden_field_tag :item_ids, "", id: "sortable-item-ids" %>
       </div>
     </div>
 

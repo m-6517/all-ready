@@ -6,14 +6,14 @@
     <% @item_statuses.each do |status| %>
       <div class="flex items-center gap-2 w-full max-w-md">
         <% if status.original_item %>
-          <div class="btn w-full flex justify-between items-center text-left font-normal px-4 bg-slate-50 dark:bg-base-200" onclick="openItemQuantityModal(<%= status.id %>)">
+          <div class="btn w-full flex justify-between items-center text-left font-normal shadow px-4 bg-slate-50 dark:bg-base-200" onclick="openItemQuantityModal(<%= status.id %>)">
             <%= status.original_item.name %>
             <% if status.quantity > 1 %>
               <div class="badge badge-primary badge-sm ml-2"><%= status.quantity %></div>
             <% end %>
           </div>
         <% elsif status.default_item %>
-          <div class="btn w-full flex justify-between items-center text-left font-normal px-4 bg-slate-50 dark:bg-base-200" onclick="openItemQuantityModal(<%= status.id %>)">
+          <div class="btn w-full flex justify-between items-center text-left font-normal shadow px-4 bg-slate-50 dark:bg-base-200" onclick="openItemQuantityModal(<%= status.id %>)">
             <%= status.default_item.name %>
             <% if status.quantity > 1 %>
               <div class="badge badge-primary badge-sm ml-2"><%= status.quantity %></div>
