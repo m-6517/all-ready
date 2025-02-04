@@ -40,19 +40,15 @@ ItemList.find_each do |item_list|
       default_item_id: default_item.id
     )
 
-    item_status = ItemStatus.find_or_initialize_by(
-      item_list_id: item_list.id,
-      default_item_id: default_item.id
-    )
-
-    if item_status.new_record?
-      item_status.is_checked = false
-      item_status.selected = false
-      item_status.quantity = 1
-      item_status.position = index + 1
-      item_status.save!
-    elsif item_status.position.nil?
-      item_status.update(position: index + 1)
+    unless ItemStatus.exists?(item_list_id: item_list.id, default_item_id: default_item.id)
+      ItemStatus.create!(
+        item_list_id: item_list.id,
+        default_item_id: default_item.id,
+        is_checked: false,
+        selected: false,
+        quantity: 1,
+        position: index + 1
+      )
     end
   end
 end
