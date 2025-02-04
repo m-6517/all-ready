@@ -1,29 +1,33 @@
 <dialog id="menuModal_<%= item_list.id %>" class="modal">
   <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
     <div class="modal-action flex flex-col justify-center w-full space-y-6">
-      <button class="btn btn-primary flex items-center w-full gap-4" onclick="openRenameModal(<%= item_list.id %>)">
+      <button class="btn btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary
+        dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full" onclick="openRenameModal(<%= item_list.id %>)">
         <span class="material-symbols-outlined">edit_note</span>
         リスト名を変更
       </button>
-      <button class="btn btn-primary flex items-center w-full gap-4" onclick="openCoverImageModal(<%= item_list.id %>)">
+      <button class="btn btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary
+        dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full" onclick="openCoverImageModal(<%= item_list.id %>)">
         <span class="material-symbols-outlined">image</span>
         カバー画像を設定
       </button>
       <%= form_with url: duplicate_item_list_path(item_list), method: :post, local: true do %>
-        <button type="submit" class="btn btn-primary flex items-center w-full">
+        <button type="submit" class="btn btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary
+          dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full">
           <span class="material-symbols-outlined">content_copy</span>
           リストを複製
         </button>
       <% end %>
       <% unless current_user.bag_contents.exists?(item_list_id: item_list.id) %>
-        <button class="btn btn-primary flex items-center gap-2" onclick="openShareModal(<%= item_list.id %>)">
+        <button class="btn btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary
+          dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full" onclick="openShareModal(<%= item_list.id %>)">
           <span class="material-symbols-outlined">share</span>
           リストを共有
         </button>
       <% else %>
         <% @bag_contents.each do |bag_content| %>
           <% if bag_content.item_list_id == item_list.id %>
-            <%= link_to item_list_bag_content_path(item_list.id, bag_content.uuid), class: "btn btn-secondary flex items-center gap-2", onclick: "document.getElementById('menuModal_#{item_list.id}').close();" do %>
+            <%= link_to item_list_bag_content_path(item_list.id, bag_content.uuid), class: "btn btn-primary flex items-center gap-2", onclick: "document.getElementById('menuModal_#{item_list.id}').close();" do %>
               <span class="material-symbols-outlined">share</span>
               リストを共有中
             <% end %>
