@@ -34,9 +34,10 @@
       <div class="card w-full md:w-1/2">
         <ul class="space-y-2 w-full">
           <p class="text-sm font-medium mb-4">持ち物</p>
-          <% (@bag_content.item_list.default_items + @bag_content.item_list.original_items)
-              .sort_by { |item| item.item_statuses.find_by(item_list_id: @bag_content.item_list.id)&.position || 0 }
-              .each do |item| %>
+          <% selected_items = (@bag_content.item_list.default_items + @bag_content.item_list.original_items)
+              .select { |item| item.item_statuses.find_by(item_list_id: @bag_content.item_list.id)&.selected }
+              .sort_by { |item| item.item_statuses.find_by(item_list_id: @bag_content.item_list.id)&.position || 0 } %>
+          <% selected_items.each do |item| %>
             <li class="flex items-center space-x-4">
               <span class="text-xs"><%= item.name %></span>
             </li>
