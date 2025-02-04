@@ -41,6 +41,8 @@
   </head>
 
   <body class="flex flex-col min-h-screen bg-base-100 font-zen-kaku-gothic-new text-neutral dark:text-neutral">
+    <%= render "shared/loading" %>
+
     <% if user_signed_in? %>
       <%= render "shared/header" %>
     <% else %>
