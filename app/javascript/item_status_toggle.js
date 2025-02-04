@@ -1,12 +1,13 @@
-// Turboのページ読み込み完了時に実行
-document.addEventListener("turbo:render", () => {
+// ページ読み込み時とTurboのナビゲーション後に実行
+function setupItemStatusToggle() {
+
   // アイテムの状態を切り替えるボタンを取得
   const toggleButtons = document.querySelectorAll("[data-toggle='item-status']");
   
   // ボタン、アイコン、テキストの要素を取得
-  const filterButton = document.getElementById("filterChecked");
-  const filterIcon = document.getElementById("filterIcon");
-  const filterText = document.getElementById("filterText");
+  const filterButtons = document.querySelectorAll(".filter-checked-button");
+  const filterIcons = document.querySelectorAll(".filter-icon");
+  const filterTexts = document.querySelectorAll(".filter-text");
 
   // ローカルストレージから「準備済みのアイテムを非表示」の状態を取得（デフォルトはfalse）
   let hideCheckedItems = JSON.parse(localStorage.getItem("hideCheckedItems")) || false;
@@ -14,53 +15,48 @@ document.addEventListener("turbo:render", () => {
   // アイテムの表示/非表示を更新
   function updateItemVisibility() {
     toggleButtons.forEach((button) => {
-      // 各ボタンがチェックされているかどうかを判定
-      const isChecked = button.dataset.checked === "true"; // ボタンに設定されたチェック状態を取得
       const listItem = button.closest("li"); // ボタンの親要素であるli要素を取得
 
-      if (listItem) {
-        // hideCheckedItemsがtrueで、アイテムがチェック済みならば非表示にする
-        if (hideCheckedItems && isChecked) {
-          listItem.classList.add("hidden"); // 非表示にするクラスを追加
-        } else {
-          listItem.classList.remove("hidden"); // 非表示にするクラスを削除
-        }
+      const isActive = button.classList.contains("btn-active"); // ボタンが「btn-active」かどうか判定
+
+      if (hideCheckedItems && isActive) {
+        listItem.classList.add("hidden"); // 非表示にするクラスを追加
+      } else {
+        listItem.classList.remove("hidden"); // 非表示にするクラスを削除
       }
     });
   }
 
-  // ページが最初に読み込まれた時に初期化
-  function initialize() {
-    // 初期状態でアイテムの表示/非表示を更新
-    updateItemVisibility();
-
-    // ボタンのテキストとアイコンを更新
-    if (filterButton) {
-      filterText.textContent = hideCheckedItems
-        ? "準備済みのアイテムを表示"
-        : "準備済みのアイテムを非表示";
-      filterIcon.textContent = hideCheckedItems ? "visibility" : "visibility_off";
-    }
+  // UIの状態を更新（すべてのボタンを同時に更新）
+  function updateUI() {
+    const newText = hideCheckedItems ? "準備済みのアイテムを表示" : "準備済みのアイテムを非表示";
+    const newIcon = hideCheckedItems ? "visibility" : "visibility_off";
+    
+    filterTexts.forEach(text => text.textContent = newText);
+    filterIcons.forEach(icon => icon.textContent = newIcon);
   }
 
-  // ボタンがクリックされた時
+  // フィルターの切り替え
   function toggleFilter() {
     // 状態を反転させ、表示/非表示を切り替え
     hideCheckedItems = !hideCheckedItems;
-
     // 新しい状態をローカルストレージに保存
     localStorage.setItem("hideCheckedItems", JSON.stringify(hideCheckedItems));
-
-    // アイコンとテキストを更新
-    filterIcon.textContent = hideCheckedItems ? "visibility" : "visibility_off";
-    filterText.textContent = hideCheckedItems ? "準備済みのアイテムを表示" : "準備済みのアイテムを非表示";
-
-    // アイテムの表示/非表示を再更新
+    updateUI();
     updateItemVisibility();
   }
 
-  filterButton.addEventListener("click", toggleFilter);
+  // 初期状態の設定
+  updateUI();
+  updateItemVisibility();
 
-  // ページが読み込まれた時に初期化処理を実行
-  initialize();
-});
+  // すべてのフィルターボタンにイベントリスナーを設定
+  filterButtons.forEach(button => {
+    button.removeEventListener("click", toggleFilter);
+    button.addEventListener("click", toggleFilter);
+  });
+}
+
+// DOMContentLoadedとTurboのナビゲーション後にセットアップを実行
+document.addEventListener("DOMContentLoaded", setupItemStatusToggle);
+document.addEventListener("turbo:render", setupItemStatusToggle);
