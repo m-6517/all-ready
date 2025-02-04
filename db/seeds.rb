@@ -28,7 +28,7 @@ default_items = [
   { name: "イヤホン" },
   { name: "ヘッドホン" },
   { name: "めがね" },
-  { name: "コンタクトレンズ" },
+  { name: "コンタクトレンズ" }
 
 ].map do |item_data|
   DefaultItem.find_or_create_by(name: item_data[:name])
