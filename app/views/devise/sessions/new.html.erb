@@ -29,7 +29,7 @@
       </div>
 
       <div class="actions">
-        <%= f.submit "ログイン", class: "btn btn-primary w-full mt-4" %>
+        <%= f.submit "ログイン", class: "relative flex items-center justify-center w-full py-2.5 transition-all ease-in duration-300 bg-white dark:bg-base-200 rounded-lg group-hover:bg-base-200 dark:group-hover:bg-base-300 text-sm font-medium text-white rounded-lg group bg-gradient-to-tl from-primary to-cyan-500 hover:bg-gradient-to-br dark:text-neutral mt-4" %>
       </div>
 
       <%- if devise_mapping.registerable? && controller_name != 'registrations' %>

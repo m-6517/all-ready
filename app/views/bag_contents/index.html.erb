@@ -1,5 +1,5 @@
 <% content_for(:title, t('.title')) %>
-<div class="container mx-auto pt-3 px-2 md:px-12 py-24">
+<div class="container mx-auto pt-3 md:pl-12 py-24">
   <div class="flex flex-col justify-start items-start bg-base-100">
     <div class="flex flex-col items-start bg-base-100">
       <div class="flex items-center mb-6">
@@ -18,7 +18,7 @@
     </div>
 
     <% if @bag_contents.present? %>
-      <div class="flex flex-wrap justify-start gap-5 md:gap-8 mt-6 md:mt-12">
+      <div class="flex flex-wrap justify-start gap-5 md:gap-10 mt-6 md:mt-12">
         <%= render @bag_contents %>
       </div>
     <% else %>

@@ -15,8 +15,8 @@
             <span class="material-symbols-outlined swap-on" id="theme-toggle-dark-icon">dark_mode</span>
           </label>
         </div>
-        <%= link_to new_user_session_path, class: "btn btn-sm md:btn btn-primary text-sm text-white md:text-white md:px-5 flex items-center" do %>
-          <span class="material-symbols-outlined md:mr-2">login</span>
+        <%= link_to new_user_session_path, class: "w-full px-2 md:px-4 py-2 flex items-center justify-center gap-2 transition-all ease-in duration-300 bg-white dark:bg-base-200 rounded-lg shadow-md text-sm md:text-base font-medium text-white bg-gradient-to-tl from-primary to-cyan-500 hover:bg-gradient-to-br hover:shadow-lg dark:text-neutral" do %>
+          <span class="material-symbols-outlined">login</span>
           <%= t('header.login') %>
         <% end %>
       </div>

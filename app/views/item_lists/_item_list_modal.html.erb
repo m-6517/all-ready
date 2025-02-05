@@ -1,116 +1,124 @@
 <dialog id="menuModal_<%= item_list.id %>" class="modal">
-  <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
-    <div class="modal-action flex flex-col justify-center w-full space-y-6">
-      <button class="btn btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary
-        dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full" onclick="openRenameModal(<%= item_list.id %>)">
+  <div class="modal-box bg-slate-50 w-96 mx-auto px-4 dark:bg-base-200">
+    <div class="p-4 flex flex-col justify-center w-full space-y-8">
+      <button class="btn w-full btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary
+        dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral" onclick="openRenameModal(<%= item_list.id %>)">
         <span class="material-symbols-outlined">edit_note</span>
         リスト名を変更
       </button>
-      <button class="btn btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary
-        dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full" onclick="openCoverImageModal(<%= item_list.id %>)">
+      <button class="btn w-full btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary
+        dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral" onclick="openCoverImageModal(<%= item_list.id %>)">
         <span class="material-symbols-outlined">image</span>
         カバー画像を設定
       </button>
-      <%= form_with url: duplicate_item_list_path(item_list), method: :post, local: true do %>
-        <button type="submit" class="btn btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary
-          dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full">
+      <%= form_with url: duplicate_item_list_path(item_list), method: :post, local: true, class: "w-full" do %>
+        <button type="submit" class="btn w-full btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary
+          dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral">
           <span class="material-symbols-outlined">content_copy</span>
           リストを複製
         </button>
       <% end %>
       <% unless current_user.bag_contents.exists?(item_list_id: item_list.id) %>
-        <button class="btn btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary
-          dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral w-full" onclick="openShareModal(<%= item_list.id %>)">
+        <button class="btn w-full btn-outline text-primary bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary
+          dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral" onclick="openShareModal(<%= item_list.id %>)">
           <span class="material-symbols-outlined">share</span>
           リストを共有
         </button>
       <% else %>
         <% @bag_contents.each do |bag_content| %>
           <% if bag_content.item_list_id == item_list.id %>
-            <%= link_to item_list_bag_content_path(item_list.id, bag_content.uuid), class: "btn btn-primary flex items-center gap-2", onclick: "document.getElementById('menuModal_#{item_list.id}').close();" do %>
+            <%= link_to item_list_bag_content_path(item_list.id, bag_content.uuid), class: "btn w-full btn-primary", onclick: "document.getElementById('menuModal_#{item_list.id}').close();" do %>
               <span class="material-symbols-outlined">share</span>
               リストを共有中
             <% end %>
           <% end %>
         <% end %>
       <% end %>
-      <button class="btn btn-base-300 flex items-center gap-2 dark:btn-outline" onclick="openDeleteModal(<%= item_list.id %>)">
+      <button class="btn w-full btn-base-300 dark:btn-outline" onclick="openDeleteModal(<%= item_list.id %>)">
         <span class="material-symbols-outlined">playlist_remove</span>
         リストを削除
       </button>
-      <button class="btn btn-ghost" onclick="document.getElementById('menuModal_<%= item_list.id %>').close()">キャンセル</button>
+      <button class="btn w-full btn-ghost" onclick="document.getElementById('menuModal_<%= item_list.id %>').close()">キャンセル</button>
     </div>
   </div>
 </dialog>
 
 <dialog id="renameModal_<%= item_list.id %>" class="modal">
-  <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
-    <%= form_with model: item_list, url: item_list_path(item_list), method: :patch, local: true do |f| %>
-      <label class="form-control w-full max-w-xs">
-        <input type="text" name="item_list[name]" class="input input-bordered w-full max-w-xs" value="<%= item_list.name %>" required />
-      </label>
-      <div class="modal-action mt-4">
-        <%= f.submit '決定', class: "btn btn-primary w-full" %>
+  <div class="modal-box bg-slate-50 w-96 mx-auto p-0 dark:bg-base-200">
+    <div class="px-4 py-12 flex flex-col justify-center w-full space-y-6">
+      <%= form_with model: item_list, url: item_list_path(item_list), method: :patch, local: true do |f| %>
+        <label class="form-control w-full max-w-xs">
+          <input type="text" name="item_list[name]" class="input input-bordered w-full max-w-xs" value="<%= item_list.name %>" required />
+        </label>
+        <div class="modal-action mt-4">
+          <%= f.submit '決定', class: "btn w-full btn-primary" %>
+        </div>
+      <% end %>
+      <div class="modal-action">
+        <button class="btn w-full btn-ghost" onclick="document.getElementById('renameModal_<%= item_list.id %>').close()">キャンセル</button>
       </div>
-    <% end %>
-    <div class="modal-action">
-      <button class="btn btn-ghost" onclick="document.getElementById('renameModal_<%= item_list.id %>').close()">キャンセル</button>
     </div>
   </div>
 </dialog>
 
 <dialog id="coverImageModal_<%= item_list.id %>" class="modal">
-  <div class="modal-box bg-slate-50 md:w-2/3 mx-auto flex flex-col items-center p-10 dark:bg-base-200">
-    <%= form_with model: item_list, url: item_list_path(item_list), method: :patch, class: "w-full", local: true do |f| %>
-      <div>
-        <%= f.file_field :cover_image, class: "file-input file-input-bordered file-input-primary file-input-sm w-full mt-2 mb-2 dark:file-input-secondary", accept: 'image/*' %>
-        <%= f.hidden_field :cover_image_cache %>
+  <div class="modal-box bg-slate-50 md:w-2/3 mx-auto p-0 dark:bg-base-200">
+    <div class="px-4 py-12 flex flex-col justify-center w-full space-y-6">
+      <%= form_with model: item_list, url: item_list_path(item_list), method: :patch, class: "w-full", local: true do |f| %>
+        <div>
+          <%= f.file_field :cover_image, class: "file-input file-input-bordered file-input-primary file-input-sm w-full mt-2 mb-2 dark:file-input-secondary", accept: 'image/*' %>
+          <%= f.hidden_field :cover_image_cache %>
+        </div>
+        <div class="flex mt-4 justify-end">
+          <%= f.submit t('item_lists.new.submit_label'), class: "btn w-full btn-primary" %>
+        </div>
+      <% end %>
+      <div class="modal-action">
+        <button class="btn w-full btn-ghost" onclick="document.getElementById('coverImageModal_<%= item_list.id %>').close()">キャンセル</button>
       </div>
-      <div class="flex mt-4 justify-end">
-        <%= f.submit t('item_lists.new.submit_label'), class: "btn btn-primary w-full" %>
-      </div>
-    <% end %>
-    <div class="modal-action">
-      <button class="btn btn-ghost" onclick="document.getElementById('coverImageModal_<%= item_list.id %>').close()">キャンセル</button>
     </div>
   </div>
 </dialog>
 
 <dialog id="shareModal_<%= item_list.id %>" class="modal">
-  <div class="modal-box bg-slate-50 md:w-2/3 mx-auto flex flex-col items-center px-10 py-6 dark:bg-base-200">
-    <h2 class="text-base font-medium mb-4">
-      <%= link_to item_list.name, item_list_path(item_list) %>
-    </h2>
-    <%= form_with model: @bag_content || BagContent.new(item_list_id: item_list.id), url: item_list_bag_contents_path(item_list), class: "w-full", local: true do |f| %>
-      <%= f.hidden_field :item_list_id, value: item_list.id %>
-      <div>
-        <%= f.label :tag_name, "タグ　<span class='text-xs text-gray-500 dark:text-neutral'>(カンマ区切り・3つまで)</span>".html_safe, class: "block text-sm font-medium mb-2" %>
-        <%= f.text_field :tag_name, placeholder: "例：秋, 温泉, 食べ歩き", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200" %>
+  <div class="modal-box bg-slate-50 md:w-2/3 mx-auto p-0 dark:bg-base-200">
+    <div class="px-4 py-12 flex flex-col justify-center w-full space-y-6">
+      <h2 class="text-base font-medium mb-4">
+        <%= link_to item_list.name, item_list_path(item_list) %>
+      </h2>
+      <%= form_with model: @bag_content || BagContent.new(item_list_id: item_list.id), url: item_list_bag_contents_path(item_list), class: "w-full", local: true do |f| %>
+        <%= f.hidden_field :item_list_id, value: item_list.id %>
+        <div>
+          <%= f.label :tag_name, "タグ　<span class='text-xs text-gray-500 dark:text-neutral'>(カンマ区切り・3つまで)</span>".html_safe, class: "block text-sm font-medium mb-2" %>
+          <%= f.text_field :tag_name, placeholder: "例：秋, 温泉, 食べ歩き", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200" %>
+        </div>
+        <div class="mt-4">
+          <%= f.label :body, class: "block text-sm font-medium mb-2" %>
+          <%= f.text_area :body, placeholder: "こだわりポイント、おすすめのアイテムなど", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200", rows: 5 %>
+        </div>
+        <div class="modal-action mt-4">
+          <%= f.submit t('bag_contents.new.submit_label'), class: "btn w-full btn-primary" %>
+        </div>
+        <p class="text-xs text-accent mt-4">※空の持ち物リストは共有できません</p>
+      <% end %>
+      <div class="modal-action">
+        <button class="btn w-full btn-ghost" onclick="document.getElementById('shareModal_<%= item_list.id %>').close()">キャンセル</button>
       </div>
-      <div class="mt-4">
-        <%= f.label :body, class: "block text-sm font-medium mb-2" %>
-        <%= f.text_area :body, placeholder: "こだわりポイント、おすすめのアイテムなど", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200", rows: 5 %>
-      </div>
-      <div class="modal-action mt-4">
-        <%= f.submit t('bag_contents.new.submit_label'), class: "btn btn-primary w-full" %>
-      </div>
-      <p class="text-xs text-accent mt-4">※空の持ち物リストは共有できません</p>
-    <% end %>
-    <div class="modal-action">
-      <button class="btn btn-ghost" onclick="document.getElementById('shareModal_<%= item_list.id %>').close()">キャンセル</button>
     </div>
   </div>
 </dialog>
 
 <dialog id="deleteModal_<%= item_list.id %>" class="modal">
-  <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
-    <h3 class="font-semibold text-base text-accent">リストを削除しますか？</h3>
-    <div class="modal-action mt-4">
-      <form method="post" action="<%= item_list_path(item_list) %>">
-        <%= hidden_field_tag :_method, 'delete' %>
-        <button class="btn btn-accent" type="submit">削除する</button>
-      </form>
-      <button class="btn" onclick="document.getElementById('deleteModal_<%= item_list.id %>').close()">キャンセル</button>
+  <div class="modal-box bg-slate-50 w-96 mx-auto p-0 dark:bg-base-200">
+    <div class="px-4 py-12 flex flex-col justify-center w-full space-y-6">
+      <h3 class="font-semibold text-base text-accent">リストを削除しますか？</h3>
+      <div class="modal-action mt-4">
+        <form method="post" action="<%= item_list_path(item_list) %>">
+          <%= hidden_field_tag :_method, 'delete' %>
+          <button class="btn w-full btn-accent" type="submit">削除する</button>
+        </form>
+        <button class="btn w-full" onclick="document.getElementById('deleteModal_<%= item_list.id %>').close()">キャンセル</button>
+      </div>
     </div>
   </div>
 </dialog>

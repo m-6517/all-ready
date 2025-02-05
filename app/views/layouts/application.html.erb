@@ -54,7 +54,7 @@
         <%= render 'shared/menu' %>
       <% end %>
 
-      <main class="<%= request.path == "/" ? "flex-1" : "flex-1 p-4 md:pl-64" %>">
+      <main class="<%= request.path == "/" ? "flex-1" : "flex-1 p-4 pb-28 md:pb-4 md:pl-64" %>">
         <%= render "shared/flash_messages" %>
         <%= yield %>
       </main>
