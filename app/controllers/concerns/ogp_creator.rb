@@ -38,58 +38,18 @@ class OgpCreator
     image_path ||= DEFAULT_IMAGE_PATH
 
     # ベース画像を読み込む
-    begin
-      image = MiniMagick::Image.open(BASE_IMAGE_PATH)
-    rescue MiniMagick::Error => e
-      Rails.logger.error "Failed to open base image: #{e.message}"
-      Rails.logger.debug "Base image path: #{BASE_IMAGE_PATH}"
-      raise "Base image not found"
-    rescue StandardError => e
-      Rails.logger.error "Unexpected error occurred while opening base image: #{e.message}"
-      Rails.logger.debug "Base image path: #{BASE_IMAGE_PATH}"
-      raise "Failed to open base image"
-    end
+    image = MiniMagick::Image.open(BASE_IMAGE_PATH)
 
     # 投稿画像をオーバーレイ
-    begin
-      overlay_image = MiniMagick::Image.open(image_path)
-    rescue MiniMagick::Error => e
-      Rails.logger.error "Failed to open overlay image: #{e.message}"
-      Rails.logger.debug "Overlay image path: #{image_path}"
-      raise "Overlay image not found"
-    rescue StandardError => e
-      Rails.logger.error "Unexpected error occurred while opening overlay image: #{e.message}"
-      Rails.logger.debug "Overlay image path: #{image_path}"
-      raise "Failed to open overlay image"
-    end
+    overlay_image = MiniMagick::Image.open(image_path)
 
     # オーバーレイ画像をリサイズ
-    begin
-      overlay_image.resize "570x570"
-    rescue MiniMagick::Error => e
-      Rails.logger.error "Failed to resize overlay image: #{e.message}"
-      Rails.logger.debug "Overlay image path: #{image_path}"
-      raise "Failed to resize overlay image"
-    rescue StandardError => e
-      Rails.logger.error "Unexpected error occurred while resizing overlay image: #{e.message}"
-      Rails.logger.debug "Overlay image path: #{image_path}"
-      raise "Failed to resize overlay image"
-    end
+    overlay_image.resize "570x570"
 
     # 画像を合成
-    begin
-      image = image.composite(overlay_image) do |c|
-        c.gravity "west"
-        c.geometry "+30+0"
-      end
-    rescue MiniMagick::Error => e
-      Rails.logger.error "Failed to composite images: #{e.message}"
-      Rails.logger.debug "Base image path: #{BASE_IMAGE_PATH}, Overlay image path: #{image_path}"
-      raise "Failed to composite images"
-    rescue StandardError => e
-      Rails.logger.error "Unexpected error occurred while compositing images: #{e.message}"
-      Rails.logger.debug "Base image path: #{BASE_IMAGE_PATH}, Overlay image path: #{image_path}"
-      raise "Failed to composite images"
+    image = image.composite(overlay_image) do |c|
+      c.gravity "west"
+      c.geometry "+30+0"
     end
 
     # テキストを合成
@@ -118,7 +78,7 @@ class OgpCreator
     end
 
     # 生成した画像をCarrierWaveを通じて保存
-    temp_file = Tempfile.new("ogp", ".png")
+    temp_file = Tempfile.create(['ogp', '.png'])
     image.write(temp_file.path)
 
     if recommend
