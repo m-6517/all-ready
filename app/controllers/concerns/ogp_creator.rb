@@ -14,6 +14,10 @@ class OgpCreator
   DEFAULT_IMAGE_PATH = "./app/assets/images/placeholder.png"
 
   def self.build(item, place, user_name, recommend: nil, bag_content: nil)
+    # 既存のOGP画像がある場合はそれを返す
+    return recommend.ogp.url if recommend&.ogp.present?
+    return bag_content.ogp.url if bag_content&.ogp.present?
+
     if recommend
       place_text = "#{recommend.place}のマストアイテム"
       item_text = prepare_text(recommend.item)
@@ -73,12 +77,24 @@ class OgpCreator
       config.draw "text #{TEXT_POSITION_USER} '#{user_text}'"
     end
 
-    # CarrierWaveを使用し画像を保存
-    uploader = Recommend.new.ogp
-    uploader.store!(image)
+    # 生成した画像をCarrierWaveを通じて保存
+    temp_file = Tempfile.new("ogp", ".png")
+    image.write(temp_file.path)
 
-    # 保存したOGP画像のURLを取得
-    uploader.url
+    if recommend
+      recommend.ogp = temp_file
+      recommend.save!
+      temp_file.close
+      recommend.ogp.url
+    elsif bag_content
+      bag_content.ogp = temp_file
+      bag_content.save!
+      temp_file.close
+      bag_content.ogp.url
+    else
+      temp_file.close
+      image.path
+    end
   end
 
   private
