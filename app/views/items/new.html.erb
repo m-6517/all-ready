@@ -10,7 +10,8 @@
         <div class="flex flex-col md:flex-row bg-slate-50 rounded shadow px-6 pl-2 md:pl-12 py-6 dark:bg-base-200">
           <div class="flex flex-col items-start gap-4 md:w-1/2">
             <h3 class="text-sm">既存のアイテム</h3>
-            <% @default_items.each do |item| %>
+            <% @sorted_items = @default_items %>
+            <% @sorted_items.each do |item| %>
               <div class="flex items-center gap-2 text-nowrap">
                 <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
                 <%= hidden_field_tag "item_list[default_item_ids][]", nil %>
