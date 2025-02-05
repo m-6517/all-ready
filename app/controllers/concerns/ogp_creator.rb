@@ -78,7 +78,7 @@ class OgpCreator
     end
 
     # 生成した画像をCarrierWaveを通じて保存
-    temp_file = Tempfile.create(['ogp', '.png'])
+    temp_file = Tempfile.create([ "ogp", ".png" ])
     image.write(temp_file.path)
 
     if recommend
