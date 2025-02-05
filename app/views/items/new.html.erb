@@ -1,5 +1,5 @@
 <% content_for(:title, t('.title')) %>
-<div class="container mx-auto pt-3 md:pl-12 py-24">
+<div class="container mx-auto pt-3 pl-2 md:pl-12 py-24">
   <div class="flex flex-col md:flex-row w-full">
     <div class="flex flex-col justify-center w-full md:w-2/3 md:mr-8">
       <%= form_with(model: @item_list, local: true) do |f| %>
@@ -7,7 +7,7 @@
           <h1 class="text-base md:text-lg font-medium text-center mb-6 md:mb-0"><%= @item_list.name %></h1>
           <%= f.submit "リストを保存", class: "btn btn-primary" %>
         </div>
-        <div class="flex flex-col md:flex-row bg-slate-50 rounded shadow px-6 md:pl-12 py-6 dark:bg-base-200">
+        <div class="flex flex-col md:flex-row bg-slate-50 rounded shadow px-6 pl-2 md:pl-12 py-6 dark:bg-base-200">
           <div class="flex flex-col items-start gap-4 md:w-1/2">
             <h3 class="text-sm">既存のアイテム</h3>
             <% @default_items.each do |item| %>

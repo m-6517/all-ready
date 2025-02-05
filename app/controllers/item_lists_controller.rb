@@ -12,12 +12,12 @@ class ItemListsController < ApplicationController
     @selected_default_items = DefaultItem.joins(:item_statuses)
                                          .where(item_statuses: { item_list_id: @item_list.id, selected: true })
                                          .includes(:item_statuses)
-                                         .order("item_statuses.position")
+                                         .order("item_statuses.position ASC")
 
     @selected_original_items = OriginalItem.joins(:item_statuses)
                                            .where(item_statuses: { item_list_id: @item_list.id, selected: true })
                                            .includes(:item_statuses)
-                                           .order("item_statuses.position")
+                                           .order("item_statuses.position ASC")
   end
 
   def new
