@@ -109,16 +109,13 @@
 </dialog>
 
 <dialog id="deleteModal_<%= item_list.id %>" class="modal">
-  <div class="modal-box bg-slate-50 w-96 mx-auto p-0 dark:bg-base-200">
-    <div class="px-4 py-12 flex flex-col justify-center w-full space-y-6">
+  <div class="modal-box bg-slate-50 w-96 mx-auto px-4 dark:bg-base-200">
+    <div class="p-4 flex flex-col justify-center w-full space-y-8">
       <h3 class="font-semibold text-base text-accent">リストを削除しますか？</h3>
-      <div class="modal-action mt-4">
-        <form method="post" action="<%= item_list_path(item_list) %>">
-          <%= hidden_field_tag :_method, 'delete' %>
-          <button class="btn w-full btn-accent" type="submit">削除する</button>
-        </form>
-        <button class="btn w-full" onclick="document.getElementById('deleteModal_<%= item_list.id %>').close()">キャンセル</button>
-      </div>
+      <%= form_with url: item_list_path(item_list), method: :delete, class: "w-full" do |f| %>
+        <button class="btn w-full btn-accent text-white font-normal" type="submit">削除する</button>
+      <% end %>
+      <button class="btn w-full btn-ghost font-normal" onclick="document.getElementById('deleteModal_<%= item_list.id %>').close()">キャンセル</button>
     </div>
   </div>
 </dialog>
