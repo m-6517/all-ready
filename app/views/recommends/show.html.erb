@@ -1,6 +1,6 @@
 <% content_for(:title, t('.title')) %>
 <div class="flex flex-col items-center p-5">
-  <div class="flex items-center w-full max-w-xl justify-between">
+  <div class="flex items-center w-full md:w-2/3 justify-between">
     <div class="card bg-slate-50 w-full shadow rounded p-6 dark:bg-base-200">
       <div class="flex flex-col">
         <div class="text-base md:text-lg mb-4"><%= "#{@recommend.item}" %></div>
@@ -16,7 +16,7 @@
 
         <% if @recommend.item_image? %>
           <div class="flex justify-start">
-            <%= image_tag @recommend.item_image_url, class: "h-40 w-auto object-contain rounded shadow mt-8" %>
+            <%= image_tag @recommend.item_image_url, class: "h-50 w-auto object-contain rounded shadow mt-8" %>
           </div>
         <% end %>
       </div>
