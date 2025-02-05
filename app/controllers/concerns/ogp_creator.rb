@@ -38,18 +38,58 @@ class OgpCreator
     image_path ||= DEFAULT_IMAGE_PATH
 
     # ベース画像を読み込む
-    image = MiniMagick::Image.open(BASE_IMAGE_PATH)
+    begin
+      image = MiniMagick::Image.open(BASE_IMAGE_PATH)
+    rescue MiniMagick::Error => e
+      Rails.logger.error "Failed to open base image: #{e.message}"
+      Rails.logger.debug "Base image path: #{BASE_IMAGE_PATH}"
+      raise "Base image not found"
+    rescue StandardError => e
+      Rails.logger.error "Unexpected error occurred while opening base image: #{e.message}"
+      Rails.logger.debug "Base image path: #{BASE_IMAGE_PATH}"
+      raise "Failed to open base image"
+    end
 
     # 投稿画像をオーバーレイ
-    overlay_image = MiniMagick::Image.open(image_path)
+    begin
+      overlay_image = MiniMagick::Image.open(image_path)
+    rescue MiniMagick::Error => e
+      Rails.logger.error "Failed to open overlay image: #{e.message}"
+      Rails.logger.debug "Overlay image path: #{image_path}"
+      raise "Overlay image not found"
+    rescue StandardError => e
+      Rails.logger.error "Unexpected error occurred while opening overlay image: #{e.message}"
+      Rails.logger.debug "Overlay image path: #{image_path}"
+      raise "Failed to open overlay image"
+    end
 
     # オーバーレイ画像をリサイズ
-    overlay_image.resize "570x570"
+    begin
+      overlay_image.resize "570x570"
+    rescue MiniMagick::Error => e
+      Rails.logger.error "Failed to resize overlay image: #{e.message}"
+      Rails.logger.debug "Overlay image path: #{image_path}"
+      raise "Failed to resize overlay image"
+    rescue StandardError => e
+      Rails.logger.error "Unexpected error occurred while resizing overlay image: #{e.message}"
+      Rails.logger.debug "Overlay image path: #{image_path}"
+      raise "Failed to resize overlay image"
+    end
 
     # 画像を合成
-    image = image.composite(overlay_image) do |c|
-      c.gravity "west"
-      c.geometry "+30+0"
+    begin
+      image = image.composite(overlay_image) do |c|
+        c.gravity "west"
+        c.geometry "+30+0"
+      end
+    rescue MiniMagick::Error => e
+      Rails.logger.error "Failed to composite images: #{e.message}"
+      Rails.logger.debug "Base image path: #{BASE_IMAGE_PATH}, Overlay image path: #{image_path}"
+      raise "Failed to composite images"
+    rescue StandardError => e
+      Rails.logger.error "Unexpected error occurred while compositing images: #{e.message}"
+      Rails.logger.debug "Base image path: #{BASE_IMAGE_PATH}, Overlay image path: #{image_path}"
+      raise "Failed to composite images"
     end
 
     # テキストを合成
