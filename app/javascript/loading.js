@@ -1,4 +1,9 @@
-document.addEventListener('turbo:load', ()=>{
+document.addEventListener('turbo:load', handleSpinner);
+document.addEventListener('turbo:render', handleSpinner);
+
+function handleSpinner() {
   const spinner = document.getElementById("loading");
-  spinner.classList.add("loaded");
-})
+  if (spinner) {
+    spinner.classList.add("loaded");
+  }
+}
