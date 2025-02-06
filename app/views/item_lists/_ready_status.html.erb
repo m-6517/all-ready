@@ -1,8 +1,9 @@
-<div id="<%= dom_id(item_list, :ready_status) %>" class="flex justify-end mt-6 w-full flex-grow">
-  <div class="w-1/2 md:w-1/3 bg-base-300 dark:bg-base-300 rounded-full overflow-hidden h-5 md:h-7">
+<div id="<%= dom_id(item_list, :ready_status) %>" class="flex justify-end w-full">
+  <div class="bg-base-300 dark:bg-base-300 rounded-full overflow-hidden h-5 md:h-7 w-full relative">
     <div class="flex flex-col justify-center rounded-full bg-gradient-to-r from-cyan-500 to-primary text-sm text-white text-center h-5 md:h-7 leading-none transition duration-500"
           style="width: <%= item_list.ready_status %>%; background-color: <%= item_list.ready_status == 0 ? 'text-primary' : 'primary' %>;">
-      <%= content_tag :span, (item_list.ready_status == 100 ? 'All Ready!' : item_list.ready_status.to_s + '%'), class: item_list.ready_status == 0 ? 'text-primary dark:text-neutral pl-20 md:pl-22' : '' %>
+      <%= content_tag :span, (item_list.ready_status == 100 ? 'All Ready!' : item_list.ready_status.to_s + '%'),
+        class: item_list.ready_status == 0 ? 'absolute left-1/2 transform -translate-x-1/2 text-primary dark:text-neutral' : '' %>
     </div>
   </div>
 </div>

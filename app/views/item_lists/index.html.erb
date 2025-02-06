@@ -25,7 +25,7 @@
   <div class="modal-box bg-slate-50 w-96 mx-auto flex flex-col items-center py-12 dark:bg-base-200">
     <%= form_with model: @item_list, url: item_lists_path, local: true do |f| %>
       <label class="form-control w-full max-w-xs">
-        <input type="text" placeholder="リストの名前" name="item_list[name]" class="input input-bordered w-full max-w-xs" required />
+        <input type="text" placeholder="リストの名前" name="item_list[name]" class="input input-bordered w-full max-w-xs dark:bg-base-200" required />
       </label>
       <div class="mt-4">
         <%= f.submit '決定', class: "btn btn-primary w-full" %>
