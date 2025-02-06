@@ -28,41 +28,43 @@ class ItemList < ApplicationRecord
     duplicated_list.ready_status = 0
     duplicated_list.cover_image = nil
     duplicated_list.save!
-
+  
     self.original_items.each do |original_item|
       duplicated_original_item = original_item.dup
       duplicated_original_item.save!
-
-      item_list_original_item = ItemListOriginalItem.create!(
+  
+      ItemListOriginalItem.create!(
         item_list: duplicated_list,
         original_item: duplicated_original_item
       )
-
+  
       original_item_status = ItemStatus.find_by(item_list_id: self.id, original_item_id: original_item.id)
-
+  
       if original_item_status && original_item_status.selected
         ItemStatus.create!(
           item_list_id: duplicated_list.id,
           original_item_id: duplicated_original_item.id,
-          selected: true
+          selected: original_item_status.selected,
+          position: original_item_status.position
         )
       end
     end
-
+  
     self.default_items.each do |default_item|
       default_item_status = ItemStatus.find_by(item_list_id: self.id, default_item_id: default_item.id)
-
       if default_item_status
         item_status = ItemStatus.create!(
           item_list_id: duplicated_list.id,
           default_item_id: default_item.id,
-          selected: default_item_status.selected
+          selected: default_item_status.selected,
+          position: default_item_status.position
         )
       end
     end
-
+  
     duplicated_list
   end
+  
 
   def clear_checked_items
     item_statuses.where(is_checked: true).update_all(is_checked: false)
