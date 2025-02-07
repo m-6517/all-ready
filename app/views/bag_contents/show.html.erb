@@ -10,10 +10,8 @@
           <p class="text-xs md:text-sm text-left"><%= @bag_content.user.name %></p>
         </div>
 
-        <% if @bag_content.tag_name.present? %>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <%= render @bag_content.tags %>
-          </div>
+        <% if @bag_content.tags.present? %>
+          <%= render 'bag_contents/tags', bag_content: @bag_content %>
         <% end %>
 
         <% if @bag_content.body.present? %>
