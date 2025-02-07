@@ -2,25 +2,25 @@
   <div class="h-full px-3 py-4 bg-base-200 dark:bg-base-200 dark:text-neutral">
     <ul class="space-y-6 font-medium">
       <li>
-        <%= link_to recommends_path, class: "flex items-center p-4 rounded group #{request.path.start_with?('/recommends') ? 'bg-gray-200 dark:bg-[#263448] text-primary font-bold' : 'hover:bg-gray-200 dark:hover:bg-base-300 text-neutral'}", style: ("font-variation-settings: 'FILL' 1;" if request.path.start_with?('/recommends')) do %>
+        <%= link_to recommends_path, class: "flex items-center p-4 rounded group #{request.path.start_with?('/recommends') ? 'bg-gray-200 dark:bg-[#D9D9D9] text-primary font-bold' : 'hover:bg-gray-200 dark:hover:bg-base-300 text-neutral'}", style: ("font-variation-settings: 'FILL' 1;" if request.path.start_with?('/recommends')) do %>
           <span class="material-symbols-outlined text-2xl">lightbulb_2</span>
           <span class="flex-1 ml-3 whitespace-nowrap text-base">マストアイテム</span>
         <% end %>
       </li>
       <li>
-        <%= link_to bag_contents_path, class: "flex items-center p-4 rounded group #{request.path.include?('/bag_contents') ? 'bg-gray-200 dark:bg-[#263448] text-primary font-bold' : 'hover:bg-gray-200 dark:hover:bg-base-300 text-neutral'}", style: ("font-variation-settings: 'FILL' 1;" if request.path.include?('/bag_contents')) do %>
+        <%= link_to bag_contents_path, class: "flex items-center p-4 rounded group #{request.path.include?('/bag_contents') ? 'bg-gray-200 dark:bg-[#D9D9D9] text-primary font-bold' : 'hover:bg-gray-200 dark:hover:bg-base-300 text-neutral'}", style: ("font-variation-settings: 'FILL' 1;" if request.path.include?('/bag_contents')) do %>
           <span class="material-symbols-outlined text-2xl">work</span>
           <span class="flex-1 ml-3 whitespace-nowrap text-base">みんなの持ち物</span>
         <% end %>
       </li>
       <li>
-        <%= link_to item_lists_path, class: "flex items-center p-4 rounded group #{(request.path.start_with?('/item_lists') && !request.path.include?('/bag_contents')) ? 'bg-gray-200 dark:bg-[#263448] text-primary font-bold' : 'hover:bg-gray-200 dark:hover:bg-base-300 text-neutral'}", style: ("font-variation-settings: 'FILL' 1;" if request.path.start_with?('/item_lists')) do %>
+        <%= link_to item_lists_path, class: "flex items-center p-4 rounded group #{(request.path.start_with?('/item_lists') && !request.path.include?('/bag_contents')) ? 'bg-gray-200 dark:bg-[#D9D9D9] text-primary font-bold' : 'hover:bg-gray-200 dark:hover:bg-base-300 text-neutral'}", style: ("font-variation-settings: 'FILL' 1;" if request.path.start_with?('/item_lists')) do %>
           <span class="material-symbols-outlined text-2xl">playlist_add</span>
           <span class="flex-1 ml-3 whitespace-nowrap text-base">持ち物リスト</span>
         <% end %>
       </li>
       <li>
-        <%= link_to bookmarks_path, class: "flex items-center p-4 rounded group #{request.path.include?('/bookmarks') ? 'bg-gray-200 dark:bg-[#263448] text-primary font-bold' : 'hover:bg-gray-200 dark:hover:bg-base-300 text-neutral'}", style: ("font-variation-settings: 'FILL' 1;" if request.path.include?('/bookmarks')) do %>
+        <%= link_to bookmarks_path, class: "flex items-center p-4 rounded group #{request.path.include?('/bookmarks') ? 'bg-gray-200 dark:bg-[#D9D9D9] text-primary font-bold' : 'hover:bg-gray-200 dark:hover:bg-base-300 text-neutral'}", style: ("font-variation-settings: 'FILL' 1;" if request.path.include?('/bookmarks')) do %>
           <span class="material-symbols-outlined text-2xl">bookmark</span>
           <span class="flex-1 ml-3 whitespace-nowrap text-base">ブックマーク</span>
         <% end %>
@@ -31,22 +31,22 @@
 
 <div class="fixed bottom-0 left-0 z-50 w-full h-24 bg-base-200 border-t border-gray-200 md:hidden">
   <div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
-    <%= link_to recommends_path, class: "inline-flex flex-col items-center justify-center px-5 group #{request.path.start_with?('/recommends') ? 'bg-gray-200 dark:bg-[#263448] text-primary font-bold' : 'hover:bg-gray-50 dark:hover:bg-base-300 text-neutral'}", style: ("font-variation-settings: 'FILL' 1;" if request.path.start_with?('/recommends')) do %>
+    <%= link_to recommends_path, class: "inline-flex flex-col items-center justify-center px-5 group #{request.path.start_with?('/recommends') ? 'bg-gray-200 dark:bg-[#D9D9D9] text-primary font-bold' : 'hover:bg-gray-50 dark:hover:bg-base-300 text-neutral'}", style: ("font-variation-settings: 'FILL' 1;" if request.path.start_with?('/recommends')) do %>
       <span class="material-symbols-outlined text-2xl mb-2">lightbulb_2</span>
       <span class="text-[8px] text-nowrap">マストアイテム</span>
     <% end %>
 
-    <%= link_to bag_contents_path, class: "inline-flex flex-col items-center justify-center px-5 group #{request.path.include?('/bag_contents') ? 'bg-gray-200 dark:bg-[#263448] text-primary font-bold' : 'hover:bg-gray-50 dark:hover:bg-base-300 text-neutral'}", style: ("font-variation-settings: 'FILL' 1;" if request.path.include?('/bag_contents')) do %>
+    <%= link_to bag_contents_path, class: "inline-flex flex-col items-center justify-center px-5 group #{request.path.include?('/bag_contents') ? 'bg-gray-200 dark:bg-[#D9D9D9] text-primary font-bold' : 'hover:bg-gray-50 dark:hover:bg-base-300 text-neutral'}", style: ("font-variation-settings: 'FILL' 1;" if request.path.include?('/bag_contents')) do %>
       <span class="material-symbols-outlined text-2xl mb-2">work</span>
       <span class="text-[8px] text-nowrap">みんなの持ち物</span>
     <% end %>
 
-    <%= link_to item_lists_path, class: "inline-flex flex-col items-center justify-center px-5 group #{(request.path.start_with?('/item_lists') && !request.path.include?('/bag_contents')) ? 'bg-gray-200 dark:bg-[#263448] text-primary font-bold' : 'hover:bg-gray-50 dark:hover:bg-base-300 text-neutral'}", style: ("font-variation-settings: 'FILL' 1;" if request.path.start_with?('/item_lists')) do %>
+    <%= link_to item_lists_path, class: "inline-flex flex-col items-center justify-center px-5 group #{(request.path.start_with?('/item_lists') && !request.path.include?('/bag_contents')) ? 'bg-gray-200 dark:bg-[#D9D9D9] text-primary font-bold' : 'hover:bg-gray-50 dark:hover:bg-base-300 text-neutral'}", style: ("font-variation-settings: 'FILL' 1;" if request.path.start_with?('/item_lists')) do %>
       <span class="material-symbols-outlined text-2xl mb-2">playlist_add</span>
       <span class="text-[8px] text-nowrap">持ち物リスト</span>
     <% end %>
 
-    <%= link_to bookmarks_path, class: "inline-flex flex-col items-center justify-center px-5 group #{request.path.include?('/bookmarks') ? 'bg-gray-200 dark:bg-[#263448] text-primary font-bold' : 'hover:bg-gray-50 dark:hover:bg-base-300 text-neutral'}", style: ("font-variation-settings: 'FILL' 1;" if request.path.include?('/bookmarks')) do %>
+    <%= link_to bookmarks_path, class: "inline-flex flex-col items-center justify-center px-5 group #{request.path.include?('/bookmarks') ? 'bg-gray-200 dark:bg-[#D9D9D9] text-primary font-bold' : 'hover:bg-gray-50 dark:hover:bg-base-300 text-neutral'}", style: ("font-variation-settings: 'FILL' 1;" if request.path.include?('/bookmarks')) do %>
       <span class="material-symbols-outlined text-2xl mb-2">bookmark</span>
       <span class="text-[8px] text-nowrap">ブックマーク</span>
     <% end %>
