@@ -6,15 +6,7 @@
         <span class="material-symbols-outlined md:text-2xl text-primary" style="font-variation-settings: 'FILL' 1;">work</span>
         <h1 class="text-base md:text-lg font-medium ml-3"><%= t('.title') %></h1>
       </div>
-      <%= form_with model: @search_form, url: bag_contents_path, method: :get, class: "w-72", local: true do |f| %>
-        <div class="input-group flex items-center justify-start gap-4 relative w-full">
-          <span class="material-symbols-outlined absolute left-3 pr-3 py-2 text-gray-400">search</span>
-          <%= f.text_field :search_term, name: 'q[search_term]', 
-                class: "border border-gray-300 bg-slate-50 rounded-md shadow-sm pl-10 pr-3 py-2 w-full focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-base-100 placeholder:text-xs md:placeholder:text-sm", 
-                placeholder: "持ち物・行き先" %>
-          <%= f.submit t("defaults.search_word"), class: "btn btn-primary sm:text-sm" %>
-        </div>
-      <% end %>
+      <%= render 'search_form', q: @q, url: bag_contents_path %>
     </div>
 
     <% if @bag_contents.present? %>
