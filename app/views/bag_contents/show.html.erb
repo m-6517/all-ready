@@ -44,18 +44,24 @@
       </div>
     </div>
 
-    <div class="flex justify-end items-center gap-4 mt-6">
-      <% twitter_share_url = "https://twitter.com/intent/tweet?url=#{request.url}&text=#{CGI.escape("#{@bag_content.item_list.name}の持ち物リスト")}%0A&hashtags=#{CGI.escape('AllReady')}" %>
-      <%= link_to twitter_share_url, target: '_blank', class: "mb-1.5" do %>
-        <i class="fa-brands fa-x-twitter fa-lg text-primary dark:text-neutral"></i>
+    <div class="flex justify-between items-center mt-6">
+      <%= link_to bag_contents_path, class: "flex items-center gap-2 text-sm" do %>
+        <span class="material-symbols-outlined text-primary dark:text-neutral">arrow_back_ios_new</span>
+        もどる
       <% end %>
-
-      <%= render 'bookmark_buttons', { bag_content: @bag_content } %>
-      <% if user_signed_in? && current_user.own?(@bag_content) %>
-        <%= link_to edit_bag_content_path(@bag_content), id: "button-edit-#{@bag_content.uuid}" do %>
-          <span class="material-symbols-outlined text-primary dark:text-neutral">edit</span>
+      <div class="flex justify-end items-center gap-5">
+        <% twitter_share_url = "https://twitter.com/intent/tweet?url=#{request.url}&text=#{CGI.escape("#{@bag_content.item_list.name}の持ち物リスト")}%0A&hashtags=#{CGI.escape('AllReady')}" %>
+        <%= link_to twitter_share_url, target: '_blank', class: "mb-1.5" do %>
+          <i class="fa-brands fa-x-twitter fa-xl text-primary dark:text-neutral"></i>
         <% end %>
-      <% end %>
+
+        <%= render 'bookmark_buttons', { bag_content: @bag_content } %>
+        <% if user_signed_in? && current_user.own?(@bag_content) %>
+          <%= link_to edit_bag_content_path(@bag_content), id: "button-edit-#{@bag_content.uuid}" do %>
+            <span class="material-symbols-outlined size-30 text-primary dark:text-neutral">edit</span>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
