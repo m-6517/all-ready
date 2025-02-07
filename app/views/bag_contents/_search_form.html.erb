@@ -1,0 +1,17 @@
+<%= search_form_for @q, url: bag_contents_path do |f| %>
+  <div class="relative flex items-center rounded-md">
+    <div data-controller="autocomplete" data-autocomplete-url-value="/bag_contents/search" role="combobox" class="flex-grow">
+      <%= f.search_field :body_or_item_list_name_or_item_list_default_items_name_or_item_list_original_items_name_or_tags_name_cont, 
+                         data: { autocomplete_target: 'input' }, 
+                         class: "border border-gray-300 bg-slate-50 rounded shadow pl-10 pr-3 py-2 w-full dark:bg-base-100 placeholder:text-xs md:placeholder:text-sm", 
+                         placeholder: "持ち物・行き先" %>
+      <%= f.hidden_field :body, data: { autocomplete_target: 'hidden' } %>
+      <ul class="list-group z-10 bg-base-100 dark:bg-base-200 hover:bg-base-200 dark:hover:bg-base-100 absolute w-full md:text-sm" data-autocomplete-target="results"></ul>
+      <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none pl-3">
+        <span class="material-symbols-outlined text-gray-400">search</span>
+      </div>
+    </div>
+    <%= f.submit t("defaults.search_word"), 
+                class: "bg-primary hover:brightness-110 text-white font-normal rounded px-4 h-11 box-border shadow text-sm tracking-widest flex items-center justify-center ml-4" %>
+  </div>
+<% end %>

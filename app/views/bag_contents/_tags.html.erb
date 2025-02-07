@@ -1,5 +1,5 @@
 <div class="flex flex-wrap gap-2 mb-4">
   <% @bag_content.tags.each do |tag| %>
-    <%= link_to tag.name, bag_content_path(tag_name: tag.name), class: 'badge badge-md bg-gradient-to-r from-primary to-cyan-500 text-white text-[10px]', style: 'pointer-events: none; cursor: default;' %>
+    <%= link_to tag.name, bag_content_path(tag_name: tag.name), class: 'badge badge-md bg-gradient-to-l from-primary to-cyan-500 text-white text-[10px]', style: 'pointer-events: none; cursor: default;' %>
   <% end %>
 </div>
