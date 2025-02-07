@@ -342,6 +342,10 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.2.1)
+    ransack (4.2.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
       ffi (~> 1.0)
@@ -497,6 +501,7 @@ DEPENDENCIES
   rails (~> 7.2.1, >= 7.2.1.1)
   rails-i18n
   rails_live_reload
+  ransack
   rspec-rails
   rubocop-rails-omakase
   selenium-webdriver
