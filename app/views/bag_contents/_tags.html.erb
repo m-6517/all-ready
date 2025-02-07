@@ -1,0 +1,5 @@
+<div class="flex flex-wrap gap-2 mb-4">
+  <% @bag_content.tags.each do |tag| %>
+    <%= link_to tag.name, bag_content_path(tag_name: tag.name), class: 'badge badge-primary badge-md text-white text-xs', style: 'pointer-events: none; cursor: default;' %>
+  <% end %>
+</div>
