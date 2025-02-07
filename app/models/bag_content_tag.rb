@@ -3,4 +3,5 @@ class BagContentTag < ApplicationRecord
   belongs_to :tag
 
   validates :tag_id, uniqueness: { scope: :bag_content_uuid }
+  validates :bag_content_uuid, presence: true
 end
