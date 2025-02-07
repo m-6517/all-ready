@@ -1,10 +1,16 @@
 class BagContentsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
-  before_action :set_item_list, only: %i[ show new create ]
   helper_method :prepare_meta_tags
 
   def index
     bag_contents = BagContent.all
+    @search_form = SearchForm.new(search_params)
+    @bag_contents = @search_form.search(bag_contents).order(created_at: :desc)
+  end
+
+  def show
+    @bag_content = BagContent.find_by(uuid: params[:id])
+    @item_list = @bag_content.item_list
 
     bag_contents = if (tag_name = params[:tag_name])
       bag_contents.with_tag(tag_name)
@@ -12,40 +18,30 @@ class BagContentsController < ApplicationController
       bag_contents
     end
 
-    @search_form = SearchForm.new(search_params)
-    @bag_contents = @search_form.search(bag_contents).order(created_at: :desc)
-  end
-
-  def show
-    @bag_content = BagContent.find_by(uuid: params[:id])
     prepare_meta_tags(@bag_content)
   end
 
   def new
-    @bag_content = current_user.bag_contents.new
+    @bag_content = BagContent.new
   end
 
   def create
-    @bag_content = @item_list.bag_contents.find_by(user: current_user)
+    @item_list = ItemList.find(params[:item_list_id])
+    @bag_content = current_user.bag_contents.new(item_list_id: @item_list.id)
+    tag_names = params[:tag_name]
 
     if @item_list.original_items.empty? && @item_list.default_items.empty?
-      redirect_to item_list_path(@item_list), alert: "空の持ち物リストは共有できません"
-      return
-    end
-
-    if @bag_content.nil?
-      @bag_content = BagContent.new(bag_content_params)
-    end
-
-    if current_user.bag_contents.exists?(item_list_id: @item_list.id)
-      redirect_to item_list_path(@item_list), alert: "この持ち物リストは既に共有されています"
+      flash[:alert] = t("defaults.flash_message.empty_list", item: BagContent.model_name.human)
+      redirect_to item_list_path(@item_list)
     else
-      @bag_content = current_user.bag_contents.new(bag_content_params.merge(item_list: @item_list))
-
-      if @bag_content.save_with_tags(tag_name: params.dig(:bag_content, :tag_name).split(",").uniq)
-        redirect_to item_list_bag_contents_path(@item_list), notice: "持ち物リストを共有しました"
+      if @bag_content.save
+        if tag_names.present?
+          tags = tag_names.split(" ").map(&:strip).uniq
+          create_or_update_bag_content_tags(@bag_content, tags)
+        end
+        redirect_to bag_content_path(@bag_content), notice: t("defaults.flash_message.shared", item: BagContent.model_name.human)
       else
-        render :new, alert: "持ち物リストを共有できませんでした"
+        render :new, alert: t("defaults.flash_message.not_shared", item: BagContent.model_name.human)
       end
     end
   end
@@ -57,11 +53,16 @@ class BagContentsController < ApplicationController
   def update
     @bag_content = current_user.bag_contents.find_by(uuid: params[:id])
     @bag_content.body = bag_content_params[:body]
+    tag_names = params[:bag_content][:tag_names]
 
-    if @bag_content.save_with_tags(tag_name: params.dig(:bag_content, :tag_name).split(",").uniq)
-      redirect_to bag_contents_path(@bag_content), notice: "投稿を更新しました"
+    if @bag_content.update(bag_content_params)
+      if tag_names.present?
+        tags = params[:bag_content][:tag_names].split(" ").map(&:strip).uniq
+        create_or_update_bag_content_tags(@bag_content, tags)
+      end
+      redirect_to bag_content_path(@bag_content), notice: t("defaults.flash_message.updated", item: BagContent.model_name.human)
     else
-      flash.now[:alert] = "投稿を更新できませんでした"
+      flash.now[:alert] = t("defaults.flash_message.not_updated", item: BagContent.model_name.human)
       render :edit, status: :unprocessable_entity
     end
   end
@@ -74,8 +75,16 @@ class BagContentsController < ApplicationController
 
   private
 
-  def set_item_list
-    @item_list = ItemList.find(params[:item_list_id])
+  def create_or_update_bag_content_tags(bag_content, tags)
+    bag_content.tags.destroy_all
+    begin
+    tags.each do |tag|
+      tag = Tag.find_or_create_by(name: tag)
+      bag_content.tags << tag
+      rescue ActiveRecord::RecordInvalid
+        false
+      end
+    end
   end
 
   def search_params
@@ -101,6 +110,6 @@ class BagContentsController < ApplicationController
   end
 
   def bag_content_params
-    params.require(:bag_content).permit(:item_list_id, :body, tag_ids: [])
+    params.require(:bag_content).permit(:item_list_id, :body)
   end
 end

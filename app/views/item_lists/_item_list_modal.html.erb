@@ -19,15 +19,15 @@
         </button>
       <% end %>
       <% unless current_user.bag_contents.exists?(item_list_id: item_list.id) %>
-        <button class="btn w-full btn-outline text-primary font-normal bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary
-          dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral" onclick="openShareModal(<%= item_list.id %>)">
-          <span class="material-symbols-outlined">share</span>
-          リストを共有
-        </button>
+       <button class="btn w-full btn-outline text-primary font-normal bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary
+        dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral" onclick="openShareModal(<%= item_list.id %>)">
+        <span class="material-symbols-outlined">share</span>
+        リストを共有
+       </button>
       <% else %>
         <% @bag_contents.each do |bag_content| %>
           <% if bag_content.item_list_id == item_list.id %>
-            <%= link_to item_list_bag_content_path(item_list.id, bag_content.uuid), class: "btn w-full btn-primary font-normal", onclick: "document.getElementById('menuModal_#{item_list.id}').close();" do %>
+            <%= link_to bag_content_path(bag_content.uuid), class: "btn w-full btn-primary font-normal", onclick: "document.getElementById('menuModal_#{item_list.id}').close();" do %>
               <span class="material-symbols-outlined">share</span>
               リストを共有中
             <% end %>
@@ -86,20 +86,20 @@
       <h2 class="text-base font-medium mb-4">
         <%= link_to item_list.name, item_list_path(item_list) %>
       </h2>
-      <%= form_with model: @bag_content || BagContent.new(item_list_id: item_list.id), url: item_list_bag_contents_path(item_list), class: "w-full", local: true do |f| %>
+      <%= form_with model: @bag_content, url: bag_contents_path, method: :post, local: true do |f| %>
         <%= f.hidden_field :item_list_id, value: item_list.id %>
         <div>
-          <%= f.label :tag_name, "タグ　<span class='text-xs text-gray-500 dark:text-neutral'>(カンマ区切り・3つまで)</span>".html_safe, class: "block text-sm font-medium mb-2" %>
-          <%= f.text_field :tag_name, placeholder: "例：秋, 温泉, 食べ歩き", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200" %>
+          <%= f.label :tag_name, "タグ　<span class='text-xs text-gray-500 dark:text-neutral'>(スペース区切り・3つまで)</span>".html_safe, class: "block text-sm font-medium mb-2" %>
+          <%= f.text_field :tag_name, placeholder: "例：秋, 温泉, 食べ歩き", class: "w-full border border-gray-300 bg-slate-50 text-xs md:text-sm font-normal rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200" %>
         </div>
         <div class="mt-4">
-          <%= f.label :body, class: "block text-sm font-medium mb-2" %>
-          <%= f.text_area :body, placeholder: "こだわりポイント、おすすめのアイテムなど", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200", rows: 5 %>
+          <%= f.label :body, class: "block text-sm font-normal mb-2" %>
+          <%= f.text_area :body, placeholder: "こだわりポイント、おすすめのアイテムなど", class: "w-full border border-gray-300 bg-slate-50 text-xs md:text-sm font-normal rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200", rows: 5 %>
         </div>
-        <div class="modal-action mt-4">
+        <p class="text-xs text-accent my-4">※空の持ち物リストは共有できません</p>
+        <div class="flex mt-4 justify-end">
           <%= f.submit t('bag_contents.new.submit_label'), class: "btn w-full btn-primary" %>
         </div>
-        <p class="text-xs text-accent mt-4">※空の持ち物リストは共有できません</p>
       <% end %>
       <div class="modal-action">
         <button class="btn w-full btn-ghost" onclick="document.getElementById('shareModal_<%= item_list.id %>').close()">キャンセル</button>

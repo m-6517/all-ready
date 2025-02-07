@@ -1,36 +1,36 @@
 <% content_for(:title, t('.title')) %>
-  <div class="flex items-center justify-center p-5">
-    <div class="max-w-md w-full mx-auto bg-slate-50 p-6 rounded shadow dark:bg-base-200">
-      <div class="flex items-center space-x-4">
-        <h1 class="text-lg font-medium mb-6"><%= t('.title') %></h1>
-      </div>
-      <%= form_with model: @bag_content, url: bag_content_path(@bag_content), local: true do |f| %>
-        <div>
-          <%= f.label :tag_name, "タグ", class: "block text-sm font-medium mb-2" %>
-          <%= f.text_field :tag_name, placeholder: "カンマ区切りで入力", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200" %>
-        </div>
-        <div class="mt-4">
-          <%= f.label :body, class: "block text-sm font-medium mb-2" %>
-          <%= f.text_area :body, placeholder: "こだわりポイント、おすすめのアイテムなど", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200", rows: 5 %>
-        </div>
-        <div class="modal-action mt-4">
-          <%= f.submit t('bag_contents.edit.submit_label'), class: "btn btn-primary w-full" %>
-        </div>
-      <% end %>
-      <% if user_signed_in? && current_user.own?(@bag_content) %>
-        <button class="btn btn-base-300 w-full mt-4 dark:btn-outline" onclick="openBagContentDeleteModal('<%= j @bag_content.uuid %>')"><%= t('bag_contents.delete.submit_label') %></button>
-        <dialog id="bagContentDeleteModal_<%= j @bag_content.uuid %>" class="modal">
-          <div class="modal-box bg-slate-50 w-96 mx-auto px-4 space-y-6 dark:bg-base-200">
-            <div class="text-left">
-              <h3 class="font-semibold text-base text-accent mb-2">投稿を削除しますか？</h3>
-              <p class="text-sm">共有していた持ち物リストは削除されません。</p>
-            </div>
-            <%= form_with url: bag_content_path(@bag_content), method: :delete, class: "w-full" do |f| %>
-              <button class="btn w-full btn-accent text-white font-normal" type="submit">削除する</button>
-            <% end %>
-            <button class="btn w-full" onclick="document.getElementById('bagContentDeleteModal_<%= j @bag_content.uuid %>').close()">キャンセル</button>
-          </div>
-        </dialog>
-      <% end %>
+<div class="flex items-center justify-center p-5">
+  <div class="max-w-xl w-full mx-auto bg-slate-50 p-6 rounded shadow dark:bg-base-200">
+    <div class="flex items-center">
+      <h1 class="text-lg font-medium mb-4"><%= @bag_content.item_list.name %></h1>
     </div>
+    <%= form_with model: @bag_content, url: bag_content_path(@bag_content), class: "w-full space-y-4", local: true do |f| %>
+      <div>
+        <%= f.label :tag_name, "タグ", class: "block text-sm font-normal mb-2" %>
+        <%= f.text_field :tag_names, value: @bag_content.tags.map(&:name).join(" "), placeholder: "スペース区切りで入力", class: "w-full border border-gray-300 bg-slate-50 text-xs md:text-sm rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200" %>
+      </div>
+      <div class="mt-4">
+        <%= f.label :body, class: "block text-sm font-normal mb-2" %>
+        <%= f.text_area :body, placeholder: "こだわりポイント、おすすめのアイテムなど", class: "w-full border border-gray-300 bg-slate-50 text-xs md:text-sm rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200", rows: 5 %>
+      </div>
+      <div class="modal-action mt-8">
+        <%= f.submit t('bag_contents.edit.submit_label'), class: "btn btn-primary w-full" %>
+      </div>
+    <% end %>
+    <% if user_signed_in? && current_user.own?(@bag_content) %>
+      <button class="btn btn-base-300 w-full my-4 dark:btn-outline" onclick="openBagContentDeleteModal('<%= j @bag_content.uuid %>')"><%= t('bag_contents.delete.submit_label') %></button>
+      <dialog id="bagContentDeleteModal_<%= j @bag_content.uuid %>" class="modal">
+        <div class="modal-box bg-slate-50 w-96 mx-auto px-4 space-y-6 dark:bg-base-200">
+          <div class="text-left">
+            <h3 class="font-semibold text-base text-accent mb-2">投稿を削除しますか？</h3>
+            <p class="text-sm">共有していた持ち物リストは削除されません。</p>
+          </div>
+          <%= form_with url: bag_content_path(@bag_content), method: :delete, class: "w-full" do |f| %>
+            <button class="btn w-full btn-accent text-white font-normal" type="submit">削除する</button>
+          <% end %>
+          <button class="btn w-full" onclick="document.getElementById('bagContentDeleteModal_<%= j @bag_content.uuid %>').close()">キャンセル</button>
+        </div>
+      </dialog>
+    <% end %>
   </div>
+</div>
