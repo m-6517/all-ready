@@ -8,11 +8,11 @@ class BagContent < ApplicationRecord
   validates :item_list_id, uniqueness: { scope: :user_uuid }
 
   def self.ransackable_attributes(auth_object = nil)
-    ["body"]
+    [ "body" ]
   end
-  
+
   def self.ransackable_associations(auth_object = nil)
-    ["item_list", "tags"]
+    [ "item_list", "tags" ]
   end
 
   mount_uploader :ogp, OgpUploader

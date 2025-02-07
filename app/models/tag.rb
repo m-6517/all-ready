@@ -5,10 +5,10 @@ class Tag < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   def self.ransackable_attributes(auth_object = nil)
-    ["name"]
+    [ "name" ]
   end
-  
+
   def self.ransackable_associations(auth_object = nil)
-    ["bag_content"]
+    [ "bag_content" ]
   end
 end
