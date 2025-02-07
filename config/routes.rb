@@ -7,9 +7,7 @@ Rails.application.routes.draw do
   }
 
   resources :recommends do
-    collection do
-      get "place/:place", to: "recommends#by_place", as: "by_place"
-    end
+    get "place/:place", to: "recommends#by_place", as: "by_place", on: :collection
   end
 
   resources :item_lists do
@@ -18,13 +16,13 @@ Rails.application.routes.draw do
       delete "destroy_original_item/:id", action: :destroy_original_item, as: :destroy_original_item
     end
     resources :quantities, only: %i[index edit update]
-    resources :bag_contents, only: %i[index show new create]
+    
     post :duplicate, on: :member
     patch :clear_checked_items, on: :member
     patch :update_position, on: :member
   end
 
-  resources :bag_contents, only: %i[index edit update destroy]
+  resources :bag_contents
 
   resources :item_statuses, only: %i[update] do
     patch :toggle, on: :member
