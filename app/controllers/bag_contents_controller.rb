@@ -31,7 +31,7 @@ class BagContentsController < ApplicationController
     tag_names = params[:tag_name]
 
     if @item_list.original_items.empty? && @item_list.default_items.empty?
-      flash[:alert] = "空の持ち物リストは共有できません"
+      flash[:alert] = t("defaults.flash_message.empty_list", item: BagContent.model_name.human)
       redirect_to item_list_path(@item_list)
     else
       if @bag_content.save
@@ -39,9 +39,9 @@ class BagContentsController < ApplicationController
           tags = tag_names.split(" ").map(&:strip).uniq
           create_or_update_bag_content_tags(@bag_content, tags)
         end
-        redirect_to bag_content_path(@bag_content), notice: "持ち物リストを共有しました"
+        redirect_to bag_content_path(@bag_content), notice: t("defaults.flash_message.shared", item: BagContent.model_name.human)
       else
-        render :new, alert: "持ち物リストを共有できませんでした"
+        render :new, alert: t("defaults.flash_message.not_shared", item: BagContent.model_name.human)
       end
     end
   end
@@ -60,9 +60,9 @@ class BagContentsController < ApplicationController
         tags = params[:bag_content][:tag_names].split(" ").map(&:strip).uniq
         create_or_update_bag_content_tags(@bag_content, tags)
       end
-      redirect_to bag_content_path(@bag_content), notice: "投稿を更新しました"
+      redirect_to bag_content_path(@bag_content), notice: t("defaults.flash_message.updated", item: BagContent.model_name.human)
     else
-      flash.now[:alert] = "投稿を更新できませんでした"
+      flash.now[:alert] = t("defaults.flash_message.not_updated", item: BagContent.model_name.human)
       render :edit, status: :unprocessable_entity
     end
   end

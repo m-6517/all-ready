@@ -17,6 +17,9 @@ ja:
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
       require_login: ログインが必要です
+      empty_list: 空の持ち物リストは共有できません
+      shared: "%{item}を共有しました"
+      not_shared: "%{item}を共有できませんでした"
   header:
     login: ログイン
     logout: ログアウト
