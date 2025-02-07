@@ -4,4 +4,8 @@ class DefaultItem < ApplicationRecord
   has_many :item_statuses, dependent: :destroy
 
   validates :name, presence: true
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
 end

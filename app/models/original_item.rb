@@ -6,4 +6,8 @@ class OriginalItem < ApplicationRecord
 
   validates :user_uuid, presence: true
   validates :name, presence: true
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
 end

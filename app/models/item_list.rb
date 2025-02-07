@@ -80,4 +80,12 @@ class ItemList < ApplicationRecord
       item_status.update(position: index + 1) if item_status
     end
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
+  
+  def self.ransackable_associations(auth_object = nil)
+    ["bag_content", "default_items", "original_items"]
+  end
 end
