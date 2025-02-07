@@ -6,7 +6,7 @@
       </div>
     </div>
     <figure class="w-full h-full">
-      <%= link_to item_list_bag_content_path(bag_content.item_list, bag_content), class: "w-full h-full block" do %>
+      <%= link_to bag_content_path(bag_content.uuid), class: "w-full h-full block" do %>
         <%= image_tag bag_content.item_list.cover_image.url, class: "w-full h-full object-cover object-bottom" %>
       <% end %>
     </figure>
@@ -18,7 +18,7 @@
         <%= bag_content.item_list.name %>
       </div>
     </div>
-    <%= link_to item_list_bag_content_path(bag_content.item_list, bag_content), class: "w-full h-full block rounded-b-lg bg-base-200 dark:bg-base-300" do %>
+    <%= link_to bag_content_path(bag_content.uuid), class: "w-full h-full block rounded-b-lg bg-base-200 dark:bg-base-300" do %>
     <% end %>
   </div>
 <% end %>
