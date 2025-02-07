@@ -1,11 +1,10 @@
 class BagContentsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :authenticate_user!, only: %i[index show search]
   helper_method :prepare_meta_tags
 
   def index
-    bag_contents = BagContent.all
-    @search_form = SearchForm.new(search_params)
-    @bag_contents = @search_form.search(bag_contents).order(created_at: :desc)
+    @q = BagContent.ransack(params[:q])
+    @bag_contents = @q.result(distinct: true).includes(:user, :item_list).order(created_at: :desc)
   end
 
   def show
@@ -73,6 +72,15 @@ class BagContentsController < ApplicationController
     redirect_to bag_contents_path, notice: t("defaults.flash_message.deleted", item: BagContent.model_name.human), status: :see_other
   end
 
+  def search
+    @bag_contents = BagContent.joins(:tags)
+                              .where("tags.name LIKE ?", "%#{params[:q]}%")
+                              .order("tags.name ASC")
+                              .limit(7)
+    @tags = Tag.joins(:bag_contents).where("tags.name LIKE ?", "%#{params[:q]}%").distinct
+    render partial: "search"
+  end
+
   private
 
   def create_or_update_bag_content_tags(bag_content, tags)
@@ -85,10 +93,6 @@ class BagContentsController < ApplicationController
         false
       end
     end
-  end
-
-  def search_params
-    params.fetch(:q, {}).permit(:search_term)
   end
 
   def prepare_meta_tags(bag_content)
