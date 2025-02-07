@@ -29,7 +29,7 @@ class BagContentsController < ApplicationController
     @item_list = ItemList.find(params[:item_list_id])
     @bag_content = current_user.bag_contents.new(item_list_id: @item_list.id)
     tag_names = params[:tag_name]
-  
+
     if @item_list.original_items.empty? && @item_list.default_items.empty?
       flash[:alert] = "空の持ち物リストは共有できません"
       redirect_to item_list_path(@item_list)

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       delete "destroy_original_item/:id", action: :destroy_original_item, as: :destroy_original_item
     end
     resources :quantities, only: %i[index edit update]
-    
+
     post :duplicate, on: :member
     patch :clear_checked_items, on: :member
     patch :update_position, on: :member
