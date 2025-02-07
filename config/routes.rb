@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     patch :update_position, on: :member
   end
 
-  resources :bag_contents
+  resources :bag_contents do
+    get :search, on: :collection
+  end
 
   resources :item_statuses, only: %i[update] do
     patch :toggle, on: :member
