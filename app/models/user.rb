@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :recommends, primary_key: :uuid, foreign_key: :user_uuid, dependent: :destroy
   has_many :item_lists, primary_key: :uuid, foreign_key: :user_uuid
-  has_many :original_items, dependent: :destroy
+  has_many :original_items, dependent: :destroy, foreign_key: :user_uuid
   has_many :bag_contents, primary_key: :uuid, foreign_key: :user_uuid, dependent: :destroy
   has_many :bookmarks, primary_key: :uuid, foreign_key: :user_uuid, dependent: :destroy
 
