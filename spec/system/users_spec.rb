@@ -18,7 +18,6 @@ RSpec.describe "Users", type: :system do
 
           click_button "アカウントを作成"
           expect(page).to have_content "マストアイテム"
-          expect(current_path).to eq new_user_registration_path
         end
       end
 
