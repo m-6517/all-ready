@@ -1,5 +1,7 @@
 # All Ready
 
+<img src="https://www.allready.jp/assets/ogp-b4d87c539fa6e51863d052081489dc7407781bee9999e42efe21ecb3068db31a.png" width="900px" />
+
 ## サービス概要
 
 持ち物リストを作成し、かばんの中身を投稿・共有できるサービスです。<br>
