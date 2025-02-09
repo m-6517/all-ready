@@ -41,7 +41,7 @@
                 </div>
               </div>
               <figure class="w-full h-full">
-                <%= link_to item_list_bag_content_path(recommend_or_bag_content.item_list, recommend_or_bag_content), class: "w-full h-full block" do %>
+                <%= link_to bag_content_path(recommend_or_bag_content.item_list, recommend_or_bag_content), class: "w-full h-full block" do %>
                   <%= image_tag recommend_or_bag_content.item_list.cover_image.url, class: "w-full h-full object-cover object-bottom" %>
                 <% end %>
               </figure>
