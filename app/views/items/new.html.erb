@@ -12,10 +12,10 @@
             <h3 class="text-sm">既存のアイテム</h3>
             <% @sorted_items = @default_items %>
             <% @sorted_items.each do |item| %>
-              <div class="flex items-center gap-2 text-nowrap">
+              <div class="flex items-center gap-3 text-nowrap">
                 <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
                 <%= hidden_field_tag "item_list[default_item_ids][]", nil %>
-                <%= check_box_tag "item_list[default_item_ids][]", item.id, status&.selected, class: "checkbox checkbox-primary checkbox-sm" %>
+                <%= check_box_tag "item_list[default_item_ids][]", item.id, status&.selected, class: "checkbox checkbox-primary checkbox-md" %>
                 <%= item.name %>
               </div>
             <% end %>
@@ -24,9 +24,9 @@
             <h3 class="text-sm">オリジナルのアイテム</h3>
             <% @original_items.each do |item| %>
               <% if ItemListOriginalItem.exists?(item_list: @item_list, original_item: item) %>
-                <div class="flex items-center gap-2 text-nowrap">
+                <div class="flex items-center gap-3 text-nowrap">
                   <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
-                  <%= check_box_tag "item_list[original_item_ids][]", item.id, status&.selected, class: "checkbox checkbox-primary checkbox-sm" %>
+                  <%= check_box_tag "item_list[original_item_ids][]", item.id, status&.selected, class: "checkbox checkbox-primary checkbox-md" %>
                   <%= item.name %>
                   <%= link_to "✕", item_list_item_destroy_original_item_path(@item_list, item.id, id: item.id), data: { turbo_method: :delete }, class: "p-2 btn btn-ghost btn-circle btn-sm" %>
                 </div>
@@ -41,7 +41,7 @@
         <h3 class="text-sm text-left mb-6">アイテムを追加</h3>
         <%= form_with model: @new_original_item, url: item_list_items_path(@item_list), local: true do |f| %>
           <label class="form-control w-full">
-            <input type="text" placeholder="アイテムの名前" name="original_item[name]" class="input input-bordered w-full placeholder:text-sm" required />
+            <input type="text" placeholder="アイテムの名前" name="original_item[name]" class="input input-bordered w-full dark:bg-base-200 placeholder:text-sm" required />
           </label>
           <div class="mt-4">
             <%= f.submit '追加', class: "btn btn-primary w-full" %>

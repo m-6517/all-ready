@@ -5,10 +5,20 @@
                   data: { toggle: "item-status", checked: item_status.is_checked },
                   class: "btn w-full flex justify-between items-center text-left font-normal
                          #{item_status.is_checked ? 'btn-active' : 'btn-inactive'} 
-                         #{item_status.is_checked ? 'bg-base-300 border-0 shadow dark:bg-secondary dark:text-base-100 dark:drop-shadow dark:hover:bg-gray-200' : 'bg-base-100 shadow dark:drop-shadow'}" do %>
-      <span><%= item_status.original_item&.name || item_status.default_item&.name %></span>
+                         #{item_status.is_checked ? 'relative inline-flex items-center justify-center p-0.5 overflow-hidden rounded-lg group bg-gradient-to-tl from-primary to-cyan-500 hover:bg-base200 dark:text-neutral' :'relative inline-flex items-center justify-center rounded-lg bg-base-100 hover:bg-base200 dark:text-neutral'}" do %>
+      <% if item_status.is_checked %>
+        <span class="relative flex items-center justify-start w-full pl-4 py-3.5 bg-white dark:bg-base-200 rounded-md group-hover:bg-base-200 dark:group-hover:bg-base-300">
+          <%= item_status.original_item&.name || item_status.default_item&.name %>
+        </span>
+      <% else %>
+        <span>
+          <%= item_status.original_item&.name || item_status.default_item&.name %>
+        </span>
+      <% end %>
       <% if item_status.quantity > 1 %>
-        <div class="badge badge-primary badge-sm py-2 ml-2"><%= item_status.quantity %></div>
+        <div class="badge badge-primary badge-sm py-2 ml-2 absolute right-4 top-1/2 transform -translate-y-1/2">
+          <%= item_status.quantity %>
+        </div>
       <% end %>
     <% end %>
   </turbo-frame>

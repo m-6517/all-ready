@@ -6,7 +6,7 @@
       <h1 class="text-base md:text-lg font-medium ml-3"><%= t('.title') %></h1>
     </div>
   </div>
-  <div class="flex flex-wrap justify-start gap-4 md:gap-10 mt-6 md:mt-12">
+  <div class="flex flex-wrap justify-start gap-6 md:gap-10 mt-6 md:mt-12">
     <% if @recommends.present? %>
       <% @recommends.each do |place, recommends| %>
         <div class="card shadow rounded p-5 md:p-7 flex flex-col w-full max-w-lg bg-slate-50 dark:bg-base-200">
