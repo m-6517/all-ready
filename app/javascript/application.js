@@ -5,3 +5,4 @@ import "./modals"
 import "./password_toggle"
 import "./item_status_toggle";
 import "./loading";
+import "./preview";
