@@ -22,7 +22,7 @@ RSpec.describe "Users", type: :system do
       end
 
       context "アカウント名が未入力" do
-        it "ユーザーの新規作成が失敗する", js: true do
+        it "ユーザーの新規作成が失敗する" do
           visit new_user_registration_path
 
           fill_in "アカウント名", with: ""
@@ -41,7 +41,7 @@ RSpec.describe "Users", type: :system do
       end
 
       context "メールアドレスが未入力" do
-        it "ユーザーの新規作成が失敗する", js: true do
+        it "ユーザーの新規作成が失敗する" do
           visit new_user_registration_path
 
           fill_in "password_field", with: "password"
