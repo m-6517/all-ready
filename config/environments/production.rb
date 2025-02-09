@@ -113,4 +113,5 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
   config.hosts << "allready.jp"
   config.hosts << "www.allready.jp"
+  config.hosts << "all-ready-3da9909e8770.herokuapp.com"
 end
