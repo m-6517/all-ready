@@ -19,8 +19,9 @@
     <%= f.text_area :body, placeholder: "購入場所、価格帯、おすすめポイントなど", class: "w-full border border-gray-300 bg-slate-50 rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-base-200 placeholder:text-xs", rows: 5 %>
   </div>
   <div>
-    <%= f.file_field :item_image, class: "file-input file-input-bordered file-input-primary file-input-sm w-full mt-2 mb-4 dark:file-input-secondary", accept: 'image/*' %>
+    <%= f.file_field :item_image, class: "file-input file-input-bordered file-input-primary file-input-sm w-full mt-2 mb-4 dark:file-input-secondary", accept: 'image/*', id: 'recommend_item_image' %>
     <%= f.hidden_field :item_image_cache %>
+    <img id="recommend_image_preview" src="#" alt="Image Preview" style="display:none; max-width: 200px;" />
   </div>
   <div class="flex mt-4 justify-end">
     <%= f.submit submit_label, class: "btn btn-primary w-full mt-4" %>
