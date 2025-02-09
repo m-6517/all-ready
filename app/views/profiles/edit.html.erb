@@ -4,11 +4,14 @@
       <div class="flex flex-col">
         <%= form_with model: @user, url: profile_path, method: :put do |f| %>
           <%= render 'shared/error_messages', object: f.object %>
-          <div class="mb-4">
-            <%= f.label :avatar, style: "cursor: pointer;" do %>
-              <%= image_tag(current_user.avatar_url, class: "w-20 h-20 rounded-full transition-all duration-300 hover:brightness-110") %>
+          <div class="mb-4 relative w-20 h-20">
+            <%= f.label :avatar, style: "cursor: pointer; display: block; position: relative;" do %>
+              <img id="avatar_preview" 
+                  src="<%= current_user.avatar_url %>" 
+                  alt="Avatar Preview" 
+                  class="w-20 h-20 rounded-full transition-all duration-300 hover:opacity-70 object-cover" />
             <% end %>
-            <%= f.file_field :avatar, class: "hidden", accept: 'image/*' %>
+            <%= f.file_field :avatar, class: "hidden", accept: 'image/*', id: 'user_avatar' %>
             <%= f.hidden_field :avatar_cache %>
           </div>
           <label class="form-control w-full mb-4">
