@@ -13,7 +13,7 @@ class OgpCreator
   ROW_LIMIT = 8
   DEFAULT_IMAGE_PATH = "./app/assets/images/placeholder.png"
 
-  def self.build(item, place, user_name, recommend: nil, bag_content: nil, force_update: false)
+  def self.build(item, place, user_name, recommend: nil, bag_content: nil, force_update: true)
     if !force_update
       if recommend&.ogp.present?
         return append_timestamp(recommend.ogp.url)
