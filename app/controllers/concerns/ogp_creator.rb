@@ -82,16 +82,18 @@ class OgpCreator
       recommend.ogp = temp_file
       recommend.save!
       temp_file.close
-      return append_timestamp(recommend.ogp.url)
+      result = append_timestamp(recommend.ogp.url)
     elsif bag_content
       bag_content.ogp = temp_file
       bag_content.save!
       temp_file.close
-      return append_timestamp(bag_content.ogp.url)
+      result = append_timestamp(bag_content.ogp.url)
     else
       temp_file.close
-      return append_timestamp(image.path)
+      result = append_timestamp(image.path)
     end
+
+    result
   end
 
   private
