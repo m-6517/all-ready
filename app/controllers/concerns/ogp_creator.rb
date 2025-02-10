@@ -15,8 +15,11 @@ class OgpCreator
 
   def self.build(item, place, user_name, recommend: nil, bag_content: nil, force_update: false)
     if !force_update
-      return append_timestamp(recommend.ogp.url) if recommend&.ogp.present?
-      return append_timestamp(bag_content.ogp.url) if bag_content&.ogp.present?
+      if recommend&.ogp.present?
+        return append_timestamp(recommend.ogp.url)
+      elsif bag_content&.ogp.present?
+        return append_timestamp(bag_content.ogp.url)
+      end
     end
 
     if recommend
