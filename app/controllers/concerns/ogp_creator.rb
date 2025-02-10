@@ -7,20 +7,20 @@ class OgpCreator
   TEXT_POSITION_ITEM = "650,250"
   TEXT_POSITION_USER = "650,350"
   FONT = "./app/assets/fonts/ZenKakuGothicNew-Bold.ttf"
-  FONT_SIZE = 35
-  USER_FONT_SIZE = 30
+  FONT_SIZE = 27
+  USER_FONT_SIZE = 25
   INDENTION_COUNT = 12
   ROW_LIMIT = 8
   DEFAULT_IMAGE_PATH = "./app/assets/images/placeholder.png"
 
-  def self.build(item, place, user_name, recommend: nil, bag_content: nil, force_update: true)
+  def self.build(item, place, user_name, recommend: nil, bag_content: nil, force_update: false)
     if !force_update
-      if recommend&.ogp.present?
+      if recommend&.ogp.present? && recommend.ogp_updated?(recommend.image_path)
         return append_timestamp(recommend.ogp.url)
-      elsif bag_content&.ogp.present?
+      elsif bag_content&.ogp.present? && bag_content.ogp_updated?(bag_content.image_path)
         return append_timestamp(bag_content.ogp.url)
       end
-    end
+    end  
 
     if recommend
       place_text = "#{recommend.place}のマストアイテム"

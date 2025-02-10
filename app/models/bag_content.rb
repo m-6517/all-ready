@@ -17,6 +17,11 @@ class BagContent < ApplicationRecord
 
   mount_uploader :ogp, OgpUploader
 
+  def ogp_updated?(current_image_path)
+    return true if ogp.blank? || ogp.url != current_image_path
+    false
+  end
+
   def image_path
     if self.item_list.present? && self.item_list.cover_image.present?
       Rails.env.production? ? self.item_list.cover_image.url : self.item_list.cover_image.path

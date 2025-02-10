@@ -20,17 +20,4 @@ class OgpUploader < CarrierWave::Uploader::Base
   def extension_white_list
     %w[jpg jpeg gif png]
   end
-
-  process :convert_to_webp
-
-  def convert_to_webp
-    manipulate! do |img|
-      img.format "webp"
-      img
-    end
-  end
-
-  def filename
-    super.chomp(File.extname(super)) + ".webp" if original_filename.present?
-  end
 end

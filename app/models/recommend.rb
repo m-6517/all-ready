@@ -9,6 +9,11 @@ class Recommend < ApplicationRecord
   mount_uploader :item_image, ItemImageUploader
   mount_uploader :ogp, OgpUploader
 
+  def ogp_updated?(current_image_path)
+    return true if ogp.blank? || ogp.url != current_image_path
+    false
+  end
+
   def image_path
     if self.item_image.present?
       Rails.env.production? ? self.item_image.url : self.item_image.path
