@@ -26,7 +26,7 @@
           もどる
         <% end %>
         <div class="flex justify-end items-center gap-5">
-          <% twitter_share_url = "https://twitter.com/intent/tweet?url=#{request.url}&text=#{CGI.escape(@recommend.place)}のマストアイテム：#{CGI.escape(@recommend.item)}%0A&hashtags=#{CGI.escape('AllReady')}" %>
+          <% twitter_share_url = "https://twitter.com/intent/tweet?url=#{request.url}&text=#{CGI.escape(@recommend.place)}のマストアイテム：#{CGI.escape(@recommend.item)}%0A&hashtags=#{CGI.escape('AllReadyApp')}" %>
           <%= link_to twitter_share_url, target: '_blank', class: "mb-1.5" do %>
             <i class="fa-brands fa-x-twitter fa-xl text-primary dark:text-neutral"></i>
           <% end %>
