@@ -32,6 +32,8 @@
         <%= f.submit "ログイン", class: "relative flex items-center justify-center w-full py-2.5 transition-all ease-in duration-300 bg-white dark:bg-base-200 rounded-lg group-hover:bg-base-200 dark:group-hover:bg-base-300 text-sm font-medium text-white rounded-lg group bg-gradient-to-tl from-primary to-cyan-500 hover:bg-gradient-to-br dark:text-neutral mt-4" %>
       </div>
 
+      <div class="divider text-xs">または</div>
+
       <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
         <%= link_to new_registration_path(resource_name),
           class: "relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-primary rounded-lg group bg-gradient-to-tl from-primary to-cyan-500 hover:bg-base200 hover:text-primary dark:text-neutral w-full" do %>
@@ -40,9 +42,6 @@
           </span>
         <% end %>
       <% end %>
-
-      <div class="divider text-xs">または</div>
-
     <% end %>
     <%- if devise_mapping.omniauthable? %>
       <%- resource_class.omniauth_providers.each do |provider| %>
