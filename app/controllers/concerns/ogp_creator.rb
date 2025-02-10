@@ -20,7 +20,7 @@ class OgpCreator
       elsif bag_content&.ogp.present? && bag_content.ogp_updated?(bag_content.image_path)
         return append_timestamp(bag_content.ogp.url)
       end
-    end  
+    end
 
     if recommend
       place_text = "#{recommend.place}のマストアイテム"
