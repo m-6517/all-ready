@@ -14,10 +14,6 @@ class OgpCreator
   DEFAULT_IMAGE_PATH = "./app/assets/images/placeholder.png"
 
   def self.build(item, place, user_name, recommend: nil, bag_content: nil)
-    # 既存のOGP画像がある場合はそれを返す
-    return recommend.ogp.url if recommend&.ogp.present?
-    return bag_content.ogp.url if bag_content&.ogp.present?
-
     if recommend
       place_text = "#{recommend.place}のマストアイテム"
       item_text = prepare_text(recommend.item)
