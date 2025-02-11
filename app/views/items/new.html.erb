@@ -1,52 +1,79 @@
-<% content_for(:title, t('.title')) %>
 <div class="container mx-auto pt-3 p-2 md:pl-12 py-24">
   <div class="flex flex-col md:flex-row w-full">
-    <div class="flex flex-col justify-center w-full md:w-2/3 md:mr-8">
-      <%= form_with(model: @item_list, local: true) do |f| %>
-        <div class="flex flex-col md:flex-row justify-center items-center mb-8 md:gap-12">
-          <h1 class="text-base md:text-lg font-medium text-center mb-6 md:mb-0"><%= @item_list.name %></h1>
-          <%= f.submit "リストを保存", class: "btn btn-primary" %>
-        </div>
-        <div class="flex flex-col md:flex-row bg-slate-50 rounded shadow px-6 md:pl-12 py-6 dark:bg-base-200">
-          <div class="flex flex-col items-start gap-4 md:w-1/2">
-            <h3 class="text-sm">既存のアイテム</h3>
-            <% @sorted_items = @default_items %>
-            <% @sorted_items.each do |item| %>
-              <div class="flex items-center gap-3 text-nowrap">
-                <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
-                <%= hidden_field_tag "item_list[default_item_ids][]", nil %>
-                <%= check_box_tag "item_list[default_item_ids][]", item.id, status&.selected, class: "checkbox checkbox-primary checkbox-md" %>
-                <%= item.name %>
+    <div class="flex flex-col justify-center w-full md:mr-8">
+      <div class="flex justify-start mb-8">
+        <h1 class="text-base md:text-lg font-medium text-center"><%= @item_list.name %></h1>
+      </div>
+      <div class="flex flex-col md:flex-row justify-center md:justify-start mb-3 md:mb-9 md:gap-12">
+        <!-- アイテムを追加 -->
+        <div class="flex flex-col bg-slate-50 p-6 rounded shadow md:w-1/3 h-52 dark:bg-base-200">
+          <div class="flex flex-col w-full">
+            <h3 class="text-sm text-left mb-6">アイテムを追加</h3>
+            <%= form_with model: @new_original_item, url: item_list_items_path(@item_list), local: true do |f| %>
+              <label class="form-control w-full">
+                <input type="text" placeholder="アイテムの名前" name="original_item[name]" class="input input-bordered w-full bg-slate-50 dark:bg-base-200 placeholder:text-sm" required />
+              </label>
+              <div class="mt-4">
+                <%= f.submit '追加', class: "btn btn-primary w-full" %>
               </div>
             <% end %>
           </div>
-          <div class="flex flex-col items-start gap-4 md:w-1/2 mt-8 md:mt-0">
-            <h3 class="text-sm">オリジナルのアイテム</h3>
-            <% @original_items.each do |item| %>
-              <% if ItemListOriginalItem.exists?(item_list: @item_list, original_item: item) %>
-                <div class="flex items-center gap-3 text-nowrap">
-                  <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
-                  <%= check_box_tag "item_list[original_item_ids][]", item.id, status&.selected, class: "checkbox checkbox-primary checkbox-md" %>
-                  <%= item.name %>
-                  <%= link_to "✕", item_list_item_destroy_original_item_path(@item_list, item.id, id: item.id), data: { turbo_method: :delete }, class: "p-2 btn btn-ghost btn-circle btn-sm" %>
-                </div>
-              <% end %>
-            <% end %>
-          </div>
         </div>
-      <% end %>
-    </div>
-    <div class="flex flex-col bg-slate-50 p-6 rounded shadow md:w-1/3 h-52 dark:bg-base-200 mt-6 md:mt-20 md:mr-6">
-      <div class="flex flex-col w-full">
-        <h3 class="text-sm text-left mb-6">アイテムを追加</h3>
-        <%= form_with model: @new_original_item, url: item_list_items_path(@item_list), local: true do |f| %>
-          <label class="form-control w-full">
-            <input type="text" placeholder="アイテムの名前" name="original_item[name]" class="input input-bordered w-full dark:bg-base-200 placeholder:text-sm" required />
-          </label>
-          <div class="mt-4">
-            <%= f.submit '追加', class: "btn btn-primary w-full" %>
-          </div>
-        <% end %>
+        <div class="flex flex-col bg-slate-50 rounded shadow px-6 py-6 dark:bg-base-200 md:w-2/3 mt-8 md:mt-0">
+          <%= form_with(model: @item_list, local: true) do |f| %>
+            <div class="flex flex-col md:flex-row gap-2">
+              <div class="flex flex-col md:w-1/2 gap-3">
+                <h3 class="text-sm text-nowrap">オリジナルのアイテム</h3>
+                <% @original_items.each do |item| %>
+                  <% if ItemListOriginalItem.exists?(item_list: @item_list, original_item: item) %>
+                    <div class="flex items-center gap-3 text-base text-nowrap">
+                      <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
+                      <%= check_box_tag "item_list[original_item_ids][]", item.id, status&.selected, class: "checkbox checkbox-primary checkbox-md" %>
+                      <%= item.name %>
+                      <%= link_to "✕", item_list_item_destroy_original_item_path(@item_list, item.id, id: item.id), data: { turbo_method: :delete }, class: "p-2 btn btn-ghost btn-circle btn-sm" %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="flex flex-col md:w-1/2">
+                <!-- md以下はアコーディオン表示 -->
+                <div class="md:hidden collapse collapse-arrow bg-base-200 dark:bg-base-300 mt-2">
+                  <input type="checkbox" name="my-accordion-1" />
+                  <div class="collapse-title flex items-center">
+                    <h3 class="text-base text-nowrap">既存のアイテム</h3>
+                  </div>
+                  <div class="collapse-content text-xs md:text-sm space-y-4">
+                    <% @sorted_items = @default_items %>
+                    <% @sorted_items.each do |item| %>
+                      <div class="flex items-center gap-3 text-base text-nowrap">
+                        <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
+                        <%= hidden_field_tag "item_list[default_item_ids][]", nil %>
+                        <%= check_box_tag "item_list[default_item_ids][]", item.id, status&.selected, class: "checkbox checkbox-primary checkbox-md" %>
+                        <%= item.name %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+                <!-- md以上はリスト表示 -->
+                <div class="hidden md:flex flex-col md:w-1/2 gap-4">
+                  <h3 class="text-sm text-nowrap">既存のアイテム</h3>
+                  <% @sorted_items = @default_items %>
+                  <% @sorted_items.each do |item| %>
+                    <div class="flex items-center gap-5 text-nowrap">
+                      <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
+                      <%= hidden_field_tag "item_list[default_item_ids][]", nil %>
+                      <%= check_box_tag "item_list[default_item_ids][]", item.id, status&.selected, class: "checkbox checkbox-primary checkbox-md" %>
+                      <%= item.name %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="mt-10 md:mt-12">
+              <%= f.submit "リストを保存", class: "btn btn-primary w-full" %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
