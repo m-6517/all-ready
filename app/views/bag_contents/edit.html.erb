@@ -7,7 +7,7 @@
     <%= form_with model: @bag_content, url: bag_content_path(@bag_content), class: "w-full space-y-4", local: true do |f| %>
       <div>
         <%= f.label :tag_name, "タグ", class: "block text-sm font-normal mb-2" %>
-        <%= f.text_field :tag_names, value: @bag_content.tags.map(&:name).join(" "), placeholder: "スペース区切りで入力", class: "w-full border border-gray-300 bg-slate-50 text-xs md:text-sm rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200" %>
+        <%= f.text_field :tag_names, value: @bag_content.tags.map(&:name).join(" "), placeholder: "半角スペース区切りで入力", class: "w-full border border-gray-300 bg-slate-50 text-xs md:text-sm rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200" %>
       </div>
       <div class="mt-4">
         <%= f.label :body, class: "block text-sm font-normal mb-2" %>

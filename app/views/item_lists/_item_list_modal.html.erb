@@ -89,7 +89,7 @@
       <%= form_with model: @bag_content, url: bag_contents_path, method: :post, local: true do |f| %>
         <%= f.hidden_field :item_list_id, value: item_list.id %>
         <div>
-          <%= f.label :tag_name, "タグ　<span class='text-xs text-gray-500 dark:text-neutral'>(スペース区切り・3つまで)</span>".html_safe, class: "block text-sm font-medium mb-2" %>
+          <%= f.label :tag_name, "タグ　<span class='text-xs text-gray-500 dark:text-neutral'>(半角スペース区切り・3つまで)</span>".html_safe, class: "block text-sm font-medium mb-2" %>
           <%= f.text_field :tag_name, placeholder: "例：秋, 温泉, 食べ歩き", class: "w-full border border-gray-300 bg-slate-50 text-xs md:text-sm font-normal rounded-md shadow-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500, placeholder:text-xs dark:bg-base-200" %>
         </div>
         <div class="mt-4">
