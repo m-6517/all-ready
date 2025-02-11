@@ -1,18 +1,13 @@
 class Recommend < ApplicationRecord
+  belongs_to :user, foreign_key: :user_uuid
+  has_many :bookmarks, as: :bookmarkable, dependent: :destroy
+
   validates :place, presence: true, length: { maximum: 255 }
   validates :item, presence: true, length: { maximum: 255 }
   validates :body, length: { maximum: 65_535 }
 
-  belongs_to :user, foreign_key: :user_uuid
-  has_many :bookmarks, as: :bookmarkable, dependent: :destroy
-
   mount_uploader :item_image, ItemImageUploader
   mount_uploader :ogp, OgpUploader
-
-  def ogp_updated?(current_image_path)
-    return true if ogp.blank? || ogp.url != current_image_path
-    false
-  end
 
   def image_path
     if self.item_image.present?

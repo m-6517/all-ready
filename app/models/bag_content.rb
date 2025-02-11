@@ -6,6 +6,7 @@ class BagContent < ApplicationRecord
   has_many :bookmarks, as: :bookmarkable, dependent: :destroy
 
   validates :item_list_id, uniqueness: { scope: :user_uuid }
+  validates :body, length: { maximum: 65_535 }
 
   def self.ransackable_attributes(auth_object = nil)
     [ "body" ]
@@ -16,11 +17,6 @@ class BagContent < ApplicationRecord
   end
 
   mount_uploader :ogp, OgpUploader
-
-  def ogp_updated?(current_image_path)
-    return true if ogp.blank? || ogp.url != current_image_path
-    false
-  end
 
   def image_path
     if self.item_list.present? && self.item_list.cover_image.present?

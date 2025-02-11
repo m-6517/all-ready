@@ -13,31 +13,29 @@ class OgpCreator
   ROW_LIMIT = 8
   DEFAULT_IMAGE_PATH = "./app/assets/images/placeholder.png"
 
-  def self.build(item, place, user_name, recommend: nil, bag_content: nil, force_update: false)
-    if !force_update
-      if recommend&.ogp.present? && recommend.ogp_updated?(recommend.image_path)
-        return append_timestamp(recommend.ogp.url)
-      elsif bag_content&.ogp.present? && bag_content.ogp_updated?(bag_content.image_path)
-        return append_timestamp(bag_content.ogp.url)
-      end
-    end
+  def self.build(item, place, user_name, recommend: nil, bag_content: nil)
+    # 既存のOGP画像がある場合はそれを返す
+    return recommend.ogp.url if recommend&.ogp.present?
+    return bag_content.ogp.url if bag_content&.ogp.present?
 
     if recommend
       place_text = "#{recommend.place}のマストアイテム"
       item_text = prepare_text(recommend.item)
       user_text = prepare_text(recommend.user.name)
-      image_path = recommend.image_path.presence || DEFAULT_IMAGE_PATH
+      image_path = recommend.image_path
     elsif bag_content
       place_text = ""
       item_text = "#{bag_content.item_list.name}の持ち物リスト"
       user_text = prepare_text(bag_content.user.name)
-      image_path = bag_content.image_path.presence || DEFAULT_IMAGE_PATH
+      image_path = bag_content.image_path
     else
       place_text = ""
       item_text = ""
       user_text = ""
       image_path = DEFAULT_IMAGE_PATH
     end
+
+    image_path ||= DEFAULT_IMAGE_PATH
 
     # ベース画像を読み込む
     image = MiniMagick::Image.open(BASE_IMAGE_PATH)
@@ -87,27 +85,19 @@ class OgpCreator
       recommend.ogp = temp_file
       recommend.save!
       temp_file.close
-      result = append_timestamp(recommend.ogp.url)
+      recommend.ogp.url
     elsif bag_content
       bag_content.ogp = temp_file
       bag_content.save!
       temp_file.close
-      result = append_timestamp(bag_content.ogp.url)
+      bag_content.ogp.url
     else
       temp_file.close
-      result = append_timestamp(image.path)
+      image.path
     end
-
-    result
   end
 
   private
-
-  # 画像URLにタイムスタンプを追加
-  def self.append_timestamp(url)
-    return url if url.blank?
-    "#{url}?t=#{Time.current.to_i}"
-  end
 
   # 長いテキストを改行で整形
   def self.prepare_text(text)
