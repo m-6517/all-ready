@@ -28,11 +28,14 @@ class BagContentsController < ApplicationController
     @item_list = ItemList.find(params[:item_list_id])
     @bag_content = current_user.bag_contents.new(item_list_id: @item_list.id)
     tag_names = params[:tag_name]
-
+    body = params[:body]
+  
     if @item_list.original_items.empty? && @item_list.default_items.empty?
       flash[:alert] = t("defaults.flash_message.empty_list", item: BagContent.model_name.human)
       redirect_to item_list_path(@item_list)
     else
+      @bag_content.body = params[:body] if params[:body].present?
+
       if @bag_content.save
         if tag_names.present?
           tags = tag_names.split(" ").map(&:strip).uniq
@@ -43,7 +46,7 @@ class BagContentsController < ApplicationController
         render :new, alert: t("defaults.flash_message.not_shared", item: BagContent.model_name.human)
       end
     end
-  end
+  end  
 
   def edit
     @bag_content = current_user.bag_contents.find_by(uuid: params[:id])
