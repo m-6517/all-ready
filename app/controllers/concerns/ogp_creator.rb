@@ -9,7 +9,7 @@ class OgpCreator
   FONT = "./app/assets/fonts/ZenKakuGothicNew-Bold.ttf"
   FONT_SIZE = 27
   USER_FONT_SIZE = 25
-  INDENTION_COUNT = 12
+  INDENTION_COUNT = 17
   ROW_LIMIT = 8
   DEFAULT_IMAGE_PATH = "./app/assets/images/placeholder.png"
 
@@ -18,19 +18,19 @@ class OgpCreator
     return bag_content.ogp.url if bag_content&.ogp.present?
 
     if recommend
-      place_text = "#{recommend.place}のマストアイテム"
+      place_text = prepare_text("#{recommend.place}のマストアイテム")
       item_text = prepare_text(recommend.item)
       user_text = prepare_text(recommend.user.name)
       image_path = recommend.image_path
     elsif bag_content
-      place_text = ""
-      item_text = "#{bag_content.item_list.name}の持ち物リスト"
+      place_text = prepare_text("")
+      item_text = prepare_text("#{bag_content.item_list.name}の持ち物リスト")
       user_text = prepare_text(bag_content.user.name)
       image_path = bag_content.image_path
     else
-      place_text = ""
-      item_text = ""
-      user_text = ""
+      place_text = prepare_text("")
+      item_text = prepare_text("")
+      user_text = prepare_text("")
       image_path = DEFAULT_IMAGE_PATH
     end
 
