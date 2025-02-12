@@ -33,15 +33,12 @@
         <% end %>
       </div>
 
-      <div class="divider md:divider-horizontal"></div> <!-- hide divider on small screens -->
+      <div class="divider md:divider-horizontal"></div>
 
-      <div class="card w-full md:w-1/2">
+      <div class="w-full md:w-1/2">
         <ul class="space-y-2 w-full">
           <p class="text-sm font-medium mt-1 mb-4">持ち物</p>
-          <% selected_items = (@bag_content.item_list.default_items + @bag_content.item_list.original_items)
-              .select { |item| item.item_statuses.find_by(item_list_id: @bag_content.item_list.id)&.selected }
-              .sort_by { |item| item.item_statuses.find_by(item_list_id: @bag_content.item_list.id)&.position || 0 } %>
-          <% selected_items.each do |item| %>
+          <% (@selected_default_items + @selected_original_items).each do |item| %>
             <li class="flex items-center space-x-4">
               <span class="text-xs md:text-sm"><%= item.name %></span>
             </li>

@@ -7,16 +7,22 @@ class BagContentsController < ApplicationController
     @bag_contents = @q.result(distinct: true).includes(:user, :item_list).order(created_at: :desc)
   end
 
+
   def show
-    @bag_content = BagContent.find_by(uuid: params[:id])
-    @item_list = @bag_content.item_list
-
-    bag_contents = if (tag_name = params[:tag_name])
-      bag_contents.with_tag(tag_name)
-    else
-      bag_contents
-    end
-
+    @bag_content = BagContent.includes(
+      :user,
+      :tags,
+      :item_list,
+    ).find_by(uuid: params[:id])
+  
+    @selected_default_items = DefaultItem.joins(:item_statuses)
+                                         .where(item_statuses: { item_list_id: @bag_content.item_list.id, selected: true })
+                                         .includes(:item_statuses)
+  
+    @selected_original_items = OriginalItem.joins(:item_statuses)
+                                           .where(item_statuses: { item_list_id: @bag_content.item_list.id, selected: true })
+                                           .includes(:item_statuses)
+  
     prepare_meta_tags(@bag_content)
   end
 
