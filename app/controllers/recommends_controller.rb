@@ -3,7 +3,7 @@ class RecommendsController < ApplicationController
   helper_method :prepare_meta_tags
 
   def index
-    @recommends = Recommend.order(:created_at).group_by(&:place)
+    @recommends = Recommend.order(created_at: :desc).group_by(&:place)
   end
 
   def by_place
