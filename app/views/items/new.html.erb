@@ -26,7 +26,7 @@
                 <h3 class="text-sm text-nowrap">オリジナルのアイテム</h3>
                 <% @original_items.each do |item| %>
                   <% if ItemListOriginalItem.exists?(item_list: @item_list, original_item: item) %>
-                    <div class="flex items-center gap-3 text-base text-nowrap">
+                    <div class="flex items-center gap-3 text-base break-words">
                       <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
                       <%= check_box_tag "item_list[original_item_ids][]", item.id, status&.selected, class: "checkbox checkbox-primary checkbox-md" %>
                       <%= item.name %>
