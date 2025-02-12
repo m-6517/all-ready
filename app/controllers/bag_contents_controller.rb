@@ -14,15 +14,15 @@ class BagContentsController < ApplicationController
       :tags,
       :item_list,
     ).find_by(uuid: params[:id])
-  
+
     @selected_default_items = DefaultItem.joins(:item_statuses)
                                          .where(item_statuses: { item_list_id: @bag_content.item_list.id, selected: true })
                                          .includes(:item_statuses)
-  
+
     @selected_original_items = OriginalItem.joins(:item_statuses)
                                            .where(item_statuses: { item_list_id: @bag_content.item_list.id, selected: true })
                                            .includes(:item_statuses)
-  
+
     prepare_meta_tags(@bag_content)
   end
 
