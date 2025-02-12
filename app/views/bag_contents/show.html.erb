@@ -1,4 +1,10 @@
 <% content_for(:title, t('.title')) %>
+<% content_for :head do %>
+  <% if @bag_content.item_list.cover_image.present? %>
+    <link rel="preload" href="<%= @bag_content.item_list.cover_image.url %>" as="image">
+  <% end %>
+<% end %>
+
 <div class="flex items-center justify-center p-5">
   <div class="w-full md:w-2/3 bg-slate-50 p-6 rounded shadow dark:bg-base-200">
     <div class="flex flex-col md:flex-row w-full">
