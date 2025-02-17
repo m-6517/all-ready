@@ -6,10 +6,7 @@
           <%= render 'shared/error_messages', object: f.object %>
           <div class="mb-4 relative w-20 h-20">
             <%= f.label :avatar, style: "cursor: pointer; display: block; position: relative;" do %>
-              <img id="avatar_preview" 
-                  src="<%= current_user.avatar_url %>" 
-                  alt="Avatar Preview" 
-                  class="w-20 h-20 rounded-full transition-all object-cover duration-300 hover:opacity-70" />
+              <%= image_tag(current_user.avatar_url, id: 'avatar_preview', class: "w-20 h-20 rounded-full transition-all object-cover duration-300 hover:opacity-70") %>
             <% end %>
             <%= f.file_field :avatar, class: "hidden", accept: 'image/*', id: 'user_avatar' %>
             <%= f.hidden_field :avatar_cache %>
