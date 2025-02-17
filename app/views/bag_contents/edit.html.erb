@@ -22,7 +22,7 @@
       <dialog id="bagContentDeleteModal_<%= j @bag_content.uuid %>" class="modal">
         <div class="modal-box bg-slate-50 w-96 mx-auto px-4 space-y-6 dark:bg-base-200">
           <div class="text-left">
-            <h3 class="font-semibold text-base text-accent mb-2">投稿を削除しますか？</h3>
+            <h3 class="font-bold text-base text-accent mb-2">投稿を削除しますか？</h3>
             <p class="text-sm">共有していた持ち物リストは削除されません。</p>
           </div>
           <%= form_with url: bag_content_path(@bag_content), method: :delete, class: "w-full" do |f| %>
