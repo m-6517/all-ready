@@ -11,10 +11,6 @@
   visibility: hidden;
 }
 
-span.size-24 {
-  font-size: 24px;
-  font-variation-settings: 'OPSZ' 24;
-}
 span.size-30 {
   font-size: 30px;
   font-variation-settings: 'OPSZ' 30;
