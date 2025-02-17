@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("turbo:load", () => {
   const setupImagePreview = (inputId, previewId) => {
     const fileInput = document.getElementById(inputId);
     const preview = document.getElementById(previewId);

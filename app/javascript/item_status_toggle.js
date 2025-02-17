@@ -57,6 +57,6 @@ function setupItemStatusToggle() {
   });
 }
 
-// DOMContentLoadedとTurboのナビゲーション後にセットアップを実行
-document.addEventListener("DOMContentLoaded", setupItemStatusToggle);
+// Turboのナビゲーション後にセットアップを実行
 document.addEventListener("turbo:render", setupItemStatusToggle);
+document.addEventListener("turbo:load", setupItemStatusToggle);
