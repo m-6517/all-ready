@@ -57,8 +57,11 @@ jobs:
       #   options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-      - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable curl libjemalloc2 libvips postgresql-client
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          gem install bundler
+          bundle install
 
       - name: Checkout code
         uses: actions/checkout@v4
@@ -68,21 +71,6 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-
-       - name: Install dependencies
-        run: |
-          sudo apt-get update -qq
-          gem install bundler
-          bundle install
-
-      - name: Setup database
-        run: |
-            cp config/database.ci.yml config/database.yml
-            bundle exec rails db:create RAILS_ENV=test
-            bundle exec rails db:migrate RAILS_ENV=test
-
-      - name: Run RSpec
-        run: bundle exec rspec spec/models spec/requests  spec/system 
 
       - name: Run tests
         env:
