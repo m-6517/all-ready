@@ -21,7 +21,7 @@
   <div>
     <%= f.file_field :item_image, class: "file-input file-input-bordered file-input-primary file-input-sm w-full mt-2 mb-4 dark:file-input-secondary", accept: 'image/*', id: 'recommend_item_image' %>
     <%= f.hidden_field :item_image_cache %>
-    <img id="recommend_image_preview" src="#" alt="Image Preview" style="display:none; max-width: 200px;" />
+    <img id="recommend_image_preview" src="#" style="display:none; max-width: 200px;" />
   </div>
   <div class="flex mt-4 justify-end">
     <%= f.submit submit_label, class: "btn btn-primary w-full mt-4" %>
