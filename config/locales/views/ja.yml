@@ -75,6 +75,9 @@ ja:
   items:
     new:
       title: アイテム編集
+  quantities:
+    index:
+      title: アイテム数変更
   bookmarks:
     index:
       title: ブックマーク
