@@ -8,21 +8,21 @@
         <dialog id="itemModal" class="modal md:hidden">
           <div class="modal-box bg-slate-50 w-96 mx-auto px-4 dark:bg-base-200">
             <div class="px-4 py-12 flex flex-col justify-center w-full space-y-8">
-              <%= link_to new_item_list_item_path(@item_list), class: "btn w-full btn-outline text-primary font-normal bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral" do %>
+              <%= link_to new_item_list_item_path(@item_list), class: "btn w-full btn-outline text-primary font-normal bg-slate-50 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral" do %>
                 <span class="material-symbols-outlined">checklist</span>
                 アイテムを編集
               <% end %>
-              <%= link_to item_list_quantities_path(@item_list), class: "btn w-full btn-outline text-primary font-normal bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral" do %>
+              <%= link_to item_list_quantities_path(@item_list), class: "btn w-full btn-outline text-primary font-normal bg-slate-50 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral" do %>
                 <span class="material-symbols-outlined">exposure_plus_1</span>
                 アイテム数を変更
               <% end %>
               <%= form_with url: clear_checked_items_item_list_path(@item_list), method: :patch, local: true, class: "w-full" do %>
-                <button type="submit" class="btn w-full btn-outline text-primary font-normal bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral">
+                <button type="submit" class="btn w-full btn-outline text-primary font-normal bg-slate-50 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral">
                   <span class="material-symbols-outlined">refresh</span>
                   準備済みのアイテムをクリア
                 </button>
               <% end %>
-              <button class="filter-checked-button btn w-full btn-outline text-primary font-normal bg-base-100 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral"
+              <button class="filter-checked-button btn w-full btn-outline text-primary font-normal bg-slate-50 dark:bg-base-200 dark:text-neutral border-primary dark:border-neutral hover:bg-gray-100 hover:border-primary hover:text-primary dark:hover:bg-base-300 dark:hover:border-neutral dark:hover:text-neutral"
                 onclick="document.getElementById('itemModal').close()">
                 <span class="filter-icon material-symbols-outlined">visibility_off</span>
                 <span class="filter-text">準備済みのアイテムを非表示</span>
