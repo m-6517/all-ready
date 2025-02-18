@@ -83,9 +83,7 @@
 <dialog id="shareModal_<%= item_list.id %>" class="modal">
   <div class="modal-box bg-slate-50 md:w-2/3 mx-auto px-4 dark:bg-base-200">
     <div class="p-4 flex flex-col justify-center w-full space-y-6">
-      <h2 class="text-base font-medium mb-4">
-        <%= link_to item_list.name, item_list_path(item_list) %>
-      </h2>
+      <h2 class="text-base font-medium"><%= item_list.name %></h2>
       <%= form_with model: @bag_content, url: bag_contents_path, method: :post, local: true do |f| %>
         <%= f.hidden_field :item_list_id, value: item_list.id %>
         <div>
