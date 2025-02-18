@@ -60,8 +60,8 @@ development:
 test:
   adapter: postgresql
   encoding: utf8
-  username: root
-  password:
+  username: postgres
+  password: password
   host: postgres
   database: myapp_test
 
