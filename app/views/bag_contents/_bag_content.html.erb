@@ -18,7 +18,8 @@
         <%= bag_content.item_list.name %>
       </div>
     </div>
-    <%= link_to bag_content_path(bag_content.uuid), class: "w-full h-full block rounded-b-lg bg-base-200 dark:bg-base-300" do %>
+    <%= link_to bag_content_path(bag_content.uuid), class: "flex justify-center items-center w-full h-full block rounded-b-lg bg-base-200 dark:bg-base-300" do %>
+      <%= image_tag "placeholder.png", class: "w-24 h-24" %>
     <% end %>
   </div>
 <% end %>

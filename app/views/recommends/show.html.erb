@@ -21,14 +21,14 @@
         <% end %>
       </div>
       <div class="flex justify-between items-center mt-6">
-        <%= link_to by_place_recommends_path(@recommend.place), class: "flex items-center md:gap-2 text-sm text-nowrap mb-1.5" do %>
+        <%= link_to by_place_recommends_path(@recommend.place), class: "flex items-center md:gap-2 text-sm text-nowrap mb-1" do %>
           <span class="material-symbols-outlined text-primary dark:text-neutral">arrow_back_ios_new</span>
           もどる
         <% end %>
         <div class="flex justify-end items-center gap-5">
           <% twitter_share_url = "https://twitter.com/intent/tweet?url=#{request.url}&text=#{CGI.escape(@recommend.place)}のマストアイテム：#{CGI.escape(@recommend.item)}%0A%0A&hashtags=#{CGI.escape('AllReadyApp')}" %>
           <%= link_to twitter_share_url, target: '_blank' do %>
-            <button class="flex items-center gap-2 px-2 py-1 mb-1.5 bg-gray-100 text-gray-800 text-sm font-medium rounded shadow hover:bg-gray-200 dark:bg-gray-100 dark:hover:bg-gray-200" type="button">
+            <button class="flex items-center gap-2 px-2 py-1 mb-1 bg-gray-100 text-gray-800 text-sm font-medium rounded hover:bg-gray-200 dark:bg-gray-100 dark:hover:bg-gray-200" type="button">
               <div class="w-[15px] h-[15px]"> 
                 <svg viewBox="0 0 1200 1227" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-full h-full fill-black">
                   <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" />

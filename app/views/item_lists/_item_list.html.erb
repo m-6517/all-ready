@@ -22,7 +22,8 @@
       <span class="material-symbols-outlined size-30 absolute top-1 md:top-2 right-2 md:right-3" style="cursor: pointer;" onclick="openMenuModal(<%= item_list.id %>)">more_horiz</span>
       <%= render 'item_list_modal', item_list: item_list %>
     </div>
-    <%= link_to item_list_path(item_list), class: "w-full h-full block rounded-b-lg bg-base-200 dark:bg-base-300" do %>
+    <%= link_to item_list_path(item_list), class: "flex justify-center items-center w-full h-full block rounded-b-lg bg-base-200 dark:bg-base-300" do %>
+      <%= image_tag "placeholder.png", class: "w-24 h-24" %>
     <% end %>
   </div>
 <% end %>
