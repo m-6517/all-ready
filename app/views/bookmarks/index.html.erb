@@ -16,9 +16,13 @@
     <div class="flex flex-wrap justify-start gap-5 md:gap-8 mt-6">
       <% @bookmarked_recommends.each do |recommend_or_bag_content| %>
         <% if recommend_or_bag_content.is_a?(Recommend) %>
-          <%= link_to recommend_path(recommend_or_bag_content), class: "card bg-slate-50 w-40 md:w-64 shadow rounded p-3 md:p-5 flex flex-col relative dark:bg-base-200" do %>
-            <h2 class="text-sm md:text-base font-medium mb-2 md:mb-6"><%= recommend_or_bag_content.place %></h2>
-            <h3 class="text-xs md:text-sm font-medium"><%= recommend_or_bag_content.item %></h3>
+          <%= link_to recommend_path(recommend_or_bag_content), class: "card bg-slate-50 w-40 h-40 md:w-44 md:h-44 shadow rounded relative overflow-hidden flex items-center justify-center dark:bg-base-200" do %>
+            <% if recommend_or_bag_content.item_image.present? %>
+              <%= image_tag recommend_or_bag_content.item_image_url, class: "absolute inset-0 w-full h-full object-contain opacity-40" %>
+            <% end %>
+            <div class="relative z-10 text-center px-3">
+              <h2 class="text-sm md:text-lg font-bold"> <%= recommend_or_bag_content.item %></h2>
+            </div>
           <% end %>
         <% end %>
       <% end %>
@@ -53,7 +57,8 @@
                   <%= recommend_or_bag_content.item_list.name %>
                 </div>
               </div>
-              <%= link_to bag_content_path(recommend_or_bag_content.uuid), class: "w-full h-full block rounded-b-lg bg-base-200 dark:bg-base-300" do %>
+              <%= link_to bag_content_path(recommend_or_bag_content.uuid), class: "flex justify-center items-center w-full h-full block rounded-b-lg bg-base-200 dark:bg-base-300" do %>
+                <%= image_tag "placeholder.png", class: "w-24 h-24" %>
               <% end %>
             </div>
           <% end %>
