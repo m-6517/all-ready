@@ -36,27 +36,8 @@
                   <% end %>
                 <% end %>
               </div>
-              <div class="flex flex-col md:w-1/2">
-                <!-- md以下はアコーディオン表示 -->
-                <div class="md:hidden collapse collapse-arrow bg-base-200 dark:bg-base-300 mt-2">
-                  <input type="checkbox" name="my-accordion-1" />
-                  <div class="collapse-title flex items-center">
-                    <h3 class="text-base text-nowrap">既存のアイテム</h3>
-                  </div>
-                  <div class="collapse-content text-xs md:text-sm space-y-4">
-                    <% @sorted_items = @default_items %>
-                    <% @sorted_items.each do |item| %>
-                      <div class="flex items-center gap-3 text-base text-nowrap">
-                        <% status = item.item_statuses.find_by(item_list_id: @item_list.id) %>
-                        <%= hidden_field_tag "item_list[default_item_ids][]", nil %>
-                        <%= check_box_tag "item_list[default_item_ids][]", item.id, status&.selected, class: "checkbox checkbox-primary checkbox-md" %>
-                        <%= item.name %>
-                      </div>
-                    <% end %>
-                  </div>
-                </div>
-                <!-- md以上はリスト表示 -->
-                <div class="hidden md:flex flex-col md:w-1/2 gap-4">
+              <div class="flex flex-col md:flex-row gap-2 mt-4 md:mt-0">
+                <div class="flex flex-col md:w-1/2 gap-3">
                   <h3 class="text-sm text-nowrap">既存のアイテム</h3>
                   <% @sorted_items = @default_items %>
                   <% @sorted_items.each do |item| %>
