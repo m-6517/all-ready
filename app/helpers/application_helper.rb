@@ -31,7 +31,7 @@ module ApplicationHelper
       },
       twitter: {
         card: "summary_large_image",
-        site: "@kumteq",
+        site: "@kumateq",
         image: image_url("ogp.png")
       }
     }
