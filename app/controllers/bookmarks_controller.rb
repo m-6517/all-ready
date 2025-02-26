@@ -2,8 +2,8 @@ class BookmarksController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[create]
 
   def index
-    @bookmarked_recommends = current_user.bookmarks.includes(:bookmarkable).map(&:bookmarkable)
-    @bookmarked_bag_contents = current_user.bookmarks.includes(:bookmarkable).map(&:bookmarkable)
+    @bookmarked_recommends = current_user.bookmarks.includes(:bookmarkable).order(created_at: :desc).map(&:bookmarkable)
+    @bookmarked_bag_contents = current_user.bookmarks.includes(:bookmarkable).order(created_at: :desc).map(&:bookmarkable)
   end
 
   def create
