@@ -8,6 +8,11 @@
         <% end %>
       </div>
       <div class="flex items-center gap-6 mr-4 font-bold">
+        <div class="hidden md:flex items-center">
+          <%=link_to how_to_use_path, class: "text-sm md:text-base flex items-center font-medium" do %>
+            <span class="material-symbols-outlined">help</span>
+          <% end %>
+        </div>
         <div data-controller="theme" class="flex items-center">
           <label class="swap swap-rotate">
             <input type="checkbox" data-theme-target="toggle" data-action="change->theme#toggle" />
